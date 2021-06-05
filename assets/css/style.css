@@ -6,11 +6,13 @@
 
 body {
   background-color: #000;
-  min-height: 100vh;
+  min-height: 95vh;
+  max-width: 90vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 95px;
+  font-size: 8vw;
+  /*font-size: 95px;*/
   perspective: 55em;
   perspective-origin: 1% calc(2% - 14em);
 }
@@ -19,10 +21,10 @@ body {
  position: relative;
  transform-style: preserve-3d;
  animation: scene-rotate var(--rotate-speed) linear;
- transform: rotateY(var(--rotation-scene)) translateY(1em);
+ transform: rotateY(var(--rotation-scene)) translateY(0em);
  }
 
- @keyframes scene-rotate { to { transform: rotateY(360deg);} 
+ @keyframes sccene-rotate { to { transform: rotateY(360deg);} 
  }
 
  .floor {
