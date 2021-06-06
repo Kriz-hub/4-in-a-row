@@ -54,9 +54,9 @@ newBackSideCube.style.boxshadow="0 0 0.5em rgba(48, 48, 48, 0.667) inset";
 newBackSideCube.style.transform= "transform: rotateY(180deg) translateZ(.25em)";
 
 scene.appendChild (floor);
-scene.appendChild (newSelectCube);
-newSelectCube.appendChild (newLeftSideCube);
-newSelectCube.appendChild (newRightSideCube);
-newSelectCube.appendChild (newFrontSideCube);
-newSelectCube.appendChild (newBackSideCube);
+//scene.appendChild (newSelectCube);
+//newSelectCube.appendChild (newLeftSideCube);
+//newSelectCube.appendChild (newRightSideCube);
+//newSelectCube.appendChild (newFrontSideCube);
+//newSelectCube.appendChild (newBackSideCube);
 document.body.appendChild (scene);
