@@ -1,23 +1,2 @@
-:root {
-  --lightness: 65%;
-  --rotate-speed: 50s;
-  --rotation-scene: 0deg;
-}
-
-body {
-  background-color: #000;
-  min-height: 95vh;
-  max-width: 90vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 8vw;
-  /*font-size: 95px;*/
-  perspective: 55em;
-  perspective-origin: 1% calc(2% - 14em);
-}
-
- @keyframes sccene-rotate { to { transform: rotateY(360deg);} 
- }
 
  
