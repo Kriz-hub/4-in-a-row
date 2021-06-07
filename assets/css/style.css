@@ -1,2 +1,55 @@
+:root {
+  --lightness: 65%;
+}
+
+body {
+  background-color: #000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 95px;
+  perspective: 55em;
+  perspective-origin: 1% calc(2% - 14em);
+}
+
+#scene {
+ position: relative;
+ transform-style: preserve-3d;
+ /*animation: scene-rotate2 var(--rotate-speed-slow) linear;*/
+ transform: rotateY(0deg) translateY(0em);
+ }
+
+ #floor {
+  position: absolute;
+  top: 1em;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  width: 15em;
+  height: 15em;
+  background: radial-gradient(#0000, #000 var(--lightness)), repeating-conic-gradient(from 125deg, red, 
+  rgb(206, 198, 198) 90deg 180deg);
+  /*background-size: 100%, 1em 1em;*/
+  /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
+}
 
  
+#cube {
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  top: .5em;
+  left: -5em;
+}
+
+ #leftside, #rightside, #frontside, #backside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(---cube-color);
+    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.667) inset;
+ }
+
+#frontside { transform: translateZ(.25em) ; }
+#rightside { transform: rotateY(90deg) translateZ(.25em) ; }
+#backside {  transform: rotateY(180deg) translateZ(.25em) ; }
+#leftside {  transform: rotateY(270deg) translateZ(.25em) ; }
