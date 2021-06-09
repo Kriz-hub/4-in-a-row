@@ -4,19 +4,23 @@ const startCubeCol = -3; //-3em
 const startCubeRow = 0.5; //0.5em
 const step = 0.5;
 var cubeCol = startCubeCol-step;
-var cubeRow = startCubeRow-step;
+var cubeRow;
+var s="";
 let row;
 let col;
 var sceneDiv = document.getElementById("scene");
 var cubeDiv = document.getElementById("cube");
 var cubeCloneDiv;
-for (col = 1; col<totalCols; col++) {
+for (col = 1; col<=totalCols; col++) {
     cubeCol += step;
-    for (row = 1; row<totalRows; row++) {
-        cubeRow += step;
+    cubeRow = startCubeRow+step;
+    for (row = 1; row<=totalRows; row++) {
+        cubeRow -= step;
         cubeCloneDiv = cubeDiv.cloneNode(true);
-        cubeCloneDiv.top = string(cubeRow) + "em";
-        cubeCloneDiv.left = string(cubeCol) + "em";
+        cubeCloneDiv.style.top = cubeRow + "em";
+        cubeCloneDiv.style.left = cubeCol + "em";
+        s+=col + "  " + cubeCloneDiv.style.left + "  " + row + "  " + cubeCloneDiv.style.top + "\n";
         sceneDiv.appendChild(cubeCloneDiv);
     }
 }
+alert(s);
