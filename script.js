@@ -5,7 +5,6 @@ const startCubeRow = 0.5; //0.5em
 const step = 0.5;
 var cubeCol = startCubeCol-step;
 var cubeRow;
-var s="";
 let row;
 let col;
 var sceneDiv = document.getElementById("scene");
@@ -19,8 +18,7 @@ for (col = 1; col<=totalCols; col++) {
         cubeCloneDiv = cubeDiv.cloneNode(true);
         cubeCloneDiv.style.top = cubeRow + "em";
         cubeCloneDiv.style.left = cubeCol + "em";
-        s+=col + "  " + cubeCloneDiv.style.left + "  " + row + "  " + cubeCloneDiv.style.top + "\n";
         sceneDiv.appendChild(cubeCloneDiv);
     }
 }
-alert(s);
+
