@@ -63,7 +63,7 @@ body {
 .backside {  transform: rotateY(180deg) translateZ(.25em) ; }
 .leftside {  transform: rotateY(270deg) translateZ(.25em) ; }
 
-#redball {
+.redball {
   width: .5em; height: .5em;
   border-radius: 50%;
   position: absolute;
@@ -73,7 +73,7 @@ body {
   /*animation: scene-rotate2 var(--rotate-speed) linear reverse;*/
  }
 
- #blueball {
+ .blueball {
   width: .5em; height: .5em;
   border-radius: 50%;
   position: absolute;

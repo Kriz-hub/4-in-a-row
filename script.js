@@ -24,7 +24,19 @@ for (col = 1; col<=totalCols; col++) {
 }
 
 function dropBall(s) {
-  alert(s);
+  //extract the column number from the cubeID which is clicked
+  let s2 = s.slice(3,5);
+  let s3 = s2.slice(1,2);
+  if (isNaN(s3)===true) {s2=s.slice(3,4);}
+
+  let ballRow = 0.5;
+  let ballCol = -3 + (s2-1) * 0.5;
+  let sceneDiv = document.getElementById("scene");
+  let ballDiv = document.getElementsByClassName("redball")[0];
+  let ballCloneDiv = ballDiv.cloneNode(false);
+  ballCloneDiv.style.top = ballRow + "em";
+  ballCloneDiv.style.left = ballCol + "em";
+  sceneDiv.appendChild(ballCloneDiv);
 }
 /*
 
