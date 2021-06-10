@@ -8,23 +8,25 @@ var cubeRow;
 let row;
 let col;
 var sceneDiv = document.getElementById("scene");
-var cubeDiv = document.getElementById("cube");
+var cubeDiv = document.getElementsByClassName("cube")[0];
 var cubeCloneDiv;
-var count=0;
-var ident;
 for (col = 1; col<=totalCols; col++) {
     cubeCol += step;
     cubeRow = startCubeRow+step;
     for (row = 1; row<=totalRows; row++) {
-        count+=1;
         cubeRow -= step;
         cubeCloneDiv = cubeDiv.cloneNode(true);
         cubeCloneDiv.style.top = cubeRow + "em";
         cubeCloneDiv.style.left = cubeCol + "em";
-        cubeCloneDiv.id = "ident"+count;
+        cubeCloneDiv.id = "col" + col + "row" + row;
         sceneDiv.appendChild(cubeCloneDiv);
     }
 }
+
+function dropBall(s) {
+  alert(s);
+}
+/*
 
 function dropBall(){
 let ballDiv = document.getElementById("redBall");
@@ -38,3 +40,4 @@ document.querySelectorAll('div')[0].onmouseover = function(e){
 
 };
 
+*/
