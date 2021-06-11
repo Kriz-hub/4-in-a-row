@@ -27,21 +27,36 @@ for (col = 1; col<=totalCols; col++) { //build rows of cubes to contain the ball
         sceneDiv.appendChild(cubeCloneDiv);
     }
 }
+var redsTurn = true; //who's turn, when blue then redsTurn=false
 
 function dropBall(s) {
   //extract the column number from the cubeID which is clicked to variable s2
   let s2 = s.slice(3,5);
   let s3 = s2.slice(1,2);
   if (isNaN(s3)===true) {s2=s.slice(3,4);}
+  
+  if (ballsPerCol[s2-1] < totalRows) { //if the collumn isn't full then place red or blue ball
+    ballsPerCol[s2-1] += 1;
+    let ballRow = 0.5 - (ballsPerCol[s2-1]-1) * step;
+    let ballCol = startCubeCol + (s2-1) * step; 
 
-  let ballRow = 0.5;
-  let ballCol = -3 + (s2-1) * 0.5;
-  let sceneDiv = document.getElementById("scene");
-  let ballDiv = document.getElementsByClassName("redball")[0];
-  let ballCloneDiv = ballDiv.cloneNode(false);
-  ballCloneDiv.style.top = ballRow + "em";
-  ballCloneDiv.style.left = ballCol + "em";
-  sceneDiv.appendChild(ballCloneDiv);
+    let ballClass;
+    let sceneDiv = document.getElementById("scene");
+    if (redsTurn===true) {
+      ballClass = "redball";
+      grid[s2-1][ballsPerCol[s2-1]] = "r"; //add red ball to grid array
+      redsTurn = false;
+    } else {
+      ballClass = "blueball";
+      grid[s2-1][ballsPerCol[s2-1]] = "b";  //add blue ball to grid array
+      redsTurn = true;
+    }
+
+    let ballDiv = document.getElementsByClassName(ballClass)[0];
+    let ballCloneDiv = ballDiv.cloneNode(false);
+    ballCloneDiv.style.top = ballRow + "em";
+    ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
+    sceneDiv.appendChild(ballCloneDiv); } //drop ball 
 }
 /*
 

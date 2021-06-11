@@ -38,11 +38,11 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
-.cube {
+.ube {
   width: .5em;
   height: .5em;
   position: absolute;
-  top: .5em;
+  top: 2em;
   left: -6em;
 }
 
