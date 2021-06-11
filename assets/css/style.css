@@ -38,12 +38,12 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
-.ube {
+.cube {
   width: .5em;
   height: .5em;
   position: absolute;
   top: 2em;
-  left: -6em;
+  left: -5em;
 }
 
 .cube:hover {
@@ -68,7 +68,7 @@ body {
   border-radius: 50%;
   position: absolute;
   left: -5.5em;
-  bottom: -1em;
+  bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
   /*animation: scene-rotate2 var(--rotate-speed) linear reverse;*/
  }
@@ -78,7 +78,7 @@ body {
   border-radius: 50%;
   position: absolute;
   left: -5em;
-  bottom: -1em;
+  bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
   /*animation: scene-rotate2 var(--rotate-speed-slow) linear reverse;*/
  }
