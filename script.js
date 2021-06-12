@@ -59,15 +59,20 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
 function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
+  let a;
+  let b;
+  let ny;
   alert ("y" + y);
   while (y - countDown > 0 && gridCondition) {
-    if (grid[x][y - countDown - 1] === who) {countDown=+1} else {gridCondition = false;}
+    a=grid[x][y - countDown - 1];
+    ny = y - countDown - 1;
+    b=countDown;
+    if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
     let test = (y - countDown > 0);
-    alert ("while: countDown:" + countDown + "  " + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ grid[x][y - countDown - 1] + " who:" + who + " y-c " + (y-countDown)-1);
+    alert ("while: countDown:" + b + "  nieuwecountdown:" + countDown + " whilevooruit:" + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ a + "  nieuweY:" +  ny + " grid0:"+ grid[x][0]  + " who:" + who + " y-c-1:" + (y-countDown-1));
   }
   if (countDown===3) {return true;} else {return false;}
 }
-
 
 function givePoint (who) {
   let scoreDiv;
@@ -115,8 +120,8 @@ function dropBall(s) {
     let contr;
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
     
-    //if (controlvert (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
-    contr=controlVert (who, s2-1, ballsPerCol[s2-1]-1);
+    if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
+    //contr=controlVert (who, s2-1, ballsPerCol[s2-1]-1);
     //alert (who + " ftest  " + contr);
     movesToMake -= 1;
     //Alert("Moves to make:    " +  movesToMake);
