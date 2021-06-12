@@ -36,7 +36,7 @@ function buildCubes () {
       }
   }
 } // end function buildCubes
-
+/*
 
 function controlHor (who, x, y) {//check if a new 'four in a row' is made in horizontal direction after a move is made
   let countLeft=0;
@@ -44,39 +44,39 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
   let gridCondition = true;
 
   while (x + countRight < totalRows && gridCondition)  { //check to the right for new '4 in a row'
-    if (grid[x + countRight + 1][y]=who) {countRight ++;} else {gridCondition = false;}
+    if (grid[x + countRight + 1][y]===who) {countRight ++;} else {gridCondition = false;}
   } 
 
   gridCondition = true;
   while (x - countLeft > 1 && gridCondition) { //check to the left for new '4 in a row'
-    if (grid[x - CountLeft - 1][y] = Who) {countleft ++;} else {gridCondition = false;}
+    if (grid[x - CountLeft - 1][y] === Who) {countleft ++;} else {gridCondition = false;}
   }
 
   if (countLeft < 4 && countRight < 4 && countLeft + countRight + 1 >= 4) {return controlHor=true;} 
      else {return controlHor=false;} // if there is already '4 in a row' horizontally then function returns false
 }
-
+*/
 function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
 
   while (y - countDown > 1 && gridCondition) {
-    if (grid[x][y - countDown - 1] = who) {countDown++;} else {gridCondition = false;}
+    if (grid[x][y - countDown - 1] === who) {countDown=+1} else {gridCondition = false;}
   }
-
-  if ((countDown+1)=4) {return controlVert = true;} else {return controlVert = false;}
+  if (countDown===3) {return true;} else {return false;}
 }
+
 
 function givePoint (who) {
   let scoreDiv;
-  if (who="r") {
-     pointsRed++;
-     scoreDiv = document.getElementById("score-text-red");  
-     scoreDiv.innerText = "Red: " + pointsRed;
-  } else {
-     pointsBlue++;
-     scoreDiv = document.getElementById("score-text-blue");  
-     scoreDiv.innerText = "Red: " + pointsBlue;
+  if (who==="r") {
+    pointsRed++;
+    scoreDiv = document.getElementById("score-text-red");  
+    scoreDiv.innerText = "Red: " + pointsRed;
+    } else {
+    pointsBlue++;
+    scoreDiv = document.getElementById("score-text-blue");  
+    scoreDiv.innerText = "blue: " + pointsBlue;
   }
 }
 
@@ -110,12 +110,15 @@ function dropBall(s) {
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
     sceneDiv.appendChild(ballCloneDiv); 
 
+    let contr;
     let who = grid[s2-1][ballsPerCol[s2-1]];
-    if (controlHor (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
-    if (controlVert (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
-    movesToMake--;
-    Alert("Moves to make:    " +  movesToMake);
-    if (movesToMake=0) {alert("Game Over");}
+    
+    //if (controlvert (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
+    contr=controlVert (who, s2-1, ballsPerCol[s2-1]);
+    alert (who + " ftest  " + contr);
+    movesToMake -= 1;
+    //Alert("Moves to make:    " +  movesToMake);
+    if (movesToMake<0.1) {alert("Game Over");}
   } //drop ball 
 } // end function dropBall
 
