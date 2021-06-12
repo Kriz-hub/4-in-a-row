@@ -59,9 +59,11 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
 function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
-
-  while (y - countDown > 1 && gridCondition) {
+  alert ("y" + y);
+  while (y - countDown > 0 && gridCondition) {
     if (grid[x][y - countDown - 1] === who) {countDown=+1} else {gridCondition = false;}
+    let test = (y - countDown > 0);
+    alert ("while: countDown:" + countDown + "  " + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ grid[x][y - countDown - 1] + " who:" + who + " y-c " + (y-countDown)-1);
   }
   if (countDown===3) {return true;} else {return false;}
 }
@@ -96,11 +98,11 @@ function dropBall(s) {
     let sceneDiv = document.getElementById("scene");
     if (redsTurn===true) {
       ballClass = "redball";
-      grid[s2-1][ballsPerCol[s2-1]] = "r"; //add red ball to grid array
+      grid[s2-1][ballsPerCol[s2-1]-1] = "r"; //add red ball to grid array
       redsTurn = false;
     } else {
       ballClass = "blueball";
-      grid[s2-1][ballsPerCol[s2-1]] = "b";  //add blue ball to grid array
+      grid[s2-1][ballsPerCol[s2-1]-1] = "b";  //add blue ball to grid array
       redsTurn = true;
     }
 
@@ -111,11 +113,11 @@ function dropBall(s) {
     sceneDiv.appendChild(ballCloneDiv); 
 
     let contr;
-    let who = grid[s2-1][ballsPerCol[s2-1]];
+    let who = grid[s2-1][ballsPerCol[s2-1]-1];
     
     //if (controlvert (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
-    contr=controlVert (who, s2-1, ballsPerCol[s2-1]);
-    alert (who + " ftest  " + contr);
+    contr=controlVert (who, s2-1, ballsPerCol[s2-1]-1);
+    //alert (who + " ftest  " + contr);
     movesToMake -= 1;
     //Alert("Moves to make:    " +  movesToMake);
     if (movesToMake<0.1) {alert("Game Over");}
