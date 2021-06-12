@@ -7,6 +7,9 @@ const step = 0.5; //cubes and balls are 0.5em positioned from each other
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
+var movesToMake = totalCols*totalRows;
+var pointsRed = 0;
+var pointsBlue =0;
 buildCubes();
 
 
@@ -35,6 +38,47 @@ function buildCubes () {
 } // end function buildCubes
 
 
+function controlHor (who, x, y) {//check if a new 'four in a row' is made in horizontal direction after a move is made
+  let countLeft=0;
+  let countRight=0;
+  let gridCondition = true;
+
+  while (x + countRight < totalRows && gridCondition)  { //check to the right for new '4 in a row'
+    if (grid[x + countRight + 1][y]=who) {countRight ++;} else {gridCondition = false;}
+  } 
+
+  gridCondition = true;
+  while (x - countLeft > 1 && gridCondition) { //check to the left for new '4 in a row'
+    if (grid[x - CountLeft - 1][y] = Who) {countleft ++;} else {gridCondition = false;}
+  }
+
+  if (countLeft < 4 && countRight < 4 && countLeft + countRight + 1 >= 4) {return controlHor=true;} 
+     else {return controlHor=false;} // if there is already '4 in a row' horizontally then function returns false
+}
+
+function controlVert (who, x, y) {
+  let countDown = 0;
+  let gridCondition = true;
+
+  while (y - countDown > 1 && gridCondition) {
+    if (grid[x][y - countDown - 1] = who) {countDown++;} else {gridCondition = false;}
+  }
+
+  if ((countDown+1)=4) {return controlVert = true;} else {return controlVert = false;}
+}
+
+function givePoint (who) {
+  let scoreDiv;
+  if (who="r") {
+     pointsRed++;
+     scoreDiv = document.getElementById("score-text-red");  
+     scoreDiv.innerText = "Red: " + pointsRed;
+  } else {
+     pointsBlue++;
+     scoreDiv = document.getElementById("score-text-blue");  
+     scoreDiv.innerText = "Red: " + pointsBlue;
+  }
+}
 
 
 function dropBall(s) {
@@ -64,6 +108,14 @@ function dropBall(s) {
     let ballCloneDiv = ballDiv.cloneNode(false);
     ballCloneDiv.style.top = ballRow + "em";
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
-    sceneDiv.appendChild(ballCloneDiv); } //drop ball 
+    sceneDiv.appendChild(ballCloneDiv); 
+
+    let who = grid[s2-1][ballsPerCol[s2-1]];
+    if (controlHor (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
+    if (controlVert (who, s2-1, ballsPerCol[s2-1])) {givePoint (who);}
+    movesToMake--;
+    Alert("Moves to make:    " +  movesToMake);
+    if (movesToMake=0) {alert("Game Over");}
+  } //drop ball 
 } // end function dropBall
 
