@@ -57,7 +57,7 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
     if (grid[x - countLeft - 1][y]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-  alert(countLeft + "  " + countRight); 
+  //alert(countLeft + "  " + countRight); 
 
  
   if (countLeft===3 || countRight===3) {return true;} 
@@ -71,19 +71,57 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
 function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
-  let a;
-  let b;
-  let ny;
+
   while (y - countDown > 0 && gridCondition) {
-    a=grid[x][y - countDown - 1];
-    ny = y - countDown - 1;
-    b=countDown;
     if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
-    let test = (y - countDown > 0);
-    //alert ("while: countDown:" + b + "  nieuwecountdown:" + countDown + " whilevooruit:" + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ a + "  nieuweY:" +  ny + " grid0:"+ grid[x][0]  + " who:" + who + " y-c-1:" + (y-countDown-1));
   }
   if (countDown===3) {return true;} else {return false;}
 }
+
+
+function controlDiagonalRight (who, x, y) {
+  let countLeft = 0;
+  let countRight = 0; 
+  let gridCondition = true;
+
+  while (x + countRight < totalRows-1 && y + countRight < totalCols-1 && gridCondition) {
+    if (grid[x + countRight + 1][y + countRight + 1]===who) {countRight=+1;} else {gridCondition = false;}
+  }
+
+  gridCondition = true;
+  while (x - countLeft > 1 && y - countLeft > 1 && gridCondition) {
+    if (grid[x - countLeft - 1][y - countLeft - 1]===who) {countLeft=+1;} else {gridCondition = false;}
+  }
+
+  if (countLeft===3 || countRight===3) {return true;} 
+     else {
+         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
+         else {return false}
+  }
+} // function controlDiagonalRight
+
+
+function controlDiagonalLeft (who, x, y) {
+  let countLeft = 0;
+  let countRight = 0; 
+  let gridCondition = true;
+
+  while (x + countRight < totalRows-1 && y - countRight > 1 && gridCondition) {
+    if (grid[x + countRight + 1][y + countRight - 1]===who) {countRight=+1;} else {gridCondition = false;}
+  }
+
+  gridCondition = true;
+  while (x - countLeft > 1 && y + countLeft < totalCols-1 && gridCondition) {
+    if (grid[x - countLeft - 1][y + countLeft + 1]===who) {countLeft=+1;} else {gridCondition = false;}
+  }
+
+  if (countLeft===3 || countRight===3) {return true;} 
+     else {
+         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
+         else {return false}
+  }
+} // function controlDiagonalLeft
+
 
 function givePoint (who) {
   let scoreDiv;
@@ -131,10 +169,9 @@ function dropBall(s) {
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
     if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     if (controlHor (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
-    //contr=controlVert (who, s2-1, ballsPerCol[s2-1]-1);
-    //alert (who + " ftest  " + contr);
+    //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
+    //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     movesToMake -= 1;
-    //Alert("Moves to make:    " +  movesToMake);
     if (movesToMake<0.1) {alert("Game Over");}
   } //drop ball 
 } // end function dropBall
