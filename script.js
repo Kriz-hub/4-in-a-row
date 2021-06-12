@@ -36,40 +36,51 @@ function buildCubes () {
       }
   }
 } // end function buildCubes
-/*
+
 
 function controlHor (who, x, y) {//check if a new 'four in a row' is made in horizontal direction after a move is made
   let countLeft=0;
   let countRight=0;
   let gridCondition = true;
 
-  while (x + countRight < totalRows && gridCondition)  { //check to the right for new '4 in a row'
-    if (grid[x + countRight + 1][y]===who) {countRight ++;} else {gridCondition = false;}
-  } 
+  
 
+  //alert ("gridcond: " + gridCondition + " x: " + x + " x + countRight < totalCols: " + (x + countRight < totalCols));
+  while (x + countRight < totalCols-1 && gridCondition)  { //check to the right for new '4 in a row'
+    if (grid[x + countRight + 1][y]===who) {countRight+=1;} else {gridCondition = false;}
+   //alert (gridCondition + " x: " + x + " x + countRight < totalCols-1: " + (x + countRight < totalCols-1) + " Countrigh:" + countRight);
+  } 
+  
+  
   gridCondition = true;
-  while (x - countLeft > 1 && gridCondition) { //check to the left for new '4 in a row'
-    if (grid[x - CountLeft - 1][y] === Who) {countleft ++;} else {gridCondition = false;}
+  while (x - countLeft > 0 && gridCondition) { //check to the left for new '4 in a row'
+    if (grid[x - countLeft - 1][y]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-  if (countLeft < 4 && countRight < 4 && countLeft + countRight + 1 >= 4) {return controlHor=true;} 
-     else {return controlHor=false;} // if there is already '4 in a row' horizontally then function returns false
+  alert(countLeft + "  " + countRight); 
+
+ 
+  if (countLeft===3 || countRight===3) {return true;} 
+     else {
+         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
+         else {return false}
+  }
 }
-*/
+
+
 function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
   let a;
   let b;
   let ny;
-  alert ("y" + y);
   while (y - countDown > 0 && gridCondition) {
     a=grid[x][y - countDown - 1];
     ny = y - countDown - 1;
     b=countDown;
     if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
     let test = (y - countDown > 0);
-    alert ("while: countDown:" + b + "  nieuwecountdown:" + countDown + " whilevooruit:" + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ a + "  nieuweY:" +  ny + " grid0:"+ grid[x][0]  + " who:" + who + " y-c-1:" + (y-countDown-1));
+    //alert ("while: countDown:" + b + "  nieuwecountdown:" + countDown + " whilevooruit:" + test + "  " + gridCondition + "  " + x + "  "+ y + " gr:"+ a + "  nieuweY:" +  ny + " grid0:"+ grid[x][0]  + " who:" + who + " y-c-1:" + (y-countDown-1));
   }
   if (countDown===3) {return true;} else {return false;}
 }
@@ -117,10 +128,9 @@ function dropBall(s) {
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
     sceneDiv.appendChild(ballCloneDiv); 
 
-    let contr;
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
-    
     if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
+    if (controlHor (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     //contr=controlVert (who, s2-1, ballsPerCol[s2-1]-1);
     //alert (who + " ftest  " + contr);
     movesToMake -= 1;
