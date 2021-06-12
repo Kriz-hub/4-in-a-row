@@ -38,6 +38,49 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
+#score-text-red, #score-text-blue  {
+    font-family:verdana; 
+    font-size:0.35em; 
+    text-align: center;
+    transform: translateY(-0.25em);
+}
+
+#score-text-red {
+    color: red;
+}
+
+#score-text-blue {
+    color:blue;
+}
+
+.score-red {
+  width: 1.5em;
+  height: 1em;
+  position: absolute;
+  top:-3em; /*-1em minus height means on the ground*/
+  left:-6em;/*-1em means centered*/
+  /*animation: cube-movement-west-east var(--cube-speed-x) infinite linear;*/
+}
+
+.score-blue {
+  width: 1.5em;
+  height: 1em;
+  position: absolute;
+  top:-3em; /*-1em minus height means on the ground*/
+  left:3em;/*-1em means centered*/
+  /*animation: cube-movement-west-east var(--cube-speed-x) infinite linear;*/
+}
+
+.frontscore { 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    box-shadow: 0 0 0.5em #000a inset;
+    transform: translateZ(1em) translateZ(4.5em); 
+    animation: cube-movement-north-south-front var(--cube-speed-y) infinite linear; 
+}
+
 .cube {
   width: .5em;
   height: .5em;

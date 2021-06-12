@@ -35,6 +35,8 @@ function buildCubes () {
 } // end function buildCubes
 
 
+
+
 function dropBall(s) {
   //extract the column number from the cubeID which is clicked, to variable s2
   let s2 = s.slice(3,5);
