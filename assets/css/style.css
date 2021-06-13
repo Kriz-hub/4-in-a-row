@@ -6,6 +6,7 @@
   --ball-blue: blue;
   --ballshadow-blue: rgb(152, 226, 255);
   --balldarkshadow-blue: rgb(1, 26, 36);
+  --hover-color: red;
 }
 
 body {
@@ -90,7 +91,7 @@ body {
 }
 
 .cube:hover {
-    background: greenyellow;
+    background: var(--hover-color);
 }
 
  .leftside, .rightside, .frontside, .backside {

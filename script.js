@@ -13,6 +13,7 @@ var pointsBlue =0;
 buildCubes();
 
 
+
 function buildCubes () {    
   let cubeCol = startCubeCol-step;
   let cubeRow;
@@ -136,6 +137,25 @@ function givePoint (who) {
   }
 }
 
+function putFocus (who) {
+  let focusDiv;
+  let root = document.documentElement;
+    // make variable "root" to gain control over a CSS variable: https://css-tricks.com/updating-a-css-variable-with-javascript/
+  if (who==="r") {
+    focusDiv = document.getElementById("score-text-red");  
+    focusDiv.style.textDecoration = "underline";
+    focusDiv = document.getElementById("score-text-blue");  
+    focusDiv.style.textDecoration = "none";
+    root.style.setProperty('--hover-color', 'blue');
+    } else {
+    focusDiv = document.getElementById("score-text-blue");  
+    focusDiv.style.textDecoration = "underline";
+    focusDiv = document.getElementById("score-text-red");  
+    focusDiv.style.textDecoration = "none";
+    root.style.setProperty('--hover-color', 'red');
+  }
+}
+
 
 function dropBall(s) {
   //extract the column number from the cubeID which is clicked, to variable s2
@@ -154,10 +174,12 @@ function dropBall(s) {
       ballClass = "redball";
       grid[s2-1][ballsPerCol[s2-1]-1] = "r"; //add red ball to grid array
       redsTurn = false;
+      putFocus ("b");
     } else {
       ballClass = "blueball";
       grid[s2-1][ballsPerCol[s2-1]-1] = "b";  //add blue ball to grid array
       redsTurn = true;
+      putFocus ("r");
     }
 
     let ballDiv = document.getElementsByClassName(ballClass)[0];
