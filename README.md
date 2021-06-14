@@ -1,10 +1,10 @@
 ![smartphone](https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-a-Row-Smartphone.jpg)
 
 Wireframes:
-!(https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
-!(https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
-!(https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
-!(https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
+![WireframeA](https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
+![WireframeB](https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
+![WireframeC](https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
+![WireframeD](https://github.com/Kriz-hub/4-in-a-row/blob/master/4-in-row-wireframeA.png)
 
 
 To do:
