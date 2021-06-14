@@ -10,14 +10,14 @@
   <body>   
     <div id="scene">
       <div id="floor"></div>
-      <div id="score-red">
+      <div id="score-red" onmousedown="toggle_full_screen()">
         <div class="frontscore"><p id="score-text-red">Red: 0</p></div>
       </div>
       <div id="score-blue">
         <div class="frontscore"><p id="score-text-blue">blue: 0</p></div>
       </div>
 
-      <div class="cube" onmousedown="toggle_full_screen()">
+      <div class="cube" onmousedown="dropBall(id)">
         <div class="frontside"></div>
         <div class="backside"></div>
         <div class="leftside"></div>

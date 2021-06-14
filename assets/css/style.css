@@ -127,6 +127,7 @@ body {
   /*animation: scene-rotate2 var(--rotate-speed-slow) linear reverse;*/
  }
 
+
  @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
   html {
     transform: rotate(-90deg);
@@ -145,5 +146,24 @@ body {
 
   #score-red  {
       left:-4.5em;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+
+    body {
+        font-size: 50px;
+    }
+
+    #scene {
+      transform: translateX(-.3em) translateZ(2.8em);
+  }
+
+  #score-red  {
+      left:-5.2em;
+  }
+
+   #score-blue  {
+      left:2.7em;
   }
 }
