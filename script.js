@@ -1,3 +1,39 @@
+function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
+{
+    if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
+    {
+        if (document.documentElement.requestFullScreen){
+            document.documentElement.requestFullScreen();
+        }
+        else if (document.documentElement.mozRequestFullScreen){ /* Firefox */
+            document.documentElement.mozRequestFullScreen();
+        }
+        else if (document.documentElement.webkitRequestFullScreen){   /* Chrome, Safari & Opera */
+            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+        else if (document.msRequestFullscreen){ /* IE/Edge */
+            document.documentElement.msRequestFullscreen();
+        }
+    }
+    else
+    {
+        if (document.cancelFullScreen){
+            document.cancelFullScreen();
+        }
+        else if (document.mozCancelFullScreen){ /* Firefox */
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen){   /* Chrome, Safari and Opera */
+            document.webkitCancelFullScreen();
+        }
+        else if (document.msExitFullscreen){ /* IE/Edge */
+            document.msExitFullscreen();
+        }
+    }
+}
+
+
+
 //https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
@@ -14,6 +50,7 @@ var redsTurn = true; //who's turn, when blue then redsTurn=false
 var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
+toggle_full_screen()
 buildCubes();
 
 
