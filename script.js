@@ -50,7 +50,6 @@ var redsTurn = true; //who's turn, when blue then redsTurn=false
 var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
-toggle_full_screen()
 buildCubes();
 
 
