@@ -1,3 +1,7 @@
+//https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
+//https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
+//https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
+
 const totalCols = 12; //number of cubes (=columns) on x-direction
 const totalRows = 7; // number of cubes (=rows) on y-direction
 const startCubeCol = -3; //-3em 

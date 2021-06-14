@@ -54,7 +54,7 @@ body {
     color:blue;
 }
 
-.score-red {
+#score-red {
   width: 1.5em;
   height: 1em;
   position: absolute;
@@ -63,7 +63,7 @@ body {
   /*animation: cube-movement-west-east var(--cube-speed-x) infinite linear;*/
 }
 
-.score-blue {
+#score-blue {
   width: 1.5em;
   height: 1em;
   position: absolute;
@@ -98,8 +98,8 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: var(---cube-color);
-    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.667) inset;
+    /*background: var(---cube-color);*/
+    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.267) inset;
  }
 
 .frontside { transform: translateZ(.25em) ; }
@@ -126,3 +126,24 @@ body {
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
   /*animation: scene-rotate2 var(--rotate-speed-slow) linear reverse;*/
  }
+
+ @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  #scene {
+      transform: translateX(-2.5em) translateZ(3em);
+  }
+
+  #score-red  {
+      left:-4.5em;
+  }
+}
