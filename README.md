@@ -1,5 +1,5 @@
 ##Intro
-When I was thinking about the 2nd Milestone my eye fell on a Youtube to make cubes and balls in a 3D environment, CSS only: ![3D CSS - lighting, animations, and more!] https://www.youtube.com/watch?v=NdftnCDwKaU.
+When I was thinking about the 2nd Milestone my eye fell on a Youtube to make cubes and balls in a 3D environment, CSS only: ![3D CSS - lighting, animations, and more!](https://www.youtube.com/watch?v=NdftnCDwKaU).
 The youtube showed up on May 11th 2021, that timing was great for me, because before that there is nothing really good to be found on Youtube about CSS 3D. So without that there was no other options then to make a boring 2D game. (smiley)
 I did some experiments myself to create cubes and balls based on that 3D idea. In that Youtube, there was only a shadow effect on the ball, but after some expriments I added a light reflection effect in the balls. 
 
