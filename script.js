@@ -228,10 +228,12 @@ function dropBall(s) {
     ballCloneDiv.style.top = -4.5 + "em";
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
     sceneDiv.appendChild(ballCloneDiv); 
-    $('audio#pop')[0].play();
+    //$('audio#pop1')[0].play();
     $(ballCloneDiv).animate({top: ballRow +'em'});
+    $('audio#pop2')[0].play();
     $(ballCloneDiv).animate({top: ballRow-0.5 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
+    $('audio#pop2')[0].play();
 
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
     if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
