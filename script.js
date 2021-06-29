@@ -228,6 +228,7 @@ function dropBall(s) {
     ballCloneDiv.style.top = -4.5 + "em";
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
     sceneDiv.appendChild(ballCloneDiv); 
+    $('audio#pop')[0].play();
     $(ballCloneDiv).animate({top: ballRow +'em'});
     $(ballCloneDiv).animate({top: ballRow-0.5 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
