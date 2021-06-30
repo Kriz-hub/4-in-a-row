@@ -33,7 +33,6 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
 }
 
 
-
 //https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
@@ -44,6 +43,7 @@ const startCubeCol = -3; //-3em
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none)
+var settingPage = true; //go to setting page
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
@@ -51,6 +51,20 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
 buildCubes();
+
+
+function togglePages() {
+  if (settingPage) {
+    document.getElementById("setting-page").style.display = "none";
+    document.getElementById("scene").style.display = "inline";
+    settingPage = false;
+    }
+  else {
+    document.getElementById("scene").style.display = "none";
+    document.getElementById("setting-page").style.display = "inline";
+    settingPage = true;
+    }
+}
 
 
 
@@ -228,12 +242,14 @@ function dropBall(s) {
     ballCloneDiv.style.top = -4.5 + "em";
     ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
     sceneDiv.appendChild(ballCloneDiv); 
-    //$('audio#pop1')[0].play();
+    $('audio#pop1')[0].play();
     $(ballCloneDiv).animate({top: ballRow +'em'});
-    $('audio#pop2')[0].play();
-    $(ballCloneDiv).animate({top: ballRow-0.5 +'em'});
+    //$('audio#pop2')[0].play();
+    $(ballCloneDiv).animate({top: ballRow-0.8 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
-    $('audio#pop2')[0].play();
+    $(ballCloneDiv).animate({top: ballRow-0.1 +'em'});
+    $(ballCloneDiv).animate({top: ballRow +'em'});
+    //$('audio#pop2')[0].play();
 
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
     if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}

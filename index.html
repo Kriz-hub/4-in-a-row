@@ -7,7 +7,7 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>   
+  <body onkeydown="togglePages()">   
     <div id="scene">
       <div id="floor"></div>
       <div id="score-red" onmousedown="toggle_full_screen()">
@@ -34,6 +34,9 @@
     </audio> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
+
+    <script>document.getElementById("scene").style.display = "none";</script>
+    <div id="setting-page" style="color:white;" onkeydown="togglePages()" ><h1>testing123</h1></div>
    
   </body>
 </html>
