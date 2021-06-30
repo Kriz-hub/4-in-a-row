@@ -32,7 +32,6 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
-
 //https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
@@ -67,6 +66,23 @@ function togglePages() {
     settingPage = true;
     }
 }
+
+//very cool, on phones the portraitmode gives a setting page, landscape mode gives the game
+//eventlistener: https://stackoverflow.com/questions/5498934/detect-change-in-orientation-using-javascript
+window.addEventListener("orientationchange", function() {
+  if ( window.orientation == 0 || window.orientation == 180) {
+    // WHEN IN PORTRAIT MODE
+    document.getElementById("scene").style.display = "none";
+    document.getElementById("setting-page").style.display = "inline";
+    settingPage = true;
+    
+  } else {
+    // WHEN IN LANDSCAPE MODE
+    document.getElementById("setting-page").style.display = "none";
+    document.getElementById("scene").style.display = "inline";
+    settingPage = false;
+  }
+}, false);
 
 function toggleColor () {
     if (player1Red) {

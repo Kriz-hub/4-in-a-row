@@ -174,30 +174,15 @@ body {
  }
 
 
- @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
 
-  #scene {
-     display: none;
-  }
-
-  #setting-page {
-      display: inline;
-  }
-
-}
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
-
     body {
       font-size: 50px;
     }
 
-    #setting-page {
-      display: none;
-    }
 
     #scene {
-      display: inline;
       transform: translateX(-.1em) translateZ(2.8em);
     }
 
