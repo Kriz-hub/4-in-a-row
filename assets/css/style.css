@@ -20,6 +20,16 @@ body {
   perspective-origin: 1% calc(2% - 14em);
 }
 
+ #setting-page {
+     font-size: 25px;
+     color: white;
+     background-color: rgb(72, 135, 151);
+     align-items: center;
+     justify-content: flex-start;
+     width: 100vw;
+     height: 100vh;
+ }
+
 #scene {
  position: relative;
  transform-style: preserve-3d;

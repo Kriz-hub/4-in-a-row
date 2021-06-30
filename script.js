@@ -53,6 +53,7 @@ var pointsBlue =0;
 buildCubes();
 
 
+
 function togglePages() {
   if (settingPage) {
     document.getElementById("setting-page").style.display = "none";
