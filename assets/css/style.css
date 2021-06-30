@@ -175,41 +175,37 @@ body {
 
 
  @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: portrait) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: 100vw;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
 
   #scene {
-      transform: translateX(-2.5em) translateZ(3em);
+     display: none;
   }
 
-  #score-red  {
-      left:-4.5em;
+  #setting-page {
+      display: inline;
   }
+
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+@media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
 
     body {
-        font-size: 50px;
+      font-size: 50px;
+    }
+
+    #setting-page {
+      display: none;
     }
 
     #scene {
-      transform: translateX(-.3em) translateZ(2.8em);
-  }
+      display: inline;
+      transform: translateX(-.1em) translateZ(2.8em);
+    }
 
-  #score-red  {
-      left:-5.2em;
-  }
+    #score-red  {
+      left:-5.6em;
+    }
 
-   #score-blue  {
+    #score-blue  {
       left:2.7em;
-  }
+    }
 }
