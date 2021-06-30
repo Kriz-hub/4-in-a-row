@@ -51,7 +51,18 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
 buildCubes();
-
+  if ( window.orientation == 0 || window.orientation == 180) {
+    // WHEN IN PORTRAIT MODE
+    document.getElementById("scene").style.display = "none";
+    document.getElementById("setting-page").style.display = "inline";
+    settingPage = true;
+    
+  } else {
+    // WHEN IN LANDSCAPE MODE
+    document.getElementById("setting-page").style.display = "none";
+    document.getElementById("scene").style.display = "inline";
+    settingPage = false;
+  }
 
 
 function togglePages() {
