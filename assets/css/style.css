@@ -30,6 +30,42 @@ body {
      height: 100vh;
  }
 
+ /*Inspired by radiobutton: https://codepen.io/Metty/pen/MWjOavR
+ but in the end I changed it to a togglefield red or blue*/
+
+ .wrapper {
+  display: inline-flex;
+  background: #fff;
+  height: 50px;
+  width: 300px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+}
+
+#color-player1, #color-player2 {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+
+#color-player1 {
+    background: red;
+}
+#color-player2 {
+    background: blue;
+}
+
 #scene {
  position: relative;
  transform-style: preserve-3d;

@@ -47,6 +47,7 @@ var settingPage = true; //go to setting page
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
+var player1Red = true;
 var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
@@ -66,6 +67,18 @@ function togglePages() {
     settingPage = true;
     }
 }
+
+function toggleColor () {
+    if (player1Red) {
+        player1Red=false;
+        document.getElementById("color-player1").style.background = "blue";
+        document.getElementById("color-player2").style.background = "red";   
+    } else {
+        player1Red=true;
+        document.getElementById("color-player1").style.background = "red";
+        document.getElementById("color-player2").style.background = "blue";}
+}
+
 
 
 
