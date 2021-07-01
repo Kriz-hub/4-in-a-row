@@ -47,32 +47,30 @@ var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
+var player1Name = "Player1";
+var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
 buildCubes();
+document.getElementById("scene").style.display = "none";
 
-if ( window.orientation == 0 || window.orientation == 180) {
-    // WHEN IN PORTRAIT MODE
-  document.getElementById("scene").style.display = "none";
-  document.getElementById("setting-page").style.display = "inline";
-  settingPage = true;} 
-else {
-    // WHEN IN LANDSCAPE MODE
-  document.getElementById("setting-page").style.display = "none";
-  document.getElementById("scene").style.display = "inline";
-  settingPage = false;}
+function getNames () {
+   player1Name = document.getElementById("player1-form").value;
+   player2Name = document.getElementById("player2-form").value;
+   document.getElementById("color-player1").innerHTML = player1Name;
+   document.getElementById("color-player2").innerHTML = player2Name;
+}
 
-
-function animateIntro () {
+function animateIntro (questionToQuit) {
   let sceneDiv = document.getElementById("scene");
+  let q
     $(sceneDiv).addClass("rotate");
-
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
-     // $(this).removeClass("rotate");
-  //$("scene").animate('transform','rotate(' + 90 + 'deg)');
-  //$("scene").css('transform','rotateY(' + 90 + 'deg)');
+
+    if (questionToQuit) {q=confirm("Leave the game?")}
+    if (q) {alert("Someone Won!!!")}
 }
 
 
@@ -80,7 +78,6 @@ function togglePages() {
   if (settingPage) {
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
-    animateIntro ();
     settingPage = false;
     }
   else {
@@ -90,22 +87,7 @@ function togglePages() {
     }
 }
 
-//very cool, on phones the portraitmode gives a setting page, landscape mode gives the game
-//eventlistener: https://stackoverflow.com/questions/5498934/detect-change-in-orientation-using-javascript
-window.addEventListener("orientationchange", function() {
-  if ( window.orientation == 0 || window.orientation == 180) {
-    // WHEN IN PORTRAIT MODE
-    document.getElementById("scene").style.display = "none";
-    document.getElementById("setting-page").style.display = "inline";
-    settingPage = true;
-    
-  } else {
-    // WHEN IN LANDSCAPE MODE
-    document.getElementById("setting-page").style.display = "none";
-    document.getElementById("scene").style.display = "inline";
-    settingPage = false;
-  }
-}, false);
+
 
 function toggleColor () {
     if (player1Red) {

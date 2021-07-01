@@ -7,7 +7,7 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body onkeydown="togglePages()">   
+  <body>   
     <div id="scene">
       <div id="floor"></div>
       <div id="score-red" onmousedown="toggle_full_screen()">
@@ -34,17 +34,17 @@
     </audio> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <div id="setting-page" onkeydown="togglePages()">
+    <div id="setting-page" >
       <div><h1>Four In a Row</h1></div>
       <div>
         <form>
           <label for="name1"><strong>Player 1</strong></label>
-          <input type="text" placeholder="Enter Player 1" name="name1" required>
+          <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form">
           <br>
           <label for="name2"><strong>Player 2</strong></label>
-          <input type="text" placeholder="Enter Player 2" name="name2" required>
-          <button type="submit">Go</button>
+          <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form">
         </form>
+        <button type="submit" onmousedown="getNames()">Go</button>
         <br><br>
         <h3>Toggle on player names to choose the right color:</h3>
         <div class="wrapper">
@@ -55,6 +55,8 @@
         <label style="padding-left: 15px">
           <input type="checkbox"  checked="checked" name="remember">Choose full screen for a much better game experience
         </label>
+        <br><br>
+        <button type="submit" onmousedown="togglePages()">Go to game</button>
     </div>
     <script src="script.js"></script>
   </body>
