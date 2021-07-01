@@ -69,9 +69,16 @@ body {
 #scene {
  position: relative;
  transform-style: preserve-3d;
- /*animation: scene-rotate2 var(--rotate-speed) linear;*/
- transform: rotateY(0deg) translateY(0em);
+ /*animation: scene-rotate var(--rotate-speed) linear;*/
+ /*transform: rotateY(0deg) translateY(0em);*/
  }
+
+ 
+.rotate {
+  animation: scene-rotate 15s linear;
+  }
+
+  @keyframes scene-rotate { to { transform: rotateY(360deg);}}
 
  #floor {
   position: absolute;
@@ -160,7 +167,7 @@ body {
   left: -5.5em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
-  /*animation: scene-rotate2 var(--rotate-speed) linear reverse;*/
+  animation: sscene-rotate 15s linear reverse;
  }
 
  .blueball {
@@ -170,7 +177,7 @@ body {
   left: -5em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
-  /*animation: scene-rotate2 var(--rotate-speed-slow) linear reverse;*/
+  animation: sscene-rotate 15s linear reverse;
  }
 
 

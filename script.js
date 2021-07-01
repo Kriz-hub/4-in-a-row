@@ -51,24 +51,36 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
 buildCubes();
-  if ( window.orientation == 0 || window.orientation == 180) {
+
+if ( window.orientation == 0 || window.orientation == 180) {
     // WHEN IN PORTRAIT MODE
-    document.getElementById("scene").style.display = "none";
-    document.getElementById("setting-page").style.display = "inline";
-    settingPage = true;
-    
-  } else {
+  document.getElementById("scene").style.display = "none";
+  document.getElementById("setting-page").style.display = "inline";
+  settingPage = true;} 
+else {
     // WHEN IN LANDSCAPE MODE
-    document.getElementById("setting-page").style.display = "none";
-    document.getElementById("scene").style.display = "inline";
-    settingPage = false;
-  }
+  document.getElementById("setting-page").style.display = "none";
+  document.getElementById("scene").style.display = "inline";
+  settingPage = false;}
+
+
+function animateIntro () {
+  let sceneDiv = document.getElementById("scene");
+    $(sceneDiv).addClass("rotate");
+
+    $(".redball").css("animation-name", "scene-rotate");
+    $(".blueball").css("animation-name", "scene-rotate");
+     // $(this).removeClass("rotate");
+  //$("scene").animate('transform','rotate(' + 90 + 'deg)');
+  //$("scene").css('transform','rotateY(' + 90 + 'deg)');
+}
 
 
 function togglePages() {
   if (settingPage) {
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
+    animateIntro ();
     settingPage = false;
     }
   else {
