@@ -73,20 +73,13 @@ function animateIntro (questionToQuit) {
     if (q) {alert("Someone Won!!!")}
 }
 
-
 function togglePages() {
-  if (settingPage) {
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
-    settingPage = false;
-    }
-  else {
-    document.getElementById("scene").style.display = "none";
-    document.getElementById("setting-page").style.display = "inline";
-    settingPage = true;
-    }
+    let checkedFullScreenWish = document.getElementById("check-it").checked;
+    if (checkedFullScreenWish) {toggle_full_screen();}
+  
 }
-
 
 
 function toggleColor () {
