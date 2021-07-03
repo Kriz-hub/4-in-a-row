@@ -42,7 +42,6 @@ const startCubeCol = -3; //-3em
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none)
-var settingPage = true; //go to setting page
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
@@ -53,6 +52,8 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = 0;
 var pointsBlue =0;
 buildCubes();
+document.getElementsByClassName("ballshadow")[0].style.display= "none";
+//document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 
 function getNames () {
@@ -104,7 +105,7 @@ function buildCubes () {
   let sceneDiv = document.getElementById("scene");
   let cubeDiv = document.getElementsByClassName("cube")[0];
   let cubeCloneDiv;
-  for (col = 1; col<=totalCols; col++) { //build rows of cubes to contain the balls later
+  for (col = 1; col<=totalCols; col++) { //build rows of cubes that contain the balls later
       ballsPerCol[col-1]=0;
       cubeCol += step;
       cubeRow = startCubeRow+step;
@@ -119,6 +120,15 @@ function buildCubes () {
       }
   }
 } // end function buildCubes
+
+function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
+const rowNr="row1" // shadow is always on the ground
+let cubeDiv= document.getElementById('col' + colNr + rowNr);
+let shadowDiv = document.getElementsByClassName("ballshadow")[0];
+let shadowCloneDiv = shadowDiv.cloneNode(true);
+shadowCloneDiv.style.display = "inline";
+cubeDiv.appendChild(shadowCloneDiv);
+}
 
 
 function controlHor (who, x, y) {//check if a new 'four in a row' is made in horizontal direction after a move is made
@@ -278,7 +288,8 @@ function dropBall(s) {
     $(ballCloneDiv).animate({top: ballRow-0.1 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
     //$('audio#pop2')[0].play();
-
+    if (ballsPerCol[s2-1] === 1) {bringShadow (s2);}
+    
     let who = grid[s2-1][ballsPerCol[s2-1]-1];
     if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     if (controlHor (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}

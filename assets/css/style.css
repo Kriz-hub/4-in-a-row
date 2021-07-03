@@ -180,6 +180,21 @@ body {
   animation: sscene-rotate 15s linear reverse;
  }
 
+ .ballshadow {
+  position: absolute;
+  width: .45em;
+  height: .5em;
+  transform: translateY(50%) rotateX(90deg) translateX(0em);
+}
+
+.circleshadow {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: black;
+  filter: blur(9px);
+}
+
 
 
 
