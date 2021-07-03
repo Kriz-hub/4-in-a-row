@@ -184,7 +184,7 @@ body {
   position: absolute;
   width: .45em;
   height: .5em;
-  transform: translateY(50%) rotateX(90deg) translateX(0em);
+  transform: translateY(49%) rotateX(90deg) translateX(-0.05em);
 }
 
 .circleshadow {
