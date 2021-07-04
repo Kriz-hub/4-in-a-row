@@ -161,18 +161,26 @@ body {
 .leftside {  transform: rotateY(270deg) translateZ(.25em) ; }
 
 
-.score-cube {
+.score-cube-red {
   width: .5em;
   height: .5em;
   position: absolute;
   top:-.05em;
-  left:-6.25em;
+  left:-5.25em;
+}
+
+.score-cube-blue {
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  top:-.05em;
+  left:3.25em;
 }
 
 .front, .back {
     position: absolute;
-    width: 600%;
-    height: 200%;
+    width: 400%; 
+    height: 200%; 
     background: white;
     box-shadow: 0 0 0.5em #000a inset;
  }
@@ -187,7 +195,7 @@ body {
 
   .front { transform: translateZ(.25em) translateZ(0em); }
   .back { transform: rotateY(180deg) translateZ(.25em) translateZ(0em); }  
-  .right { transform: rotateY(90deg) translateZ(2.75em) translateX(0em); }
+  .right { transform: rotateY(90deg) translateZ(1.75em) translateX(0em); }
   .left { transform: rotateY(270deg) translateZ(.25em) translateX(0em); } 
  /* .front { transform: translateZ(.25em) translateZ(-.25em); }
   .back { transform: rotateY(180deg) translateZ(.25em) translateZ(.25em); }  
@@ -195,7 +203,7 @@ body {
   .left { transform: rotateY(270deg) translateZ(.25em) translateX(-.25em); } */
    .top {
     position: absolute;
-    width: 3em; /*because of the rotaion in 3D this is now length*/
+    width: 2em; /*because of the rotation in 3D this is now length*/
     height: .5em; /*because of the rotation in 3D this is now width*/
     top: -.25em;
     background: white;

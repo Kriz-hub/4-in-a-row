@@ -10,12 +10,6 @@
   <body onkeydown="animateIntro (true)">   
     <div id="scene">
       <div id="floor"></div>
-      <div id="score-red">
-        <div class="frontscore"><p id="score-text-red">Red: 0</p></div>
-      </div>
-      <div id="score-blue">
-        <div class="frontscore"><p id="score-text-blue">blue: 0</p></div>
-      </div>
 
       <div class="ballshadow"><div class="circleshadow"></div></div>
       <div class="cube" onmousedown="dropBall(id)">
@@ -24,12 +18,19 @@
         <div class="leftside"></div>
         <div class="rightside"></div>
       </div>
-      <div class="score-cube">
-        <div class="front"></div>
+      <div class="score-cube-red">
+        <div class="front"><p id="score-text-red">Red: 0</p></div>
         <div class="back"></div>
         <div class="left"></div>
         <div class="right"></div>
-        <div class="top"><div class="ballshadow"></div></div>
+        <div class="top"></div>
+      </div>
+      <div class="score-cube-blue">
+        <div class="front"><p id="score-text-blue">Blue: 0</p></div>
+        <div class="back"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="top"></div>
       </div>
       <div class="redball"></div>
       <div class="blueball"></div>
