@@ -119,6 +119,51 @@ function buildCubes () {
           sceneDiv.appendChild(cubeCloneDiv);
       }
   }
+  // build extra cubes to hold 2 big score-cubes
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "-5.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "-5.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "-3.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "-3.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "3.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "3.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "4.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "4.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  sceneDiv.appendChild(cubeCloneDiv);
+
+
+
 } // end function buildCubes
 
 function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
