@@ -70,7 +70,7 @@ body {
  position: relative;
  transform-style: preserve-3d;
  /*animation: scene-rotate var(--rotate-speed) linear;*/
- /*transform: rotateY(0deg) translateY(0em);*/
+ transform: rotateY(0deg) translateY(0em);
  }
 
  
@@ -159,6 +159,50 @@ body {
 .rightside { transform: rotateY(90deg) translateZ(.25em) ; }
 .backside {  transform: rotateY(180deg) translateZ(.25em) ; }
 .leftside {  transform: rotateY(270deg) translateZ(.25em) ; }
+
+
+.score-cube {
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  top:-.05em;
+  left:-6.25em;
+}
+
+.front, .back {
+    position: absolute;
+    width: 600%;
+    height: 200%;
+    background: white;
+    box-shadow: 0 0 0.5em #000a inset;
+ }
+
+.left, .right {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  background: white;
+  box-shadow: 0 0 0.5em #000a inset;
+}
+
+  .front { transform: translateZ(.25em) translateZ(0em); }
+  .back { transform: rotateY(180deg) translateZ(.25em) translateZ(0em); }  
+  .right { transform: rotateY(90deg) translateZ(2.75em) translateX(0em); }
+  .left { transform: rotateY(270deg) translateZ(.25em) translateX(0em); } 
+ /* .front { transform: translateZ(.25em) translateZ(-.25em); }
+  .back { transform: rotateY(180deg) translateZ(.25em) translateZ(.25em); }  
+  .right { transform: rotateY(90deg) translateZ(2.75em) translateX(.25em); }
+  .left { transform: rotateY(270deg) translateZ(.25em) translateX(-.25em); } */
+   .top {
+    position: absolute;
+    width: 3em; /*because of the rotaion in 3D this is now length*/
+    height: .5em; /*because of the rotation in 3D this is now width*/
+    top: -.25em;
+    background: white;
+    transform: translateZ(0em) rotateX(90deg) /*translateY(-.25em) */translateX(0em);
+    /*translateZ: move up/down, translateY: move forward/behind (lower: move behind) translateX: move left/right*/
+    box-shadow: 0 0 0.5em #000a inset;
+  }
 
 .redball {
   width: .5em; height: .5em;
