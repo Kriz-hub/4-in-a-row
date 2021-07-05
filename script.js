@@ -46,6 +46,8 @@ var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
+var settingPageLeft = false;
+var endQuestion = false;
 var player1Name = "Player1";
 var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
@@ -63,15 +65,26 @@ function getNames () {
    document.getElementById("color-player2").innerHTML = player2Name;
 }
 
-function animateIntro (questionToQuit) {
-  let sceneDiv = document.getElementById("scene");
-  let q
+function endAnimation () {
+  if (settingPageLeft) {
+    let messageCubeDiv = document.getElementsByClassName("message-cube")[0];
+    let sceneDiv = document.getElementById("scene");
+    messageCubeDiv.style.display = "inline";
+    $(messageCubeDiv).animate({top: '0em'});
     $(sceneDiv).addClass("rotate");
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
+    endQuestion=true;
+  }
+}
 
-    if (questionToQuit) {q=confirm("Leave the game?")}
-    if (q) {alert("Someone Won!!!")}
+function answer (q) {
+if (endQuestion) {
+  if (q) {
+    let messageCubeDiv = document.getElementsByID("message-text");
+    messageCubeDiv.innerHTML = "Red or blue has won!";
+  } 
+}
 }
 
 function togglePages() {
@@ -79,7 +92,7 @@ function togglePages() {
     document.getElementById("scene").style.display = "inline";
     let checkedFullScreenWish = document.getElementById("check-it").checked;
     if (checkedFullScreenWish) {toggle_full_screen();}
-  
+    settingPageLeft = true;
 }
 
 
