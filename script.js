@@ -48,6 +48,7 @@ var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
 var settingPageLeft = false;
 var endQuestion = false;
+var gameEnded = false;
 var player1Name = "Player1";
 var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
@@ -79,11 +80,21 @@ function endAnimation () {
 }
 
 function answer (q) {
-if (endQuestion) {
+if (endQuestion && !gameEnded) {
   if (q) {
-    let messageCubeDiv = document.getElementsByID("message-text");
+    let messageCubeDiv = document.getElementById("message-text");
     messageCubeDiv.innerHTML = "Red or blue has won!";
-  } 
+    gameEnded=true;
+  } else {
+    let messageCubeDiv = document.getElementsByClassName("message-cube")[0];
+    let sceneDiv = document.getElementById("scene");
+    $(messageCubeDiv).animate({top: '1.1em'});
+    messageCubeDiv.style.display = "none";
+    $(sceneDiv).removeClass("rotate");
+    $(".redball").css("animation-name", "sscene-rotate");
+    $(".blueball").css("animation-name", "sscene-rotate");
+    endQuestion=false;
+  }
 }
 }
 
@@ -309,6 +320,7 @@ function putFocus (who) {
 
 function dropBall(s) {
   //extract the column number from the cubeID which is clicked, to variable s2
+  if (endQuestion) {return}
   let s2 = s.slice(3,5);
   let s3 = s2.slice(1,2);
   if (isNaN(s3)===true) {s2=s.slice(3,4);}

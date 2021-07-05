@@ -75,7 +75,7 @@ body {
 
  
 .rotate {
-  animation: scene-rotate 15s linear;
+  animation: scene-rotate 15s infinite linear;
   }
 
   @keyframes scene-rotate { to { transform: rotateY(360deg);}}
@@ -230,7 +230,7 @@ body {
   left: -5.5em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
-  animation: sscene-rotate 15s linear reverse;
+  animation: sscene-rotate 15s infinite linear reverse;
  }
 
  .blueball {
@@ -240,7 +240,7 @@ body {
   left: -5em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
-  animation: sscene-rotate 15s linear reverse;
+  animation: sscene-rotate 15s infinite linear reverse;
  }
 
  .ballshadow {
