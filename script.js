@@ -52,8 +52,8 @@ var gameEnded = false;
 var player1Name = "Player1";
 var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
-var pointsRed = 0;
-var pointsBlue =0;
+var pointsRed = -1;
+var pointsBlue =-1;
 buildCubes();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
@@ -91,10 +91,16 @@ if (endQuestion && !gameEnded) {
     let messageP2 = document.getElementsByClassName("message-text")[1];
     let messageP3 = document.getElementsByClassName("message-text")[2];
     let messageP4 = document.getElementsByClassName("message-text")[3];
-    messageP1.innerHTML = "Red or blue has won!";
-    messageP2.innerHTML = "Red or blue has won!";
-    messageP3.innerHTML = "Red or blue has won!";
-    messageP4.innerHTML = "Red or blue has won!";
+    let endLine;
+    if (pointsRed>pointsBlue) {
+      endLine = player1Name + " has won!"
+    } else {
+      endLine = player2Name + " has won!"}
+    if (pointsRed===pointsBlue) { endLine = "It's a draw, no winner!"}
+    messageP1.innerHTML = endLine;
+    messageP2.innerHTML = endLine;
+    messageP3.innerHTML = endLine;
+    messageP4.innerHTML = endLine;
     gameEnded=true;
   } else {
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
@@ -113,10 +119,16 @@ if (endQuestion && !gameEnded) {
 }
 
 function togglePages() {
+  if (player1Name === "Player1") {
+    alert("You forgot to give the player(s) a name, please try again");
+    return;
+  }
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
     let checkedFullScreenWish = document.getElementById("check-it").checked;
     if (checkedFullScreenWish) {toggle_full_screen();}
+    givePoint ("b");
+    givePoint ("r");
     settingPageLeft = true;
 }
 
@@ -131,7 +143,6 @@ function toggleColor () {
         document.getElementById("color-player1").style.background = "red";
         document.getElementById("color-player2").style.background = "blue";}
 }
-
 
 
 
@@ -319,14 +330,14 @@ function givePoint (who) {
     pointsRed++;
     scoreP1 = document.getElementsByClassName("score-text-red")[0];
     scoreP2 = document.getElementsByClassName("score-text-red")[1]; 
-    scoreP1.innerText = "Red: " + pointsRed;
-    scoreP2.innerText = "Red: " + pointsRed;
+    scoreP1.innerText = player1Name + ": " + pointsRed;
+    scoreP2.innerText = player1Name + ": " + pointsRed;
     } else {
     pointsBlue++;
     scoreP1 = document.getElementsByClassName("score-text-blue")[0];
     scoreP2 = document.getElementsByClassName("score-text-blue")[1]; 
-    scoreP1.innerText = "Blue: " + pointsBlue;
-    scoreP2.innerText = "Blue: " + pointsBlue;
+    scoreP1.innerText = player2Name + ": " + pointsBlue;
+    scoreP2.innerText = player2Name + ": " + pointsBlue;
   }
 }
 
@@ -344,7 +355,7 @@ function putFocus (who) {
     focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
     focusDiv1.style.textDecoration = "none";
     focusDiv2.style.textDecoration = "none";
-    root.style.setProperty('--hover-color', 'blue');
+    root.style.setProperty('--hover-color', 'red');
     } else {
       focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
       focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
@@ -354,7 +365,7 @@ function putFocus (who) {
       focusDiv2 = document.getElementsByClassName("score-text-red")[1];
       focusDiv1.style.textDecoration = "none";
       focusDiv2.style.textDecoration = "none";
-      root.style.setProperty('--hover-color', 'red');
+      root.style.setProperty('--hover-color', 'blue');
   }
 }
 
@@ -407,7 +418,7 @@ function dropBall(s) {
     //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     movesToMake -= 1;
-    if (movesToMake<0.1) {alert("Game Over");}
+    if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
   } //drop ball 
 } // end function dropBall
 

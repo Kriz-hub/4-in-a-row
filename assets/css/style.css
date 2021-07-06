@@ -92,11 +92,18 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
-.score-text-red, .score-text-blue, .message-text  {
+ .message-text  {
     font-family:verdana; 
     font-size:0.35em; 
     text-align: center;
     transform: translateY(-0.25em);
+}
+
+.score-text-red, .score-text-blue  {
+  font-family:verdana; 
+  font-size:0.3em; 
+  text-align: center;
+  transform: translateY(-0.25em);
 }
 
 .score-text-red, .message-text {
@@ -112,7 +119,7 @@ body {
   height: .5em;
   position: absolute;
   top: 2em;
-  left: -5em;
+  left: 0em;
 }
 
 .cube:hover {
@@ -228,7 +235,7 @@ body {
   width: .5em; height: .5em;
   border-radius: 50%;
   position: absolute;
-  left: -5.5em;
+  left: 0em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
   animation: sscene-rotate 15s infinite linear reverse;
@@ -238,7 +245,7 @@ body {
   width: .5em; height: .5em;
   border-radius: 50%;
   position: absolute;
-  left: -5em;
+  left: 0em;
   bottom: -2em;
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
   animation: sscene-rotate 15s infinite linear reverse;
