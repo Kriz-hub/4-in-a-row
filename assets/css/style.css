@@ -266,24 +266,24 @@ body {
   filter: blur(9px);
 }
 
+@media screen and (min-width:320px) and (max-width: 769px) and (orientation: landscape) {
+  body {
+    font-size: 50px;
+  }
+
+  #scene {
+    transform: translateX(-.1em) translateZ(2.8em);
+  }
+}
 
 
 
-@media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
+@media screen and (min-width: 769px) and (max-width: 835px) and (orientation: landscape) {
     body {
-      font-size: 50px;
+      font-size: 40px;
     }
-
 
     #scene {
       transform: translateX(-.1em) translateZ(2.8em);
-    }
-
-    #score-red  {
-      left:-5.6em;
-    }
-
-    #score-blue  {
-      left:2.7em;
     }
 }
