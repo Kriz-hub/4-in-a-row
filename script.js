@@ -68,13 +68,17 @@ function getNames () {
 
 function endAnimation () {
   if (settingPageLeft) {
-    let messageCubeDiv = document.getElementsByClassName("message-cube")[0];
+    let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
+    let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
     let sceneDiv = document.getElementById("scene");
-    messageCubeDiv.style.display = "inline";
-    $(messageCubeDiv).animate({top: '0em'});
+    messageCubeDiv1.style.display = "inline";
+    $(messageCubeDiv1).animate({top: '0em'});
+    messageCubeDiv2.style.display = "inline";
+    $(messageCubeDiv2).animate({top: '0em'});
     $(sceneDiv).addClass("rotate");
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
+    root.style.setProperty('--hover-color', 'grey');
     endQuestion=true;
   }
 }
@@ -82,14 +86,23 @@ function endAnimation () {
 function answer (q) {
 if (endQuestion && !gameEnded) {
   if (q) {
-    let messageCubeDiv = document.getElementById("message-text");
-    messageCubeDiv.innerHTML = "Red or blue has won!";
+    let messageP1 = document.getElementsByClassName("message-text")[0];
+    let messageP2 = document.getElementsByClassName("message-text")[1];
+    let messageP3 = document.getElementsByClassName("message-text")[2];
+    let messageP4 = document.getElementsByClassName("message-text")[3];
+    messageP1.innerHTML = "Red or blue has won!";
+    messageP2.innerHTML = "Red or blue has won!";
+    messageP3.innerHTML = "Red or blue has won!";
+    messageP4.innerHTML = "Red or blue has won!";
     gameEnded=true;
   } else {
-    let messageCubeDiv = document.getElementsByClassName("message-cube")[0];
+    let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
+    let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
     let sceneDiv = document.getElementById("scene");
-    $(messageCubeDiv).animate({top: '1.1em'});
-    messageCubeDiv.style.display = "none";
+    $(messageCubeDiv1).animate({top: '1.1em'});
+    $(messageCubeDiv2).animate({top: '1.1em'});
+    messageCubeDiv1.style.display = "none";
+    messageCubeDiv2.style.display = "none";
     $(sceneDiv).removeClass("rotate");
     $(".redball").css("animation-name", "sscene-rotate");
     $(".blueball").css("animation-name", "sscene-rotate");
@@ -186,9 +199,22 @@ function buildCubes () {
   cubeCloneDiv.style.background = "darkslategray";
   sceneDiv.appendChild(cubeCloneDiv);
 
-
-
+  let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
+  let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
+  sceneDiv.appendChild(cubeMessageCloneDiv);
+  let frontPart = document.getElementsByClassName("message-front")[1];
+  let backPart = document.getElementsByClassName("message-back")[1];
+  let rightPart = document.getElementsByClassName("message-right")[1];
+  let leftPart = document.getElementsByClassName("message-left")[1];
+  let topPart = document.getElementsByClassName("message-top")[1];
+  frontPart.style.transform="translateZ(.25em) translateZ(-3.5em)";
+  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(3.5em)";
+  rightPart.style.transform="rotateY(90deg) translateZ(4.75em) translateX(3.5em)";
+  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(-3.5em)";
+  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(-3.5em) translateX(0em)";
 } // end function buildCubes
+
+
 
 function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
 const rowNr="row1" // shadow is always on the ground
@@ -286,33 +312,47 @@ function controlDiagonalLeft (who, x, y) {
 
 
 function givePoint (who) {
-  let scoreDiv;
+  let scoreP1;
+  let scoreP2;
   if (who==="r") {
     pointsRed++;
-    scoreDiv = document.getElementById("score-text-red");  
-    scoreDiv.innerText = "Red: " + pointsRed;
+    scoreP1 = document.getElementsByClassName("score-text-red")[0];
+    scoreP2 = document.getElementsByClassName("score-text-red")[1]; 
+    scoreP1.innerText = "Red: " + pointsRed;
+    scoreP2.innerText = "Red: " + pointsRed;
     } else {
     pointsBlue++;
-    scoreDiv = document.getElementById("score-text-blue");  
-    scoreDiv.innerText = "blue: " + pointsBlue;
+    scoreP1 = document.getElementsByClassName("score-text-blue")[0];
+    scoreP2 = document.getElementsByClassName("score-text-blue")[1]; 
+    scoreP1.innerText = "Blue: " + pointsBlue;
+    scoreP2.innerText = "Blue: " + pointsBlue;
   }
 }
 
 function putFocus (who) {
-  let focusDiv;
+  let focusDiv1;
+  let focusDiv2;
   let root = document.documentElement;
     // make variable "root" to gain control over a CSS variable: https://css-tricks.com/updating-a-css-variable-with-javascript/
   if (who==="r") {
-    focusDiv = document.getElementById("score-text-red");  
-    focusDiv.style.textDecoration = "underline";
-    focusDiv = document.getElementById("score-text-blue");  
-    focusDiv.style.textDecoration = "none";
+    focusDiv1 = document.getElementsByClassName("score-text-red")[0];
+    focusDiv2 = document.getElementsByClassName("score-text-red")[1];
+    focusDiv1.style.textDecoration = "underline";
+    focusDiv2.style.textDecoration = "underline";
+    focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
+    focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
+    focusDiv1.style.textDecoration = "none";
+    focusDiv2.style.textDecoration = "none";
     root.style.setProperty('--hover-color', 'blue');
     } else {
-    focusDiv = document.getElementById("score-text-blue");  
-    focusDiv.style.textDecoration = "underline";
-    focusDiv = document.getElementById("score-text-red");  
-    focusDiv.style.textDecoration = "none";
+      focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
+      focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
+      focusDiv1.style.textDecoration = "underline";
+      focusDiv2.style.textDecoration = "underline";
+      focusDiv1 = document.getElementsByClassName("score-text-red")[0];
+      focusDiv2 = document.getElementsByClassName("score-text-red")[1];
+      focusDiv1.style.textDecoration = "none";
+      focusDiv2.style.textDecoration = "none";
     root.style.setProperty('--hover-color', 'red');
   }
 }

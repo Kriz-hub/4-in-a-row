@@ -92,18 +92,18 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
-#score-text-red, #score-text-blue, #message-text  {
+.score-text-red, .score-text-blue, .message-text  {
     font-family:verdana; 
     font-size:0.35em; 
     text-align: center;
     transform: translateY(-0.25em);
 }
 
-#score-text-red, #message-text {
+.score-text-red, .message-text {
     color: red;
 }
 
-#score-text-blue {
+.score-text-blue {
     color:blue;
 }
 
@@ -189,7 +189,8 @@ body {
     left:-2.75em;
     display:none;
   }
-  
+
+ 
   .message-front, .message-back {
       position: absolute;
       width: 1000%; 
