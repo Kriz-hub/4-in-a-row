@@ -78,7 +78,8 @@ function endAnimation () {
     $(sceneDiv).addClass("rotate");
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
-    root.style.setProperty('--hover-color', 'grey');
+    let root = document.documentElement;
+    root.style.setProperty('--hover-color', 'gray');
     endQuestion=true;
   }
 }
@@ -353,7 +354,7 @@ function putFocus (who) {
       focusDiv2 = document.getElementsByClassName("score-text-red")[1];
       focusDiv1.style.textDecoration = "none";
       focusDiv2.style.textDecoration = "none";
-    root.style.setProperty('--hover-color', 'red');
+      root.style.setProperty('--hover-color', 'red');
   }
 }
 
