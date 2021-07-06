@@ -139,6 +139,13 @@ body {
 .backside {  transform: rotateY(180deg) translateZ(.25em) ; }
 .leftside {  transform: rotateY(270deg) translateZ(.25em) ; }
 
+.exit-cube {
+  width: .5em;
+  height: .5em;
+  position: absolute;
+  top:0em;
+  left:-1.5em;
+}
 
 .score-cube-red {
   width: .5em;

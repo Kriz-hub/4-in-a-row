@@ -70,7 +70,9 @@ function endAnimation () {
   if (settingPageLeft) {
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
+    let exitCubeDiv = document.getElementsByClassName("exit-cube")[0];
     let sceneDiv = document.getElementById("scene");
+    exitCubeDiv.style.display = "none";
     messageCubeDiv1.style.display = "inline";
     $(messageCubeDiv1).animate({top: '0em'});
     messageCubeDiv2.style.display = "inline";
@@ -105,11 +107,13 @@ if (endQuestion && !gameEnded) {
   } else {
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
+    let ExitCubeDiv = document.getElementsByClassName("exit-cube")[0];
     let sceneDiv = document.getElementById("scene");
     $(messageCubeDiv1).animate({top: '1.1em'});
     $(messageCubeDiv2).animate({top: '1.1em'});
     messageCubeDiv1.style.display = "none";
     messageCubeDiv2.style.display = "none";
+    ExitCubeDiv.style.display = "inline";
     $(sceneDiv).removeClass("rotate");
     $(".redball").css("animation-name", "sscene-rotate");
     $(".blueball").css("animation-name", "sscene-rotate");
@@ -224,6 +228,18 @@ function buildCubes () {
   rightPart.style.transform="rotateY(90deg) translateZ(4.75em) translateX(3.5em)";
   leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(-3.5em)";
   topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(-3.5em) translateX(0em)";
+
+  //exitcube change translates
+  frontPart = document.getElementsByClassName("score-front")[2];
+  backPart = document.getElementsByClassName("score-back")[2];
+  rightPart = document.getElementsByClassName("score-right")[2];
+  leftPart = document.getElementsByClassName("score-left")[2];
+  topPart = document.getElementsByClassName("score-top")[2];
+  frontPart.style.transform="translateZ(.25em) translateZ(4em)";
+  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(-4em)";
+  rightPart.style.transform="rotateY(90deg) translateZ(1.75em) translateX(-4em)";
+  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(4em)";
+  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(4em) translateX(0em)";
 } // end function buildCubes
 
 
