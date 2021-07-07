@@ -81,21 +81,30 @@ function endAnimation () {
     $(sceneDiv).addClass("rotate");
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
-    let root = document.documentElement;
-    root.style.setProperty('--hover-color', 'gray');
     makeThemScoreBlocks_MakeThemYesNoBlocks (false);
     let redCube = document.getElementsByClassName("score-cube-red")[0];
     let greenCube = document.getElementsByClassName("score-cube-blue")[0];
     $(redCube).addClass("blinking-red");
     $(greenCube).addClass("blinking-green");
-    redCube.style.color= white;
-    greenCube.style.color= white;
+    let root = document.documentElement;
+    root.style.setProperty('--left-cube-text-color', 'white');
+    root.style.setProperty('--right-cube-text-color', 'white');
+    root.style.setProperty('--hover-color', 'gray');
     endQuestion=true;
   }
 }
 
 function answer (q) {
 if (endQuestion && !gameEnded) {
+  makeThemScoreBlocks_MakeThemYesNoBlocks (true);
+  let root = document.documentElement;
+  root.style.setProperty('--left-cube-text-color', 'red');
+  root.style.setProperty('--right-cube-text-color', 'blue');
+  let redCube = document.getElementsByClassName("score-cube-red")[0];
+  let greenCube = document.getElementsByClassName("score-cube-blue")[0];
+  $(redCube).removeClass("blinking-red");
+  $(greenCube).removeClass("blinking-green");
+
   if (q) { //'Yes' clicked to end this game
     let messageP1 = document.getElementsByClassName("message-text")[0];
     let messageP2 = document.getElementsByClassName("message-text")[1];
@@ -105,6 +114,7 @@ if (endQuestion && !gameEnded) {
     if (pointsRed>pointsBlue) {
       endLine = player1Name + " has won!"
     } else { 
+      root.style.setProperty('--message-text-color', 'blue');
       endLine = player2Name + " has won!"}
     if (pointsRed===pointsBlue) { endLine = "It's a draw, no winner!"}
     messageP1.innerHTML = endLine;
@@ -113,7 +123,7 @@ if (endQuestion && !gameEnded) {
     messageP4.innerHTML = endLine;
     gameEnded=true;
     if (fullScreenWish) {toggle_full_screen();}
-  } else { //'no' clicked to end this game
+  } else { //When Clicked 'NO' to end this game, a back to game mode:
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
     let ExitCubeDiv = document.getElementsByClassName("exit-cube")[0];
@@ -126,7 +136,7 @@ if (endQuestion && !gameEnded) {
     $(sceneDiv).removeClass("rotate");
     $(".redball").css("animation-name", "sscene-rotate");
     $(".blueball").css("animation-name", "sscene-rotate");
-    makeThemScoreBlocks_MakeThemYesNoBlocks (true);
+    root.style.setProperty('--hover-color', 'red');
     endQuestion=false;
   }
 }

@@ -6,6 +6,9 @@
   --ball-blue: blue;
   --ballshadow-blue: rgb(152, 226, 255);
   --balldarkshadow-blue: rgb(1, 26, 36);
+  --left-cube-text-color: red;
+  --message-text-color: red;
+  --right-cube-text-color: blue;
   --hover-color: red;
 }
 
@@ -127,6 +130,7 @@ body {
     font-size:0.35em; 
     text-align: center;
     transform: translateY(-0.25em);
+    color: var(--message-text-color);
 }
 
 .score-text-red, .score-text-blue  {
@@ -136,12 +140,12 @@ body {
   transform: translateY(-0.25em);
 }
 
-.score-text-red, .message-text {
-    color: red;
+.score-text-red {
+    color: var(--left-cube-text-color);
 }
 
 .score-text-blue {
-    color:blue;
+  color: var(--right-cube-text-color);
 }
 
 .cube {
@@ -210,7 +214,7 @@ body {
   width: 100%;
   height: 200%;
   background: inherit;
-  animation: inherit
+  animation: inherit;
   box-shadow: 0 0 0.5em #000a inset;
 }
 
