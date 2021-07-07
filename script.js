@@ -41,7 +41,7 @@ const totalRows = 7; // number of cubes (=rows) on y-direction
 const startCubeCol = -3; //-3em 
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
-//12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none)
+//12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
@@ -82,13 +82,14 @@ function endAnimation () {
     $(".blueball").css("animation-name", "scene-rotate");
     let root = document.documentElement;
     root.style.setProperty('--hover-color', 'gray');
+    makeThemScoreBlocks_MakeThemYesNoBlocks (false);
     endQuestion=true;
   }
 }
 
 function answer (q) {
 if (endQuestion && !gameEnded) {
-  if (q) {
+  if (q) { //'Yes' clicked to end this game
     let messageP1 = document.getElementsByClassName("message-text")[0];
     let messageP2 = document.getElementsByClassName("message-text")[1];
     let messageP3 = document.getElementsByClassName("message-text")[2];
@@ -96,7 +97,7 @@ if (endQuestion && !gameEnded) {
     let endLine;
     if (pointsRed>pointsBlue) {
       endLine = player1Name + " has won!"
-    } else {
+    } else { 
       endLine = player2Name + " has won!"}
     if (pointsRed===pointsBlue) { endLine = "It's a draw, no winner!"}
     messageP1.innerHTML = endLine;
@@ -104,7 +105,7 @@ if (endQuestion && !gameEnded) {
     messageP3.innerHTML = endLine;
     messageP4.innerHTML = endLine;
     gameEnded=true;
-  } else {
+  } else { //'no' clicked to end this game
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
     let ExitCubeDiv = document.getElementsByClassName("exit-cube")[0];
@@ -117,6 +118,7 @@ if (endQuestion && !gameEnded) {
     $(sceneDiv).removeClass("rotate");
     $(".redball").css("animation-name", "sscene-rotate");
     $(".blueball").css("animation-name", "sscene-rotate");
+    makeThemScoreBlocks_MakeThemYesNoBlocks (true);
     endQuestion=false;
   }
 }
@@ -337,6 +339,35 @@ function controlDiagonalLeft (who, x, y) {
          else {return false}
   }
 } // function controlDiagonalLeft
+
+function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks is a boolean
+  //this function is needed to change the meaning of the blocks where normally the scores of 
+  //red and blue is beeing displayed. after Exit is clicked it becomes yes or no to quit
+  if (scoreBlocks) {
+    pointsRed--;
+    pointsBlue--; // when quit game is 'no' everything must be restored therefore Givepoint function is used
+    if (redsTurn) {
+      givePoint ('b'); givePoint ('r'); putFocus ('r');
+    } else {
+      givePoint ('r'); givePoint ('b'); putFocus ('b');
+    }
+  } else {
+    let p1;
+    let p2;
+    p1 = document.getElementsByClassName("score-text-red")[0];
+    p2 = document.getElementsByClassName("score-text-red")[1]; 
+    p1.innerText = "NO";
+    p2.innerText = "NO";
+    p1.style.textDecoration = "none";
+    p2.style.textDecoration = "none";
+    p1 = document.getElementsByClassName("score-text-blue")[0];
+    p2 = document.getElementsByClassName("score-text-blue")[1]; 
+    p1.innerText = "YES";
+    p2.innerText = "YES";
+    p1.style.textDecoration = "none";
+    p2.style.textDecoration = "none";
+  }
+}
 
 
 function givePoint (who) {

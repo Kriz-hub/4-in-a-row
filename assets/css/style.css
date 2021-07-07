@@ -122,10 +122,6 @@ body {
   left: 0em;
 }
 
-.cube:hover {
-    background: var(--hover-color);
-}
-
  .leftside, .rightside, .frontside, .backside {
     position: absolute;
     width: 100%;
@@ -153,6 +149,10 @@ body {
   position: absolute;
   top:-1em;
   left:-5.25em;
+}
+
+.backside:hover {
+  background: var(--hover-color);
 }
 
 .score-cube-blue {
