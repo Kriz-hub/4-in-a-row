@@ -46,6 +46,7 @@ var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
+var fullScreenWish = false;
 var settingPageLeft = false;
 var endQuestion = false;
 var gameEnded = false;
@@ -83,6 +84,12 @@ function endAnimation () {
     let root = document.documentElement;
     root.style.setProperty('--hover-color', 'gray');
     makeThemScoreBlocks_MakeThemYesNoBlocks (false);
+    let redCube = document.getElementsByClassName("score-cube-red")[0];
+    let greenCube = document.getElementsByClassName("score-cube-blue")[0];
+    $(redCube).addClass("blinking-red");
+    $(greenCube).addClass("blinking-green");
+    redCube.style.color= white;
+    greenCube.style.color= white;
     endQuestion=true;
   }
 }
@@ -105,6 +112,7 @@ if (endQuestion && !gameEnded) {
     messageP3.innerHTML = endLine;
     messageP4.innerHTML = endLine;
     gameEnded=true;
+    if (fullScreenWish) {toggle_full_screen();}
   } else { //'no' clicked to end this game
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
@@ -131,8 +139,8 @@ function togglePages() {
   }
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
-    let checkedFullScreenWish = document.getElementById("check-it").checked;
-    if (checkedFullScreenWish) {toggle_full_screen();}
+    fullScreenWish = document.getElementById("check-it").checked;
+    if (fullScreenWish) {toggle_full_screen();}
     givePoint ("b");
     givePoint ("r");
     settingPageLeft = true;

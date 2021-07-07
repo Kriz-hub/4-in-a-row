@@ -92,6 +92,36 @@ body {
   /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
+.blinking-red {
+  animation: 1s blink-red ease infinite;
+}
+
+@keyframes blink-red {
+
+  from,
+  to {
+    background: rgb(255, 17, 17);
+  }
+
+  50% {
+    background: darkred;
+  }
+}
+
+.blinking-green {
+  animation: 1s blink-green ease infinite;
+}
+
+@keyframes blink-green {
+
+  from,
+  to {
+    background: rgb(19, 243, 12);}
+
+  50% {
+    background: green;}
+}
+
  .message-text  {
     font-family:verdana; 
     font-size:0.35em; 
@@ -140,6 +170,7 @@ body {
   height: .5em;
   position: absolute;
   top:0em;
+  background: white;
   left:-1.5em;
 }
 
@@ -148,6 +179,7 @@ body {
   height: .5em;
   position: absolute;
   top:-1em;
+  background: white;
   left:-5.25em;
 }
 
@@ -161,13 +193,15 @@ body {
   position: absolute;
   top:-1em;
   left:3.25em;
+  background: white;
 }
 
 .score-front, .score-back {
     position: absolute;
     width: 400%; 
     height: 200%; 
-    background: white;
+    background: inherit;
+    animation: inherit;
     box-shadow: 0 0 0.5em #000a inset;
  }
 
@@ -175,7 +209,8 @@ body {
   position: absolute;
   width: 100%;
   height: 200%;
-  background: white;
+  background: inherit;
+  animation: inherit
   box-shadow: 0 0 0.5em #000a inset;
 }
 
@@ -189,7 +224,8 @@ body {
     width: 2em; /*because of the rotation in 3D this is now length*/
     height: .5em; /*because of the rotation in 3D this is now width*/
     top: -.25em;
-    background: white;
+    background: inherit;
+    animation: inherit;
     transform: translateZ(0em) rotateX(90deg) /*translateY(-.25em) */translateX(0em);
     /*translateZ: move up/down, translateY: move forward/behind (lower: move behind) translateX: move left/right*/
     box-shadow: 0 0 0.5em #000a inset;
@@ -273,7 +309,7 @@ body {
   filter: blur(9px);
 }
 
-@media screen and (min-width:320px) and (max-width: 769px) and (orientation: landscape) {
+/*@media screen and (min-width:320px) and (max-width: 769px) and (orientation: landscape) {
   body {
     font-size: 50px;
   }
@@ -281,11 +317,11 @@ body {
   #scene {
     transform: translateX(-.1em) translateZ(2.8em);
   }
-}
+}*/
 
 
 
-@media screen and (min-width: 769px) and (max-width: 835px) and (orientation: landscape) {
+@media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
     body {
       font-size: 40px;
     }
