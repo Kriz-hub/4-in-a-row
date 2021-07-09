@@ -156,11 +156,14 @@ body {
   left: 0em;
 }
 
+.cube:hover {
+  background: var(--hover-color);
+}
+
  .leftside, .rightside, .frontside, .backside {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: inherit;
     box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.267) inset;
  }
 
@@ -174,7 +177,6 @@ body {
   height: .5em;
   position: absolute;
   top:0em;
-  background: white;
   left:-1.5em;
 }
 
@@ -183,13 +185,10 @@ body {
   height: .5em;
   position: absolute;
   top:-1em;
-  background: white;
   left:-5.25em;
 }
 
-.backside:hover {
-  background: var(--hover-color);
-}
+
 
 .score-cube-blue {
   width: .5em;
@@ -197,14 +196,13 @@ body {
   position: absolute;
   top:-1em;
   left:3.25em;
-  background: white;
 }
 
 .score-front, .score-back {
     position: absolute;
     width: 400%; 
     height: 200%; 
-    background: inherit;
+    background: white;
     animation: inherit;
     box-shadow: 0 0 0.5em #000a inset;
  }
@@ -213,7 +211,7 @@ body {
   position: absolute;
   width: 100%;
   height: 200%;
-  background: inherit;
+  background: white;
   animation: inherit;
   box-shadow: 0 0 0.5em #000a inset;
 }
@@ -228,7 +226,7 @@ body {
     width: 2em; /*because of the rotation in 3D this is now length*/
     height: .5em; /*because of the rotation in 3D this is now width*/
     top: -.25em;
-    background: inherit;
+    background: white;
     animation: inherit;
     transform: translateZ(0em) rotateX(90deg) /*translateY(-.25em) */translateX(0em);
     /*translateZ: move up/down, translateY: move forward/behind (lower: move behind) translateX: move left/right*/

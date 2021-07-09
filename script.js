@@ -122,8 +122,20 @@ if (endQuestion && !gameEnded) {
     messageP3.innerHTML = endLine;
     messageP4.innerHTML = endLine;
     gameEnded=true;
+    root.style.setProperty('--hover-color', 'gray');
+    let p1;
+    let p2;
+    if (redsTurn) {
+      p1 = document.getElementsByClassName("score-text-red")[0];
+      p2 = document.getElementsByClassName("score-text-red")[1]; 
+    } else {
+      p1 = document.getElementsByClassName("score-text-blue")[0];
+      p2 = document.getElementsByClassName("score-text-blue")[1]; 
+    }
+    p1.style.textDecoration = "none";
+    p2.style.textDecoration = "none";
     if (fullScreenWish) {toggle_full_screen();}
-  } else { //When Clicked 'NO' to end this game, a back to game mode:
+  } else { //When Clicked 'NO' to end this game, back to game mode:
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
     let ExitCubeDiv = document.getElementsByClassName("exit-cube")[0];
@@ -136,7 +148,8 @@ if (endQuestion && !gameEnded) {
     $(sceneDiv).removeClass("rotate");
     $(".redball").css("animation-name", "sscene-rotate");
     $(".blueball").css("animation-name", "sscene-rotate");
-    root.style.setProperty('--hover-color', 'red');
+    if (redsTurn) {root.style.setProperty('--hover-color', 'red');}
+       else {root.style.setProperty('--hover-color', 'blue');}
     endQuestion=false;
   }
 }
