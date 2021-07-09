@@ -162,6 +162,19 @@ function togglePages() {
   }
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
+    document.getElementById("scene").style.display = "inline";
+
+    //I only want this remark during game mode, therefore I placed this later
+    //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
+    let reference = document.getElementById('scene');
+    let newDiv = document.createElement('div');
+    let newH3 = document.createElement('h3');
+    newDiv.id = "landscape-orientation";
+    newH3.id = "orientation-text";
+    newH3.innerText = "You may turn your device to landscape mode for a better game experience";
+    newDiv.appendChild(newH3);
+    document.body.insertBefore(newDiv, reference);
+
     fullScreenWish = document.getElementById("check-it").checked;
     if (fullScreenWish) {toggle_full_screen();}
     givePoint ("b");
