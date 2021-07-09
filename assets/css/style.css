@@ -311,24 +311,34 @@ body {
   filter: blur(9px);
 }
 
-/*@media screen and (min-width:320px) and (max-width: 769px) and (orientation: landscape) {
-  body {
-    font-size: 50px;
-  }
-
-  #scene {
-    transform: translateX(-.1em) translateZ(2.8em);
-  }
-}*/
-
-
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
-    body {
-      font-size: 40px;
+  body {
+    font-size: 40px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 835px) and (orientation: portrait) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 835px) {
+
+  #sccene {
+    transform: translateX(-.1em) translateZ(2.8em);
+  }
+
+  .leftside, .rightside, .frontside, .backside {
+    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.5) inset;
+ }
+
+  .rotate {
+    animation: none;
     }
 
-    #scene {
-      transform: translateX(-.1em) translateZ(2.8em);
-    }
+  .redball, .blueball {
+      animation: none;
+  }
 }
