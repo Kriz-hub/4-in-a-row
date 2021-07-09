@@ -76,6 +76,7 @@ body {
   background: black;
   color: white;
   display: none;
+  font-size: 3vh;
   width: 90vw;
   height: 90vh;
 }
@@ -341,13 +342,13 @@ body {
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
   body {
-    font-size: 40px;
+    font-size: 8vw;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: portrait) {
   body {
-    font-size: 20px;
+    font-size: 8vw;
   }
 
   #landscape-orientation {
