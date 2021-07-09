@@ -342,13 +342,13 @@ body {
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
   body {
-    font-size: 9vw;
+    font-size: 10vw;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: portrait) {
   body {
-    font-size: 9vw;
+    font-size: 10vw;
   }
 
   #landscape-orientation {
