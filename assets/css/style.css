@@ -83,7 +83,7 @@ body {
 
 #orientation-text {
   opacity: 0;
-  animation: fade-out 5s ease-out;
+  animation: fade-out 7s ease-out;
 }
 
 @keyframes fade-out { 
@@ -266,9 +266,18 @@ body {
     height: .5em;
     position: absolute;
     top:1.1em;
-    left:-2.75em;
+    
     display:none;
   }
+
+  .thirst-messagecube-position {
+    left:-2.75em;
+  }
+
+  .second-messagecube-position {
+    left:-2.75em;
+  }
+
 
  
   .message-front, .message-back {
@@ -342,13 +351,13 @@ body {
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: landscape) {
   body {
-    font-size: 10vw;
+    font-size: 9vw;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 835px) and (orientation: portrait) {
   body {
-    font-size: 10vw;
+    font-size: 9vw;
   }
 
   #landscape-orientation {
@@ -360,6 +369,11 @@ body {
 
   #sccene {
     transform: translateX(-.1em) translateZ(2.8em);
+  }
+
+  .second-messagecube-position { 
+    /*no rotating for phones, therefore no second messagecube, it's removed out of sight*/
+    left:-12em;
   }
 
   .leftside, .rightside, .frontside, .backside {

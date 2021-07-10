@@ -263,6 +263,9 @@ function buildCubes () {
 
   let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
   let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
+  $(cubeMessageCloneDiv).removeClass("thirst-messagecube-position");
+  $(cubeMessageCloneDiv).addClass("second-messagecube-position");
+  //with phones rotating is shut down, therefore no second messagecube, it will then moved out of screensite
   sceneDiv.appendChild(cubeMessageCloneDiv);
   let frontPart = document.getElementsByClassName("message-front")[1];
   let backPart = document.getElementsByClassName("message-back")[1];
