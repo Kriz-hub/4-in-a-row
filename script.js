@@ -32,6 +32,20 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
+// https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
+function decideFontsizeSmallerDevice() {
+  let screenCheck=document.getElementById("screen-check");
+  $(document).ready(function(){
+    if(window.matchMedia("(max-width: 915px)").matches) {
+      if (screen.width/screen.height>1.78) {
+        screenCheck.style.fontSize =  "7vw";
+      } else {
+        screenCheck.style.fontSize =  "9vw";
+      }
+    }
+  });
+}
+
 //https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
@@ -55,6 +69,7 @@ var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
 var pointsRed = -1;
 var pointsBlue =-1;
+decideFontsizeSmallerDevice();
 buildCubes();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
