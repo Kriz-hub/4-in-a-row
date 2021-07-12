@@ -58,6 +58,7 @@ const step = 0.5; //cubes and balls are 0.5em positioned from each other
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
+var computerOpponent = true;
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
 var fullScreenWish = false;
@@ -478,29 +479,44 @@ function putFocus (who) {
   }
 }
 
+function computerMove() {
+  let colsAvailable=[];
+  let colsAvailableAmount=0;
+  let col;
 
-function dropBall(s) {
+  if (!computerOpponent) {return 0}; //if there is no computer opponent then leave this funtion
+  for (col = 1; col<=totalCols; col++) {
+    if (ballsPerCol[col-1]<totalRows) {colsAvailableAmount += 1; colsAvailable[colsAvailableAmount]=col;}
+  }
+  //thanks to https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9
+  return Math.floor(Math.random() * colsAvailableAmount) + 1;
+}
+
+function personMove (s) {
   //extract the column number from the cubeID which is clicked, to variable s2
-  if (endQuestion) {return}
   let s2 = s.slice(3,5);
   let s3 = s2.slice(1,2);
   if (isNaN(s3)===true) {s2=s.slice(3,4);}
-  
-  if (ballsPerCol[s2-1] < totalRows) { //if the collumn isn't full then place red or blue ball in that column
-    ballsPerCol[s2-1] += 1;
-    let ballRow = 0.5 - (ballsPerCol[s2-1]-1) * step;
-    let ballCol = startCubeCol + (s2-1) * step; 
+  return s2
+}
+
+
+function dropBall(colNr) {
+  if (ballsPerCol[colNr-1] < totalRows) { //if the collumn isn't full then place red or blue ball in that column
+    ballsPerCol[colNr-1] += 1;
+    let ballRow = 0.5 - (ballsPerCol[colNr-1]-1) * step;
+    let ballCol = startCubeCol + (colNr-1) * step; 
 
     let ballClass;
     let sceneDiv = document.getElementById("scene");
     if (redsTurn===true) {
       ballClass = "redball";
-      grid[s2-1][ballsPerCol[s2-1]-1] = "r"; //add red ball to grid array
+      grid[colNr-1][ballsPerCol[colNr-1]-1] = "r"; //add red ball to grid array
       redsTurn = false;
       putFocus ("b");
     } else {
       ballClass = "blueball";
-      grid[s2-1][ballsPerCol[s2-1]-1] = "b";  //add blue ball to grid array
+      grid[colNr-1][ballsPerCol[colNr-1]-1] = "b";  //add blue ball to grid array
       redsTurn = true;
       putFocus ("r");
     }
@@ -519,15 +535,29 @@ function dropBall(s) {
     $(ballCloneDiv).animate({top: ballRow-0.1 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
     //$('audio#pop2')[0].play();
-    if (ballsPerCol[s2-1] === 1) {bringShadow (s2);}
+    if (ballsPerCol[colNr-1] === 1) {bringShadow (colNr);}
     
-    let who = grid[s2-1][ballsPerCol[s2-1]-1];
-    if (controlVert (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
-    if (controlHor (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
+    let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
+    if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
+    if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
     //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
-    movesToMake -= 1;
-    if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
   } //drop ball 
 } // end function dropBall
+
+function makeMove (s) {
+  if (endQuestion) {return}
+  let colNr = personMove (s);
+  dropBall(colNr);
+  movesToMake -= 1;
+  if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
+  else {
+    if (computerOpponent) {
+      colNr=computerMove();
+      dropBall(colNr);
+      movesToMake -= 1;
+      if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
+    }
+  }
+}
 
