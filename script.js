@@ -483,13 +483,12 @@ function computerMove() {
   let colsAvailable=[];
   let colsAvailableAmount=0;
   let col;
-
-  if (!computerOpponent) {return 0}; //if there is no computer opponent then leave this funtion
   for (col = 1; col<=totalCols; col++) {
     if (ballsPerCol[col-1]<totalRows) {colsAvailableAmount += 1; colsAvailable[colsAvailableAmount]=col;}
   }
   //thanks to https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9
-  return Math.floor(Math.random() * colsAvailableAmount) + 1;
+  let choosenArrayNr=Math.floor(Math.random() * colsAvailableAmount) + 1;
+  return colsAvailable[choosenArrayNr];
 }
 
 function personMove (s) {
@@ -502,8 +501,7 @@ function personMove (s) {
 
 
 function dropBall(colNr) {
-  if (ballsPerCol[colNr-1] < totalRows) { //if the collumn isn't full then place red or blue ball in that column
-    ballsPerCol[colNr-1] += 1;
+     ballsPerCol[colNr-1] += 1;
     let ballRow = 0.5 - (ballsPerCol[colNr-1]-1) * step;
     let ballCol = startCubeCol + (colNr-1) * step; 
 
@@ -542,19 +540,18 @@ function dropBall(colNr) {
     if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
     //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
-  } //drop ball 
 } // end function dropBall
 
 function makeMove (s) {
-  if (endQuestion) {return}
+  if (endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
   let colNr = personMove (s);
-  dropBall(colNr);
+  if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
   movesToMake -= 1;
   if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
   else {
     if (computerOpponent) {
       colNr=computerMove();
-      dropBall(colNr);
+      if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
       movesToMake -= 1;
       if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
     }
