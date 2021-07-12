@@ -31,6 +31,14 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
         }
     }
 }
+//https://www.sitepoint.com/delay-sleep-pause-wait/
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 function decideFontsizeSmallerDevice() {
@@ -56,6 +64,7 @@ const startCubeCol = -3; //-3em
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
+var busy=false;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var computerOpponent = true;
@@ -434,21 +443,34 @@ function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks i
 }
 
 
-function givePoint (who) {
+function givePoint (who, justShowScore) {
   let scoreP1;
   let scoreP2;
   if (who==="r") {
-    pointsRed++;
+    if (!justShowScore) {pointsRed++;}
     scoreP1 = document.getElementsByClassName("score-text-red")[0];
     scoreP2 = document.getElementsByClassName("score-text-red")[1]; 
     scoreP1.innerText = player1Name + ": " + pointsRed;
     scoreP2.innerText = player1Name + ": " + pointsRed;
     } else {
-    pointsBlue++;
+    if (!justShowScore) {pointsBlue++;}
     scoreP1 = document.getElementsByClassName("score-text-blue")[0];
     scoreP2 = document.getElementsByClassName("score-text-blue")[1]; 
     scoreP1.innerText = player2Name + ": " + pointsBlue;
     scoreP2.innerText = player2Name + ": " + pointsBlue;
+  }
+}
+
+function computerSaysIAmThinking (who) {
+  let focusDiv1;
+  if (who==="r") {
+    focusDiv1 = document.getElementsByClassName("score-text-red")[0];
+    focusDiv1.style.textDecoration = "none";
+    focusDiv1.innerText = "Thinking";
+    } else {
+      focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
+      focusDiv1.style.textDecoration = "none";
+      focusDiv1.innerText = "Thinking";
   }
 }
 
@@ -466,7 +488,7 @@ function putFocus (who) {
     focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
     focusDiv1.style.textDecoration = "none";
     focusDiv2.style.textDecoration = "none";
-    root.style.setProperty('--hover-color', 'red');
+    setTimeout(() => {root.style.setProperty('--hover-color', 'red');}, 1000);
     } else {
       focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
       focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
@@ -476,11 +498,11 @@ function putFocus (who) {
       focusDiv2 = document.getElementsByClassName("score-text-red")[1];
       focusDiv1.style.textDecoration = "none";
       focusDiv2.style.textDecoration = "none";
-      root.style.setProperty('--hover-color', 'blue');
+      setTimeout(() => {root.style.setProperty('--hover-color', 'blue');}, 1000);
   }
 }
 
-function computerMove() {
+function computerMove(who) {
   let colsAvailable=[];
   let colsAvailableAmount=0;
   let col;
@@ -489,7 +511,12 @@ function computerMove() {
   }
   //thanks to https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9
   let choosenArrayNr=Math.floor(Math.random() * colsAvailableAmount) + 1;
-  return colsAvailable[choosenArrayNr];
+  let colNr = colsAvailable[choosenArrayNr];
+  dropBall(colNr);
+  givePoint (who, true);
+  movesToMake -= 1;
+  if (movesToMake<0.1) { endAnimation (); answer (true); }
+  busy=false;
 }
 
 function personMove (s) {
@@ -537,24 +564,23 @@ function dropBall(colNr) {
     if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);}
 
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
-    if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
-    if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
+    if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
+    if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
     //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
     //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
 } // end function dropBall
 
-function makeMove (s) {
-  if (endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
+function makeMove (s) { 
+  if (busy || endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
   let colNr = personMove (s);
   if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
   movesToMake -= 1;
   if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
   else {
     if (computerOpponent) {
-      colNr=computerMove();
-      if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
-      movesToMake -= 1;
-      if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
+      computerSaysIAmThinking ('b');
+      setTimeout(() => {computerMove();}, 1500); 
+      busy=true;
     }
   }
 }
