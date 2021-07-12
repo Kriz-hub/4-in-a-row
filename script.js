@@ -58,6 +58,7 @@ function decideFontsizeSmallerDevice() {
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
 
+const computerName = "Compu";
 const totalCols = 12; //number of cubes (=columns) on x-direction
 const totalRows = 7; // number of cubes (=rows) on y-direction
 const startCubeCol = -3; //-3em 
@@ -68,6 +69,7 @@ var busy=false;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var computerOpponent = false;
+var computerBeginsFirst = false;
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
 var fullScreenWish = false;
@@ -89,22 +91,65 @@ document.getElementById("scene").style.display = "none";
 function disablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true;
-  computerOpponent = false;
+  computerOpponent = true;
 }
 
 function ensablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false;
-  computerOpponent = true;
+  computerOpponent = false;
 }
 
+function toggleColor () {
+    if (player1Red) {
+        player1Red=false;
+        document.getElementById("color-player1").style.background = "blue";
+        document.getElementById("color-player2").style.background = "red";   
+    } else {
+        player1Red=true;
+        document.getElementById("color-player1").style.background = "red";
+        document.getElementById("color-player2").style.background = "blue";
+    }
+    let pl=player1Name;
+    player1Name=player2Name;
+    player2Name=pl;
+    if (pl=computerName) {computerBeginsFirst=false;} else {computerBeginsFirst=true;}
+}
 
 function getNames () {
    player1Name = document.getElementById("player1-form").value;
-   if (computerOpponent) {player2Name="Computer";} 
+   if (computerOpponent) {player2Name=computerName;} 
      else {player2Name = document.getElementById("player2-form").value;}
    document.getElementById("color-player1").innerHTML = player1Name;
    document.getElementById("color-player2").innerHTML = player2Name;
+}
+
+
+function togglePages() {
+  if (player1Name === "Player1") {
+    alert("You forgot to give the player(s) a name, please try again");
+    return;
+  }
+    document.getElementById("setting-page").style.display = "none";
+    document.getElementById("scene").style.display = "inline";
+    document.getElementById("scene").style.display = "inline";
+
+    //I only want this remark during game mode, therefore I placed this later
+    //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
+    let reference = document.getElementById('scene');
+    let newDiv = document.createElement('div');
+    let newH3 = document.createElement('h3');
+    newDiv.id = "landscape-orientation";
+    newH3.id = "orientation-text";
+    newH3.innerText = "You may turn your device to landscape mode for a better game experience";
+    newDiv.appendChild(newH3);
+    document.body.insertBefore(newDiv, reference);
+
+    fullScreenWish = document.getElementById("check-it").checked;
+    if (fullScreenWish) {toggle_full_screen();}
+    givePoint ("b");
+    givePoint ("r");
+    settingPageLeft = true;
 }
 
 function endAnimation () {
@@ -194,46 +239,6 @@ if (endQuestion && !gameEnded) {
   }
 }
 }
-
-function togglePages() {
-  if (player1Name === "Player1") {
-    alert("You forgot to give the player(s) a name, please try again");
-    return;
-  }
-    document.getElementById("setting-page").style.display = "none";
-    document.getElementById("scene").style.display = "inline";
-    document.getElementById("scene").style.display = "inline";
-
-    //I only want this remark during game mode, therefore I placed this later
-    //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
-    let reference = document.getElementById('scene');
-    let newDiv = document.createElement('div');
-    let newH3 = document.createElement('h3');
-    newDiv.id = "landscape-orientation";
-    newH3.id = "orientation-text";
-    newH3.innerText = "You may turn your device to landscape mode for a better game experience";
-    newDiv.appendChild(newH3);
-    document.body.insertBefore(newDiv, reference);
-
-    fullScreenWish = document.getElementById("check-it").checked;
-    if (fullScreenWish) {toggle_full_screen();}
-    givePoint ("b");
-    givePoint ("r");
-    settingPageLeft = true;
-}
-
-
-function toggleColor () {
-    if (player1Red) {
-        player1Red=false;
-        document.getElementById("color-player1").style.background = "blue";
-        document.getElementById("color-player2").style.background = "red";   
-    } else {
-        player1Red=true;
-        document.getElementById("color-player1").style.background = "red";
-        document.getElementById("color-player2").style.background = "blue";}
-}
-
 
 
 function buildCubes () {    
@@ -587,6 +592,14 @@ function dropBall(colNr) {
 
 function makeMove (s) { 
   if (busy || endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
+  if (computerOpponent) {
+    if (computerBeginsFirst || redsTurn) {
+      computerSaysIAmThinking ('b');
+      setTimeout(() => {computerMove();}, 1500); 
+      busy=true;}
+  }
+
+
   let colNr = personMove (s);
   if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
   movesToMake -= 1;
