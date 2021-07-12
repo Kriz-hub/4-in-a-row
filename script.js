@@ -67,7 +67,7 @@ const step = 0.5; //cubes and balls are 0.5em positioned from each other
 var busy=false;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
-var computerOpponent = true;
+var computerOpponent = false;
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
 var fullScreenWish = false;
@@ -85,9 +85,24 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 
+
+function disablePlayer2() {
+  let pl2Form = document.getElementById("player2-form");
+  pl2Form.disabled = true;
+  computerOpponent = false;
+}
+
+function ensablePlayer2() {
+  let pl2Form = document.getElementById("player2-form");
+  pl2Form.disabled = false;
+  computerOpponent = true;
+}
+
+
 function getNames () {
    player1Name = document.getElementById("player1-form").value;
-   player2Name = document.getElementById("player2-form").value;
+   if (computerOpponent) {player2Name="Computer";} 
+     else {player2Name = document.getElementById("player2-form").value;}
    document.getElementById("color-player1").innerHTML = player1Name;
    document.getElementById("color-player2").innerHTML = player2Name;
 }

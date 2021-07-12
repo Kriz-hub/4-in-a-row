@@ -63,6 +63,19 @@
       <p>When there is a row horzizontally, verticcaly or diagonally, then you earn a point.</p>
       <p>The one who get's the most points wins.</p>
       <div>
+        <div class="wrapper">
+          <input type="radio" name="select" id="option-1">
+          <input type="radio" name="select" id="option-2" checked>
+            <label for="option-1" class="option option-1">
+              <div class="dot"></div>
+               <span onmousedown="disablePlayer2()">One Player</span>
+               </label>
+            <label for="option-2" class="option option-2">
+              <div class="dot"></div>
+               <span onmousedown="enablePlayer2()">Two Player</span>
+            </label>
+         </div>
+
         <form>
           <label for="name1"><strong>Player 1</strong></label>
           <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form" maxlength="7">
@@ -74,7 +87,7 @@
         <br><br>
         <h3>Toggle on player names to choose the right color:</h3>
         <h3>Color red alway begins:</h3>
-        <div class="wrapper">
+        <div class="simple-wrapper">
           <div id="color-player1" onmousedown="toggleColor()">player 1</div>
           <div id="color-player2" onmousedown="toggleColor()">player 2</div>
         </div>
