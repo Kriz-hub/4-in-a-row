@@ -310,12 +310,13 @@ function buildCubes () {
 
 
 function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
-const rowNr="row1" // shadow is always on the ground
-let cubeDiv= document.getElementById('col' + colNr + rowNr);
-let shadowDiv = document.getElementsByClassName("ballshadow")[0];
-let shadowCloneDiv = shadowDiv.cloneNode(true);
-shadowCloneDiv.style.display = "inline";
-cubeDiv.appendChild(shadowCloneDiv);
+  const rowNr="row1" // shadow is always on the ground
+  let cubeDiv= document.getElementById('col' + colNr + rowNr);
+  let shadowDiv = document.getElementsByClassName("ballshadow")[0];
+  let shadowCloneDiv = shadowDiv.cloneNode(true);
+  shadowCloneDiv.style.display = "inline";
+  cubeDiv.appendChild(shadowCloneDiv);
+  $(shadowCloneDiv).animate({opacity: "1"});
 }
 
 
@@ -533,8 +534,8 @@ function dropBall(colNr) {
     $(ballCloneDiv).animate({top: ballRow-0.1 +'em'});
     $(ballCloneDiv).animate({top: ballRow +'em'});
     //$('audio#pop2')[0].play();
-    if (ballsPerCol[colNr-1] === 1) {bringShadow (colNr);}
-    
+    if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);}
+
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
     if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}
     if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who);}

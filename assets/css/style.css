@@ -338,6 +338,7 @@ body {
   width: .45em;
   height: .5em;
   transform: translateY(49%) rotateX(90deg) translateX(-0.05em);
+  opacity: 0;
 }
 
 .circleshadow {
