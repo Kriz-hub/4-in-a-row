@@ -91,16 +91,24 @@ document.getElementById("scene").style.display = "none";
 function disablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true;
-  computerOpponent = true;
+  computerOpponent = true;  
 }
 
-function ensablePlayer2() {
+function enablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false;
   computerOpponent = false;
 }
 
-function toggleColor () {
+function getNames () {
+  player1Name = document.getElementById("player1-form").value;
+  if (computerOpponent) {player2Name=computerName;} 
+    else {player2Name = document.getElementById("player2-form").value;}
+  document.getElementById("color-player1").innerHTML = player1Name;
+  document.getElementById("color-player2").innerHTML = player2Name;
+}
+
+function togglePlayerColor () {
     if (player1Red) {
         player1Red=false;
         document.getElementById("color-player1").style.background = "blue";
@@ -113,19 +121,13 @@ function toggleColor () {
     let pl=player1Name;
     player1Name=player2Name;
     player2Name=pl;
-    if (pl=computerName) {computerBeginsFirst=false;} else {computerBeginsFirst=true;}
-}
-
-function getNames () {
-   player1Name = document.getElementById("player1-form").value;
-   if (computerOpponent) {player2Name=computerName;} 
-     else {player2Name = document.getElementById("player2-form").value;}
-   document.getElementById("color-player1").innerHTML = player1Name;
-   document.getElementById("color-player2").innerHTML = player2Name;
+    //only relevant when there is a computer player:
+    if (player1Name===computerName) {computerBeginsFirst=true;} else {computerBeginsFirst=false;}
+    
 }
 
 
-function togglePages() {
+function togglePages() { // change from setting page to game page
   if (player1Name === "Player1") {
     alert("You forgot to give the player(s) a name, please try again");
     return;
@@ -150,6 +152,12 @@ function togglePages() {
     givePoint ("b");
     givePoint ("r");
     settingPageLeft = true;
+    if (computerOpponent && computerBeginsFirst) {
+       putFocus ('r');
+       setTimeout(() => {computerSaysIAmThinking ('r');}, 500); 
+       setTimeout(() => {computerMove('r');}, 1500); 
+       busy=true;
+    }
 }
 
 function endAnimation () {
@@ -219,7 +227,7 @@ if (endQuestion && !gameEnded) {
     }
     p1.style.textDecoration = "none";
     p2.style.textDecoration = "none";
-    if (fullScreenWish) {toggle_full_screen();}
+    setTimeout(() => {if (fullScreenWish) {toggle_full_screen()}}, 3000); 
   } else { //When Clicked 'NO' to end this game, back to game mode:
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
@@ -485,11 +493,11 @@ function computerSaysIAmThinking (who) {
   let focusDiv1;
   if (who==="r") {
     focusDiv1 = document.getElementsByClassName("score-text-red")[0];
-    focusDiv1.style.textDecoration = "none";
+    //focusDiv1.style.textDecoration = "none";
     focusDiv1.innerText = "Thinking";
     } else {
       focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
-      focusDiv1.style.textDecoration = "none";
+      //focusDiv1.style.textDecoration = "none";
       focusDiv1.innerText = "Thinking";
   }
 }
@@ -592,22 +600,16 @@ function dropBall(colNr) {
 
 function makeMove (s) { 
   if (busy || endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
-  if (computerOpponent) {
-    if (computerBeginsFirst || redsTurn) {
-      computerSaysIAmThinking ('b');
-      setTimeout(() => {computerMove();}, 1500); 
-      busy=true;}
-  }
-
-
   let colNr = personMove (s);
   if (ballsPerCol[colNr-1] < totalRows) {dropBall(colNr);} else {return;}
   movesToMake -= 1;
   if (movesToMake<0.1) { endAnimation (); answer (true); } //all balls placed, game over, determine who has won
   else {
     if (computerOpponent) {
-      computerSaysIAmThinking ('b');
-      setTimeout(() => {computerMove();}, 1500); 
+      let who;
+      if (redsTurn) {who='r'} else {who='b'}
+      setTimeout(() => {computerSaysIAmThinking (who);}, 500); 
+      setTimeout(() => {computerMove(who);}, 1500); 
       busy=true;
     }
   }
