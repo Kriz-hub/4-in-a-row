@@ -38,14 +38,23 @@ body {
 .wrapper{
   display: inline-flex;
   background: #fff;
-  height: 100px;
-  width: 400px;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 5px;
   padding: 20px 15px;
   box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
 }
+
+.wrapper-size-a {
+  height: 100px;
+  width: 400px;
+}
+
+.wrapper-size-b {
+  height: 50px;
+  width: 500px;
+}
+
 .wrapper .option{
   background: #fff;
   height: 100%;
@@ -103,6 +112,30 @@ input[type="radio"]{
 }
 #option-1:checked:checked ~ .option-1 span,
 #option-2:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+
+#option-1b:checked:checked ~ .option-1b,
+#option-2b:checked:checked ~ .option-2b,
+#option-3b:checked:checked ~ .option-3b{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#option-1b:checked:checked ~ .option-1b .dot,
+#option-2b:checked:checked ~ .option-2b .dot,
+#option-3b:checked:checked ~ .option-3b .dot{
+  background: #fff;
+}
+#option-1b:checked:checked ~ .option-1b .dot::before,
+#option-2b:checked:checked ~ .option-2b .dot::before,
+#option-3b:checked:checked ~ .option-3b .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+
+#option-1b:checked:checked ~ .option-1b span,
+#option-2b:checked:checked ~ .option-2b span,
+#option-3b:checked:checked ~ .option-3b span{
   color: #fff;
 }
 
