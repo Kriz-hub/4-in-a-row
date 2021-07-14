@@ -76,24 +76,6 @@
             </label>
          </div>
 
-         <div class="wrapper wrapper-size-b">
-          <input type="radio" name="select2" id="option-1b" checked>
-          <input type="radio" name="select2" id="option-2b" disabled>
-          <input type="radio" name="select2" id="option-3b" disabled>
-            <label for="option-1b" class="option option-1b">
-              <div class="dot"></div>
-               <span>Level 0</span>
-               </label>
-            <label for="option-2b" class="option option-2b">
-              <div class="dot"></div>
-               <span>Level 1</span>
-            </label>
-            <label for="option-3b" class="option option-3b">
-              <div class="dot"></div>
-               <span>Level 2</span>
-            </label>
-         </div>
-
         <form>
           <label for="name1"><strong>Player 1</strong></label>
           <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form" maxlength="7">
@@ -114,7 +96,26 @@
           <input type="checkbox"  checked="checked" id="check-it">Choose full screen for a much better game experience
         </label>
         <br><br>
-        <button type="submit" onmousedown="togglePages()">Go to game</button>
+        <button type="submit" onmousedown="togglePages()">Go to game</button> <br>
+
+        <h3>Change computer play level (for future development):</h3> <br>
+        <div class="wrapper wrapper-size-b">
+         <input type="radio" name="select2" id="option-1b" checked>
+         <input type="radio" name="select2" id="option-2b" disabled>
+         <input type="radio" name="select2" id="option-3b" disabled>
+           <label for="option-1b" class="option option-1b">
+             <div class="dot"></div>
+              <span>Level 0</span>
+              </label>
+           <label for="option-2b" class="option option-2b">
+             <div class="dot"></div>
+              <span>Level 1</span>
+           </label>
+           <label for="option-3b" class="option option-3b">
+             <div class="dot"></div>
+              <span>Level 2</span>
+           </label>
+        </div>
     </div>
     <script src="script.js"></script>
   </body>
