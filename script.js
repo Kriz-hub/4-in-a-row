@@ -92,12 +92,14 @@ function disablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true;
   computerOpponent = true;  
+  document.getElementById("play-level-comp").style.display = "inline";
 }
 
 function enablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false;
   computerOpponent = false;
+  document.getElementById("play-level-comp").style.display = "none";
 }
 
 function getNames () {
