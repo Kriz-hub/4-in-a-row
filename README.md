@@ -24,4 +24,4 @@ To do:
 * when there is time: make an intro annimation of zooming in and a turn of 360 degrees at the same time when te game starts
 
 Wireframes
-![test](https://github.com/Kriz-hub/4-in-a-row/blob/master/game%20scenery.png)
+
