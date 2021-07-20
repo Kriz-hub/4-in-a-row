@@ -64,6 +64,7 @@ const totalRows = 7; // number of cubes (=rows) on y-direction
 const startCubeCol = -3; //-3em 
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
+const buildUnderGround = 5;
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var busy=false;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
@@ -82,7 +83,7 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = -1;
 var pointsBlue =-1;
 decideFontsizeSmallerDevice();
-buildCubes();
+buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
@@ -137,6 +138,7 @@ function togglePages() { // change from setting page to game page
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
     document.getElementById("scene").style.display = "inline";
+    moveUpGameScene ();
 
     //I only want this remark during game mode, therefore I placed this later
     //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
@@ -177,8 +179,8 @@ function endAnimation () {
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
     makeThemScoreBlocks_MakeThemYesNoBlocks (false);
-    let redCube = document.getElementsByClassName("score-cube-red")[0];
-    let greenCube = document.getElementsByClassName("score-cube-blue")[0];
+    let redCube = document.getElementById("score-cube-red");
+    let greenCube = document.getElementById("score-cube-blue");
     $(redCube).addClass("blinking-red");
     $(greenCube).addClass("blinking-green");
     let root = document.documentElement;
@@ -195,8 +197,8 @@ if (endQuestion && !gameEnded) {
   let root = document.documentElement;
   root.style.setProperty('--left-cube-text-color', 'red');
   root.style.setProperty('--right-cube-text-color', 'blue');
-  let redCube = document.getElementsByClassName("score-cube-red")[0];
-  let greenCube = document.getElementsByClassName("score-cube-blue")[0];
+  let redCube = document.getElementById("score-cube-red");
+  let greenCube = document.getElementById("score-cube-blue");
   $(redCube).removeClass("blinking-red");
   $(greenCube).removeClass("blinking-green");
 
@@ -251,7 +253,7 @@ if (endQuestion && !gameEnded) {
 }
 
 
-function buildCubes () {    
+function buildGameScene () {    
   let cubeCol = startCubeCol-step;
   let cubeRow;
   let row;
@@ -267,60 +269,69 @@ function buildCubes () {
           grid[col-1][row-1]="n"; //fill grid with "n", none, no balls this moment
           cubeRow -= step;
           cubeCloneDiv = cubeDiv.cloneNode(true);
-          cubeCloneDiv.style.top = cubeRow + "em";
+          cubeCloneDiv.style.top = cubeRow + buildUnderGround + "em";
           cubeCloneDiv.style.left = cubeCol + "em";
           cubeCloneDiv.id = "col" + col + "row" + row; //give each cube an ID from "col1row1" to "col12row7"
           sceneDiv.appendChild(cubeCloneDiv);
       }
   }
   // build extra cubes to hold 2 big score-cubes
+  // these are the two legs to hold left scorecube, each build of two cubes
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.top = startCubeRow + buildUnderGround + "em";
   cubeCloneDiv.style.left = "-5.25em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg1a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
   cubeCloneDiv.style.left = "-5.25em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg1b";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.top = startCubeRow + buildUnderGround + "em";
   cubeCloneDiv.style.left = "-3.75em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg2a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
   cubeCloneDiv.style.left = "-3.75em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg2b";
   sceneDiv.appendChild(cubeCloneDiv);
-
+  // these are the two legs to hold right scorecube, each build of two cubes
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.top = startCubeRow  + buildUnderGround + "em";
   cubeCloneDiv.style.left = "3.25em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg3a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
   cubeCloneDiv.style.left = "3.25em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg3b";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.top = startCubeRow + buildUnderGround  + "em";
   cubeCloneDiv.style.left = "4.75em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg4a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround  + "em";
   cubeCloneDiv.style.left = "4.75em";
   cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg4b";
   sceneDiv.appendChild(cubeCloneDiv);
 
   let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
   let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
   $(cubeMessageCloneDiv).removeClass("thirst-messagecube-position");
   $(cubeMessageCloneDiv).addClass("second-messagecube-position");
-  //with phones rotating is shut down, therefore no second messagecube, it will then moved out of screensite
+  
   sceneDiv.appendChild(cubeMessageCloneDiv);
   let frontPart = document.getElementsByClassName("message-front")[1];
   let backPart = document.getElementsByClassName("message-back")[1];
@@ -344,7 +355,48 @@ function buildCubes () {
   rightPart.style.transform="rotateY(90deg) translateZ(1.75em) translateX(-4em)";
   leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(4em)";
   topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(4em) translateX(0em)";
-} // end function buildCubes
+} // end function buildGameScene
+
+
+function moveUpGameScene () { //literally move game scene up out of the floor
+  let cubeCol = startCubeCol-step;
+  let cubeRow;
+  let row;
+  let col;
+  let cubeDiv;
+  for (col = 1; col<=totalCols; col++) { 
+    cubeCol += step;
+    cubeRow = startCubeRow+step;
+    for (row = 1; row<=totalRows; row++) {
+        cubeRow -= step;
+        cubeDiv = document.getElementById("col" + col + "row" + row);
+        $(cubeDiv).animate({top: cubeRow + "em"});
+    }
+  }
+  cubeDiv = document.getElementById("leg1a");
+  $(cubeDiv).animate({top: startCubeRow + "em"});
+  cubeDiv = document.getElementById("leg1b");
+  $(cubeDiv).animate({top: startCubeRow -step + "em"});
+  cubeDiv = document.getElementById("leg2a");
+  $(cubeDiv).animate({top: startCubeRow + "em"});
+  cubeDiv = document.getElementById("leg2b");
+  $(cubeDiv).animate({top: startCubeRow -step + "em"});
+  cubeDiv = document.getElementById("leg3a");
+  $(cubeDiv).animate({top: startCubeRow + "em"});
+  cubeDiv = document.getElementById("leg3b");
+  $(cubeDiv).animate({top: startCubeRow -step + "em"});
+  cubeDiv = document.getElementById("leg4a");
+  $(cubeDiv).animate({top: startCubeRow + "em"});
+  cubeDiv = document.getElementById("leg4b");
+  $(cubeDiv).animate({top: startCubeRow -step + "em"});
+
+  cubeDiv = document.getElementById("score-cube-red");
+  $(cubeDiv).animate({top: "-1em"});
+  cubeDiv = document.getElementById("score-cube-blue");
+  $(cubeDiv).animate({top: "-1em"});
+
+  
+}
 
 
 
@@ -457,7 +509,7 @@ function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks i
   } else {
     let p1;
     let p2;
-    p1 = document.getElementsByClassName("score-text-red")[0];
+    p1 = document.getElementsByClassName("score-text-red")[0]; 
     p2 = document.getElementsByClassName("score-text-red")[1]; 
     p1.innerText = "NO";
     p2.innerText = "NO";
