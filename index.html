@@ -58,14 +58,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div id="setting-page" >
-      <div>
+      <div class="bring-shadow">
         <h1>Four In a Row - Setting Page</h1>
         <p>Put the balls of your color in a row of 4 while the counterplayer can prevent that.
          When there is a row horizontally, vertically or diagonally, then you earn a point.
          The one who get's the most points wins.</p>
       </div>
       <div class="grid-columns">
-        <div>
+        <div class="bring-shadow">
           <p>Choose the number of players:</p> 
           <div class="wrapper wrapper-size-a">
             <input type="radio" name="select" id="option-1">
@@ -81,7 +81,7 @@
           </div>
         </div>
 
-        <div id="play-level-comp">
+        <div id="play-level-comp" class="bring-shadow">
           <p>Change computer play level (for future development):</p> 
           <div class="wrapper wrapper-size-b" >
           <input type="radio" name="select2" id="option-1b" checked>
@@ -105,7 +105,7 @@
       </div>
 
       <div class="grid-columns">
-        <div>
+        <div class="bring-shadow">
           <p>Please fill in the player's names:</p> 
           <form>
             <label for="name1"><strong>Player 1</strong></label>
@@ -115,9 +115,11 @@
             <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form" maxlength="7">
           </form>
           <button type="submit" onmousedown="getNames()">Submit Names</button>
+          <br>
+          <button type="submit" onmousedown="togglePages()">Go to game</button>     
         </div>
     
-        <div>
+        <div class="bring-shadow">
           <p>Toggle on player names to choose the right color. Red always begins:</p>
           <div class="simple-wrapper">
             <div id="color-player1" onmousedown="togglePlayerColor()">player 1</div>
@@ -127,9 +129,8 @@
           <label style="padding-left: 15px">
             <input type="checkbox"  checked="checked" id="check-it">Choose full screen for a much better game experience
           </label>
-        </div>    
+        </div> 
       </div>
-      <button type="submit" onmousedown="togglePages()">Go to game</button>  
     </div>
     <script src="script.js"></script>
   </body>
