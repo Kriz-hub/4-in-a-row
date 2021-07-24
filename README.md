@@ -12,20 +12,27 @@ I did some experiments myself to create cubes and balls based on that 3D idea. I
 
 First I thougt to make the game "Mastermind". But it turned out that when you make rows in 3D, you get a problem. The first rows are easy to see but when you get to row 8 for example, there is a horizon effect so these rows are difficult to distinguish from each other. That should not have been a nice game experience. The solution should be to make Mastermind in 2D, but my goal is to make something in 3D, just because I like it.
 
-After that my idea evolved to make a "Four in a Row" game. Before that it was very important for me to prove it was do-able in the amount of time given voor the 2nd Milestone. Therefore I made an experimental "4 in a Row"-ish 3D structure. Because it was just based on that 3D environment of the youtube I had to figure out by myself the coordinates and size of cubes just by experimenting. That expirement can be found here: https://3d-14.dikkeschei.repl.co/. 
+After that my idea evolved to make a "Four in a Row" game. Before that it was very important for me to prove it was do-able in the amount of time given for the 2nd Milestone. Therefore I made an experimental "4 in a Row"-ish 3D structure. Because it was just based on that 3D environment of the youtube I had to figure out by myself the coordinates and size of cubes just by experimenting. That experiment can be found here: https://3d-14.dikkeschei.repl.co/. 
 That was a lot of copy-pasting of cubes classes en ball classes with a slightly different coordinate because it's a CSS only structure.
 It turned out to be a succesfully created structure, now I finally decided to make a 3D game "4 in a Row" based on Javascript.
 
-That experiment on Repl wasn't a game at all, it was just making a structure. Now with Javascript it should be possible to create balls with the right color and place it in the columns of cubes by choice. When I started this project I thought to make every "Cube DIV" and every "Ball DIV" entirely with Javascript. But somehow the coordinates didn't work. I didn't manage to create that 3D world with Javascript only. Maybe I made a mistake, maybe it is a bug, I don't know. Then I got a better idea and that turned out to be working very well: The basic idea now for this project is to make 1 cube, 1 blue ball and 1 red ball in CSS, then multiplying it by cloning with Javascript. So it should first exist in CSS, after that a clone can be made. After this the first major problem was solved.
+That experiment on Repl wasn't a game at all, it was just making a structure. Now with Javascript it should be possible to create balls with the right color and place it in the columns of cubes by choice. When I started this project I thought to make every "cube div" and every "ball div" entirely with Javascript. But somehow the coordinates didn't work. I didn't manage to create that 3D world with Javascript only. Maybe I made a mistake, maybe it is a bug, I don't know. Then I got a better idea and that turned out to be working very well: The basic idea now for this project is to make 1 cube, 1 blue ball and 1 red ball in CSS, then multiplying it by cloning with Javascript. So it should first exist in CSS, after that a clone can be made. After this the first major problem was solved.
 
-Another major problem was to solve timing ussues. The color of the cursor changed too quick from red to blue and the other way back when the opponent has to do it's move. The initial solution was to make a delay with Javascript, but immidiatly a next problem started becausev the website is event driven. A function to change color was put on hold but the next thing happened on a wronng way because of mouseclicks. Therefore I introduced the boolean "busy". All click events are ignored when boolean "busy" is true.
+Another major problem was to solve timing ussues. The color of the cursor changed too quick from red to blue and the other way back when the opponent has to do it's move, also the sound of the falling ball was not in sync. The initial solution was to make a delay with Javascript, but immidiatly a next problem started becausev the website is event driven. A function to change color was put on hold but the next thing happened on a wronng way because of mouseclicks. Therefore I introduced the boolean "busy". All click events are ignored when boolean "busy" is true.
 
 ## Wireframes:
+The game starts with a setting page:
 ![Setting Page Desktop:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/setting%20page.png)
+After that the game environment appear:
 ![Game Scenery Desktop:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/game%20scenery.png)
+When pressed on exit the game starts to rotate with blinking "Yes" and "No" cubes to end the game or not
 ![Leaving Game Desktop:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/leaving%20game.png)
+On a smaller device the setting page appear on a sligthly different way:
 ![Setting Page Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/setting%20page%20phone.png)
+The user will probably hold the phone in portrait view. Therefore a message appear to turn the phone to landscpae view for a better game experience, when
+the user get back to portrait view, the message appear again, for a maximum of 2 times. After 2 times the user should understand the principle of this.
 ![Game Scenery Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/game%20scenery%20phone.png)
+Also on a phone starts a rotation with the opportunity to leave the game when pressed on the exit cube.
 ![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/leaving%20game%20phone.png)
 
 
