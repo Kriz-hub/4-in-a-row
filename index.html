@@ -58,47 +58,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div id="setting-page" >
-      <div class="bring-shadow">
-        <h1>Four In a Row - Setting Page</h1>
-        <p>Put the balls of your color in a row of 4 while the counterplayer can prevent that.
-         When there is a row horizontally, vertically or diagonally, then you earn a point.
-         The one who get's the most points wins.</p>
+      <div class="grid-columns">
+        <div class="bring-shadow">
+          <div class="bring-margin">
+            <h1>Four In a Row - Setting Page</h1>
+            <ul>
+              <li>Put the balls of your color in a row of 4 while the counterplayer can prevent that.</li>
+              <li>When there is a row horizontally, vertically or diagonally, then you earn a point.</li>
+              <li>The one who get's the most points wins.</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="grid-columns">
         <div class="bring-shadow">
-          <p>Choose the number of players:</p> 
-          <div class="wrapper wrapper-size-a">
-            <input type="radio" name="select" id="option-1">
-            <input type="radio" name="select" id="option-2" checked>
-            <label for="option-1" class="option option-1">
-              <div class="dot"></div>
-              <span onmousedown="disablePlayer2()">One Player</span>
-            </label>
-            <label for="option-2" class="option option-2">
-              <div class="dot"></div>
-              <span onmousedown="enablePlayer2()">Two Player</span>
-            </label>
+          <div class="bring-margin">
+            <p>Choose the number of players:</p> 
+            <div class="wrapper wrapper-size-a">
+              <input type="radio" name="select" id="option-1">
+              <input type="radio" name="select" id="option-2" checked>
+              <label for="option-1" class="option option-1">
+                <div class="dot"></div>
+                <span onmousedown="disablePlayer2()">One Player</span>
+              </label>
+              <label for="option-2" class="option option-2">
+                <div class="dot"></div>
+                <span onmousedown="enablePlayer2()">Two Player</span>
+              </label>
+            </div>
           </div>
         </div>
 
         <div id="play-level-comp" class="bring-shadow">
-          <p>Change computer play level (for future development):</p> 
-          <div class="wrapper wrapper-size-b" >
-          <input type="radio" name="select2" id="option-1b" checked>
-          <input type="radio" name="select2" id="option-2b" disabled>
-          <input type="radio" name="select2" id="option-3b" disabled>
-          <label for="option-1b" class="option option-1b">
-            <div class="dot"></div>
-            <span>Level 0</span>
-          </label>
-          <label for="option-2b" class="option option-2b">
-            <div class="dot"></div>
-            <span><del>Level 1</del></span>
-          </label>
-          <label for="option-3b" class="option option-3b">
-            <div class="dot"></div>
-            <span><del>Level 2</del></span>
-          </label>
+          <div class="bring-margin">  
+            <p>Change computer play level (for future development):</p> 
+            <div class="wrapper wrapper-size-b" >
+            <input type="radio" name="select2" id="option-1b" checked>
+            <input type="radio" name="select2" id="option-2b" disabled>
+            <input type="radio" name="select2" id="option-3b" disabled>
+            <label for="option-1b" class="option option-1b">
+              <div class="dot"></div>
+              <span>Level 0</span>
+            </label>
+            <label for="option-2b" class="option option-2b">
+              <div class="dot"></div>
+              <span><del>Level 1</del></span>
+            </label>
+            <label for="option-3b" class="option option-3b">
+              <div class="dot"></div>
+              <span><del>Level 2</del></span>
+            </label>
+          </div>
         </div>
         <script>document.getElementById("play-level-comp").style.display = "none";</script>
        </div>
@@ -106,31 +116,41 @@
 
       <div class="grid-columns">
         <div class="bring-shadow">
-          <p>Please fill in the player's names:</p> 
-          <form>
-            <label for="name1"><strong>Player 1</strong></label>
-            <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form" maxlength="7">
-            <br>
-            <label for="name2"><strong>Player 2</strong></label>
-            <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form" maxlength="7">
-          </form>
-          <button type="submit" onmousedown="getNames()">Submit Names</button>
-          <br>
-          <button type="submit" onmousedown="togglePages()">Go to game</button>     
+          <div class="bring-margin">
+            <p>Please fill in the player's names:</p> 
+            <form>
+              <label for="name1"><strong>Player 1</strong></label>
+              <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form" maxlength="7">
+              <br>
+              <label for="name2"><strong>Player 2</strong></label>
+              <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form" maxlength="7">
+            </form>
+            <button type="submit" onmousedown="getNames()">Submit Names</button>
+          </div>  
         </div>
     
         <div class="bring-shadow">
-          <p>Toggle on player names to choose the right color. Red always begins:</p>
-          <div class="simple-wrapper">
-            <div id="color-player1" onmousedown="togglePlayerColor()">player 1</div>
-            <div id="color-player2" onmousedown="togglePlayerColor()">player 2</div>
+          <div class="bring-margin">
+            <p>Toggle on player names to choose the right color. Red always begins:</p>
+            <div class="simple-wrapper">
+              <div id="color-player1" onmousedown="togglePlayerColor()">player 1</div>
+              <div id="color-player2" onmousedown="togglePlayerColor()">player 2</div>
+            </div>
           </div>
-          <br><br>
-          <label style="padding-left: 15px">
-            <input type="checkbox"  checked="checked" id="check-it">Choose full screen for a much better game experience
-          </label>
         </div> 
       </div>
+
+      <div class="grid-columns">
+        <div class="bring-shadow">
+          <div class="bring-margin">
+            <label>
+              <input type="checkbox"  checked="checked" id="check-it">Choose full screen for a much better game experience
+            </label>  
+            <br>
+            <button type="submit" onmousedown="togglePages()">Go to game</button>    
+          </div>
+        </div> 
+      </div>        
     </div>
     <script src="script.js"></script>
   </body>

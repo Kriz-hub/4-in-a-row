@@ -14,7 +14,7 @@
 
 body {
   background-color:black;
-  min-height: 100vh;
+  min-height: 97vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,20 +33,25 @@ body {
      justify-content: flex-start;
  }
 
-.bring-shadow {
-   margin: 25px 50px 25px 50px; /*up, right*/
-   background-color: rgb(72, 135, 151);
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
-}
-
-
 .grid-columns {
+  width: 99vw;
    display: flex;
+   margin: 0px;
  }
 
 .grid-columns > * {
    flex-basis: 100%;
  }
+
+ .bring-shadow {
+  margin: 25px 25px; 
+  background-color: rgb(72, 135, 151);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.bring-margin {
+ margin: inherit;
+}
 
 .wrapper{
   display: inline-flex;
