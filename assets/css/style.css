@@ -34,9 +34,7 @@ body {
  }
 
 .grid-columns {
-  width: 99vw;
    display: flex;
-   margin: 0px;
  }
 
 .grid-columns > * {
@@ -49,7 +47,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-.bring-margin {
+.bring-margin, .bring-margin-wrapper {
  margin: inherit;
 }
 
@@ -133,7 +131,8 @@ input[type="radio"]{
   opacity: 1;
   transform: scale(1);
 }
-.wrapper .option span{
+/*.wrapper .option span{*/
+  .wrapper-spansize {
   font-size: 20px;
   color: #808080;
 }
@@ -428,20 +427,40 @@ input[type="radio"]{
 
 @media screen and (min-width: 320px) and (max-width: 835px) {
 
-  .grid-columns {flex-wrap: wrap;  }
+  h1 {
+    font-size: 30px;
+  }
+  .grid-columns {
+    flex-wrap: wrap;  
+    width: 99%;
+    margin-left: 5px;
+  }
 
   .wrapper-size-a {
-    height: 50px;
-    width: 90vw;
+    width: 90%;
+    margin: 0;
   }
   
   .wrapper-size-b {
-    height: 50px;
-    width: 90vw;
+    width: 80%;
+    margin: 0;
   }
 
-  #play-level-comp span {
+  .bring-margin-wrapper {
+    margin: 5px;
+    transform: translateX(12px);
+   }
+
+  .wrapper-spansize {
+    font-size: 12px;
+  }
+
+  .simple-wrapper div {
     font-size: 15px;
+  }
+
+  .simple-wrapper {
+    width: 90%;
   }
 
   .leftside, .rightside, .frontside, .backside {
