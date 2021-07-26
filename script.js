@@ -445,6 +445,7 @@ function controlVert (who, x, y) {
   let countDown = 0;
   let gridCondition = true;
 
+  
   while (y - countDown > 0 && gridCondition) {
     if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
   }
@@ -457,13 +458,15 @@ function controlDiagonalRight (who, x, y) {
   let countRight = 0; 
   let gridCondition = true;
 
-  while (x + countRight < totalRows-1 && y + countRight < totalCols-1 && gridCondition) {
-    if (grid[x + countRight + 1][y + countRight + 1]===who) {countRight=+1;} else {gridCondition = false;}
+   while (x + countRight < totalCols-1 && y + countRight < totalRows-1 && gridCondition) {
+    //alert('hoi2');
+    //alert("cr: " + countRight +  " cl: " + countLeft + " gr: " + grid[x + countRight + 1][y + countRight + 1]);
+    if (grid[x + countRight + 1][y + countRight + 1]===who) {countRight+=1;} else {gridCondition = false;}
   }
 
   gridCondition = true;
-  while (x - countLeft > 1 && y - countLeft > 1 && gridCondition) {
-    if (grid[x - countLeft - 1][y - countLeft - 1]===who) {countLeft=+1;} else {gridCondition = false;}
+  while (x - countLeft > 0 && y - countLeft > 0 && gridCondition) {
+    if (grid[x - countLeft - 1][y - countLeft - 1]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
   if (countLeft===3 || countRight===3) {return true;} 
@@ -479,12 +482,12 @@ function controlDiagonalLeft (who, x, y) {
   let countRight = 0; 
   let gridCondition = true;
 
-  while (x + countRight < totalRows-1 && y - countRight > 1 && gridCondition) {
-    if (grid[x + countRight + 1][y + countRight - 1]===who) {countRight=+1;} else {gridCondition = false;}
+  while (x + countRight < totalCols-1 && y - countRight > 0 && gridCondition) {
+    if (grid[x + countRight + 1][y - countRight - 1]===who) {countRight=+1;} else {gridCondition = false;}
   }
 
   gridCondition = true;
-  while (x - countLeft > 1 && y + countLeft < totalCols-1 && gridCondition) {
+  while (x - countLeft > 0 && y + countLeft < totalRows-1 && gridCondition) {
     if (grid[x - countLeft - 1][y + countLeft + 1]===who) {countLeft=+1;} else {gridCondition = false;}
   }
 
@@ -648,8 +651,8 @@ function dropBall(colNr) {
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
     if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
     if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
-    //if (controlDiagonalRight (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
-    //if (controlDiagonalLeft (who, s2-1, ballsPerCol[s2-1]-1)) {givePoint (who);}
+    if (controlDiagonalRight (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
+    if (controlDiagonalLeft (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
 } // end function dropBall
 
 function makeMove (s) { 
