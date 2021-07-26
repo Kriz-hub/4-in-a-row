@@ -394,14 +394,11 @@ function moveUpGameScene () { //literally move game scene up out of the floor
   $(cubeDiv).animate({top: "-1em"});
   cubeDiv = document.getElementById("score-cube-blue");
   $(cubeDiv).animate({top: "-1em"});
-
-  
 }
 
 
-
 function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
-  const rowNr="row1" // shadow is always on the ground
+  const rowNr="row1" // shadow is always on the ground, so part of the cube's ID we look for will be row1
   let cubeDiv= document.getElementById('col' + colNr + rowNr);
   let shadowDiv = document.getElementsByClassName("ballshadow")[0];
   let shadowCloneDiv = shadowDiv.cloneNode(true);
@@ -411,29 +408,22 @@ function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears
 }
 
 
-function controlHor (who, x, y) {//check if a new 'four in a row' is made in horizontal direction after a move is made
+function controlHor (who, x, y) {
+  //a horizontal count of balls of the same color to check if 4 in a row is made after a ball drop:
   let countLeft=0;
   let countRight=0;
   let gridCondition = true;
 
-  
-
-  //alert ("gridcond: " + gridCondition + " x: " + x + " x + countRight < totalCols: " + (x + countRight < totalCols));
-  while (x + countRight < totalCols-1 && gridCondition)  { //check to the right for new '4 in a row'
+  while (x + countRight < totalCols-1 && gridCondition)  { 
     if (grid[x + countRight + 1][y]===who) {countRight+=1;} else {gridCondition = false;}
-   //alert (gridCondition + " x: " + x + " x + countRight < totalCols-1: " + (x + countRight < totalCols-1) + " Countrigh:" + countRight);
   } 
   
-  
   gridCondition = true;
-  while (x - countLeft > 0 && gridCondition) { //check to the left for new '4 in a row'
+  while (x - countLeft > 0 && gridCondition) { 
     if (grid[x - countLeft - 1][y]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-  //alert(countLeft + "  " + countRight); 
-
- 
-  if (countLeft===3 || countRight===3) {return true;} 
+   if (countLeft===3 || countRight===3) {return true;} 
      else {
          if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
          else {return false}
@@ -442,9 +432,9 @@ function controlHor (who, x, y) {//check if a new 'four in a row' is made in hor
 
 
 function controlVert (who, x, y) {
+  //a vertical count of balls of the same color to check if 4 in a row is made after a ball drop:
   let countDown = 0;
   let gridCondition = true;
-
   
   while (y - countDown > 0 && gridCondition) {
     if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
@@ -452,15 +442,13 @@ function controlVert (who, x, y) {
   if (countDown===3) {return true;} else {return false;}
 }
 
-
 function controlDiagonalRight (who, x, y) {
+  //a diagonal count of balls of the same color to check if 4 in a row is made after a ball drop:
   let countLeft = 0;
   let countRight = 0; 
   let gridCondition = true;
 
    while (x + countRight < totalCols-1 && y + countRight < totalRows-1 && gridCondition) {
-    //alert('hoi2');
-    //alert("cr: " + countRight +  " cl: " + countLeft + " gr: " + grid[x + countRight + 1][y + countRight + 1]);
     if (grid[x + countRight + 1][y + countRight + 1]===who) {countRight+=1;} else {gridCondition = false;}
   }
 
@@ -478,6 +466,7 @@ function controlDiagonalRight (who, x, y) {
 
 
 function controlDiagonalLeft (who, x, y) {
+  //a diagonal count of balls of the same color to check if 4 in a row is made after a ball drop:
   let countLeft = 0;
   let countRight = 0; 
   let gridCondition = true;
@@ -500,8 +489,8 @@ function controlDiagonalLeft (who, x, y) {
 
 function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks is a boolean
   //this function is needed to change the meaning of the blocks where normally the scores of 
-  //red and blue is beeing displayed. after Exit is clicked it becomes yes or no to quit
-  if (scoreBlocks) {
+  //red and blue is being displayed. after Exit is clicked it becomes yes or no to quit
+  if (scoreBlocks) { //when scoreBlocks is true the cubes are in default mode
     pointsRed--;
     pointsBlue--; // when quit game is 'no' everything must be restored therefore Givepoint function is used
     if (redsTurn) {
@@ -509,7 +498,7 @@ function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks i
     } else {
       givePoint ('r'); givePoint ('b'); putFocus ('b');
     }
-  } else {
+  } else { //after clicked on the exit cube the score blocks change in blinking yes-or-no cubes
     let p1;
     let p2;
     p1 = document.getElementsByClassName("score-text-red")[0]; 
@@ -546,15 +535,13 @@ function givePoint (who, justShowScore) {
   }
 }
 
-function computerSaysIAmThinking (who) {
+function computerSaysIAmThinking (who) { //gave a delay when a computer oppononent do it's turn 
   let focusDiv1;
   if (who==="r") {
     focusDiv1 = document.getElementsByClassName("score-text-red")[0];
-    //focusDiv1.style.textDecoration = "none";
     focusDiv1.innerText = "Thinking";
     } else {
       focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
-      //focusDiv1.style.textDecoration = "none";
       focusDiv1.innerText = "Thinking";
   }
 }
@@ -564,7 +551,7 @@ function putFocus (who) {
   let focusDiv2;
   let root = document.documentElement;
     // make variable "root" to gain control over a CSS variable: https://css-tricks.com/updating-a-css-variable-with-javascript/
-  if (who==="r") {
+  if (who==="r") { //when red is to move the left red score cube gets an underline on it's text, the blue scorecube looses that underlining
     focusDiv1 = document.getElementsByClassName("score-text-red")[0];
     focusDiv2 = document.getElementsByClassName("score-text-red")[1];
     focusDiv1.style.textDecoration = "underline";
@@ -574,7 +561,7 @@ function putFocus (who) {
     focusDiv1.style.textDecoration = "none";
     focusDiv2.style.textDecoration = "none";
     setTimeout(() => {root.style.setProperty('--hover-color', 'red');}, 1000);
-    } else {
+    } else { //when blue is to move the right blue score cube gets an underline on it's text, the red scorecube looses that underlining
       focusDiv1 = document.getElementsByClassName("score-text-blue")[0];
       focusDiv2 = document.getElementsByClassName("score-text-blue")[1];
       focusDiv1.style.textDecoration = "underline";
@@ -587,24 +574,27 @@ function putFocus (who) {
   }
 }
 
-function computerMove(who) {
+function computerMove(who) { 
+  // the move of the computer has no AI for now, it just make a random move
   let colsAvailable=[];
   let colsAvailableAmount=0;
   let col;
+  //Collect availlable collumns which aren't full of balls yet:
   for (col = 1; col<=totalCols; col++) {
-    if (ballsPerCol[col-1]<totalRows) {colsAvailableAmount += 1; colsAvailable[colsAvailableAmount]=col;}
-  }
-  //thanks to https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9
+    if (ballsPerCol[col-1]<totalRows) {colsAvailableAmount += 1; colsAvailable[colsAvailableAmount]=col;}}
+
+  //thanks to https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 how to get random numbers
   let choosenArrayNr=Math.floor(Math.random() * colsAvailableAmount) + 1;
   let colNr = colsAvailable[choosenArrayNr];
   dropBall(colNr);
   givePoint (who, true);
   movesToMake -= 1;
+  //when all balls are played then game must be ended by starting function endanimation:
   if (movesToMake<0.1) { endAnimation (); answer (true); }
   busy=false;
 }
 
-function personMove (s) {
+function personMove (s) { //get the collumn in which a ball had dropped during a person's move
   //extract the column number from the cubeID which is clicked, to variable s2
   let s2 = s.slice(3,5);
   let s3 = s2.slice(1,2);
@@ -613,13 +603,15 @@ function personMove (s) {
 }
 
 
-function dropBall(colNr) {
-     ballsPerCol[colNr-1] += 1;
+function dropBall(colNr) { // a move is made, now certain things had to ben done:
+    //to collumns which is choosen to put a ball in must increase by one:
+    ballsPerCol[colNr-1] += 1;
     let ballRow = 0.5 - (ballsPerCol[colNr-1]-1) * step;
     let ballCol = startCubeCol + (colNr-1) * step; 
+    // ballRow and ballColl are x, y coordinates where the ball has to come
 
+    //decide the color's ball and what CSS class must be choosen
     let ballClass;
-    let sceneDiv = document.getElementById("scene");
     if (redsTurn===true) {
       ballClass = "redball";
       grid[colNr-1][ballsPerCol[colNr-1]-1] = "r"; //add red ball to grid array
@@ -632,22 +624,23 @@ function dropBall(colNr) {
       putFocus ("r");
     }
 
+    let sceneDiv = document.getElementById("scene");
     let ballDiv = document.getElementsByClassName(ballClass)[0];
     let ballCloneDiv = ballDiv.cloneNode(false);
-    ballCloneDiv.style.top = ballRow + "em";
-    ballCloneDiv.style.top = -4.5 + "em";
-    ballCloneDiv.style.left = ballCol + "em"; //give ball the proper coordinates
+    ballCloneDiv.style.top = -4.5 + "em"; //place the ball high to get a falling effect later
+    ballCloneDiv.style.left = ballCol + "em"; //give ball the X-coordinate
     sceneDiv.appendChild(ballCloneDiv); 
-    $('audio#pop1')[0].play();
-    $(ballCloneDiv).animate({top: ballRow +'em'});
+    $('audio#pop1')[0].play(); //give a falling sound
+    $(ballCloneDiv).animate({top: ballRow +'em'}); //let the ball drop with an animation
     //$('audio#pop2')[0].play();
-    $(ballCloneDiv).animate({top: ballRow-0.8 +'em'});
-    $(ballCloneDiv).animate({top: ballRow +'em'});
-    $(ballCloneDiv).animate({top: ballRow-0.1 +'em'});
-    $(ballCloneDiv).animate({top: ballRow +'em'});
+    $(ballCloneDiv).animate({top: ballRow-0.8 +'em'}); //give it a big bounce
+    $(ballCloneDiv).animate({top: ballRow +'em'}); //drop again
+    $(ballCloneDiv).animate({top: ballRow-0.1 +'em'}); //give the ball a small bounce
+    $(ballCloneDiv).animate({top: ballRow +'em'}); //make the final drop
     //$('audio#pop2')[0].play();
     if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);}
 
+    //maybe 4 in a row is made, check it horizontally, vertically and diagonally
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
     if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
     if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
@@ -667,7 +660,7 @@ function makeMove (s) {
       if (redsTurn) {who='r'} else {who='b'}
       setTimeout(() => {computerSaysIAmThinking (who);}, 500); 
       setTimeout(() => {computerMove(who);}, 1500); 
-      busy=true;
+      busy=true; //the mouseclicking events in the grid are on hold until the move is made
     }
   }
 }
