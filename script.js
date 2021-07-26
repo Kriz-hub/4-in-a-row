@@ -483,12 +483,12 @@ function controlDiagonalLeft (who, x, y) {
   let gridCondition = true;
 
   while (x + countRight < totalCols-1 && y - countRight > 0 && gridCondition) {
-    if (grid[x + countRight + 1][y - countRight - 1]===who) {countRight=+1;} else {gridCondition = false;}
+    if (grid[x + countRight + 1][y - countRight - 1]===who) {countRight+=1;} else {gridCondition = false;}
   }
 
   gridCondition = true;
   while (x - countLeft > 0 && y + countLeft < totalRows-1 && gridCondition) {
-    if (grid[x - countLeft - 1][y + countLeft + 1]===who) {countLeft=+1;} else {gridCondition = false;}
+    if (grid[x - countLeft - 1][y + countLeft + 1]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
   if (countLeft===3 || countRight===3) {return true;} 
