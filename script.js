@@ -89,27 +89,35 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 
 
-function disablePlayer2() {
+function enableComputerPlayer2() {
   let pl2Form = document.getElementById("player2-form");
-  pl2Form.disabled = true;
+  pl2Form.disabled = true; //because there is a computer player, no player2 name can be filled in on form
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
-  $(compLevelDiv).animate({opacity: '1'}, '3s');
-  //setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s');}, 150); 
-  let divUnderCompLevel = document.getElementById("form-and-color-choice");
-  //$(divUnderCompLevel).animate({marginTop: '1vh'}, '3s');
+  setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
+  if (screen.height<835) {
+    let divUnderCompLevel = document.getElementById("form-and-color-choice");
+    $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
+  }
 }
 
-function enablePlayer2() {
+function disableComputerPlayer2() {
   let pl2Form = document.getElementById("player2-form");
-  pl2Form.disabled = false;
+  pl2Form.disabled = false; //because there is no computer player, player2 name can be filled in on form
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
-  //setTimeout(() => {$(compLevelDiv).animate({opacity: '0'}, '3s');}, 150); 
-  let divUnderCompLevel = document.getElementById("form-and-color-choice");
-  //$(divUnderCompLevel).animate({marginTop: '-45vh'}, '3s');
-  //$(divUnderCompLevel).animate({marginTop: '-33vh'}, '3s');
+  if (screen.width<835 && screen.height<835) { //moving up of div, only for small device, not laptop or desktop
+    //when there is no computer player selected then the div to choose level computer disappears
+    //On a small devive the div's below move up. How much depends how on the screen height of te phone
+    //so marginT (marginTop on div below) differ on phones
+    const normalScreenheight=640;
+    const initialMarginTop=-37;
+    const devideFactor=20;
+    let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
+    let divUnderCompLevel = document.getElementById("form-and-color-choice");
+    setTimeout(() => {$(divUnderCompLevel).animate({marginTop: marginT}, '3s');}, 300); 
+  }
 }
 
 function getNames () {
