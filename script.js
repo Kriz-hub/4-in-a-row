@@ -67,6 +67,7 @@ const step = 0.5; //cubes and balls are 0.5em positioned from each other
 const buildUnderGround = 5;
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var busy=false;
+var explanationListShown=true;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var computerOpponent = false;
@@ -87,6 +88,36 @@ buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
+
+if (screen.width<835 && screen.height<835) {
+  document.getElementById("only-for-small-device1").style.display = "inline";
+  let explUL = document.getElementById("explanation-list");
+  let explDiv = document.getElementById("explanation-div-small-device");
+  let explULNew = explUL.cloneNode(true);
+  explDiv.appendChild(explULNew);
+  document.getElementById("explanation-list").style.display = "none";
+  let playersChoiceDiv = document.getElementById("number-of-players-choice");
+  $(playersChoiceDiv).animate({marginTop: "-46vh"}, '3s');
+}
+
+//toggleExplanationList();
+
+
+function toggleExplanationList() {
+  if (screen.width<835 && screen.height<835) { //used only with small devices
+    if (explanationListShown) {
+      document.getElementById("only-for-small-device1").style.display = "inline";
+      document.getElementById("only-for-small-device2").style.display = "none"; 
+      document.getElementById("explanation-list").style.display = "none"; 
+      explanationListShown=false;
+    } else {
+      document.getElementById("only-for-small-device1").style.display = "none";
+      document.getElementById("only-for-small-device2").style.display = "inline"; 
+      document.getElementById("explanation-list").style.display = "inline"; 
+      explanationListShown=true;
+    }
+  }
+}
 
 
 function enableComputerPlayer2() {

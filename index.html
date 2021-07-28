@@ -60,9 +60,19 @@
     <div id="setting-page" >
       <div class="grid-columns">
         <div class="bring-shadow">
-          <div class="bring-margin">
+          <div class="bring-margin" onmousedown="toggleExplanationList()">
             <h1>Four In a Row - Setting Page</h1>
-            <ul>
+            <p id="only-for-small-device1">(more...)</p>
+            <p id="only-for-small-device2">(less...)</p>
+            <script>
+              /*for larger devices the explenation list is just fine, but for phone devices it
+              turned out to be too much text, therefore it will be hidden. the text (more...) wil be shown
+              the mouse-event will then be running to toggle the explantion list 
+              (more..) and (less...) is not used at larger devices*/
+              document.getElementById("only-for-small-device1").style.display = "none";
+              document.getElementById("only-for-small-device2").style.display = "none";
+            </script> 
+            <ul id="explanation-list">
               <li>Put the balls of your color in a row of 4 while the counterplayer can prevent that.</li>
               <li>When there is a row horizontally, vertically or diagonally, then you earn a point.</li>
               <li>The one who get's the most points wins.</li>
@@ -70,7 +80,15 @@
           </div>
         </div>
       </div>
+
       <div class="grid-columns">
+        <div class="bring-shadow">
+          <div id="explanation-div-small-device" class="bring-margin">
+          </div>
+        </div>
+      </div>
+
+      <div id="number-of-players-choice" class="grid-columns">
         <div class="bring-shadow">
           <div class="bring-margin">
             <p>Choose the number of players:</p> 
@@ -130,7 +148,7 @@
     
         <div class="bring-shadow">
           <div class="bring-margin">
-            <p>Toggle on player names to choose the right color. Red always begins:</p>
+            <p>Toggle on player names for selecting the color. Red always begins:</p>
             <div class="simple-wrapper">
               <div id="color-player1" onmousedown="togglePlayerColor()">player 1</div>
               <div id="color-player2" onmousedown="togglePlayerColor()">player 2</div>
