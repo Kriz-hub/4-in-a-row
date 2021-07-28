@@ -93,14 +93,23 @@ function disablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true;
   computerOpponent = true;  
-  document.getElementById("play-level-comp").style.display = "inline";
+  let compLevelDiv = document.getElementById("play-level-comp");
+  $(compLevelDiv).animate({opacity: '1'}, '3s');
+  //setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s');}, 150); 
+  let divUnderCompLevel = document.getElementById("form-and-color-choice");
+  //$(divUnderCompLevel).animate({marginTop: '1vh'}, '3s');
 }
 
 function enablePlayer2() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false;
   computerOpponent = false;
-  document.getElementById("play-level-comp").style.display = "none";
+  let compLevelDiv=document.getElementById("play-level-comp");
+  $(compLevelDiv).animate({opacity: '0'}, '3s');
+  //setTimeout(() => {$(compLevelDiv).animate({opacity: '0'}, '3s');}, 150); 
+  let divUnderCompLevel = document.getElementById("form-and-color-choice");
+  //$(divUnderCompLevel).animate({marginTop: '-45vh'}, '3s');
+  //$(divUnderCompLevel).animate({marginTop: '-33vh'}, '3s');
 }
 
 function getNames () {
