@@ -120,6 +120,8 @@ function toggleExplanationList(initialize) {
         explanationListShown=true;
       }
     }
+  } else {
+    if (initialize) {document.getElementById("opacity-display").style.display = "none";}
   }
 }
 
@@ -130,7 +132,8 @@ function enableComputerPlayer2() {
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
   setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
-  if (screen.height<835) {
+  if (screen.width<835 && screen.height<835) {
+    $(compLevelDiv).removeClass("remove-mouse-pointer");
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
   }
@@ -151,6 +154,7 @@ function disableComputerPlayer2() {
     const devideFactor=20;
     let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
+    $(compLevelDiv).addClass("remove-mouse-pointer");
     setTimeout(() => {$(divUnderCompLevel).animate({marginTop: marginT}, '3s');}, 300); 
   }
 }

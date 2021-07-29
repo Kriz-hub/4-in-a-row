@@ -62,7 +62,7 @@
         <div class="bring-shadow">
           <div class="bring-margin" onmousedown="toggleExplanationList(false)">
             <h1>Four In a Row - Setting Page</h1>
-            <p id="only-for-small-device1">(more...)</p>
+            <p id="only-for-small-device1">(Press for more...)</p>
             <p id="only-for-small-device2">(less...)</p>
             <script>
               /*for larger devices the explanation list is just fine, but for phone devices it
@@ -80,9 +80,9 @@
         </div>
       </div>
 
-      <div  class="grid-columns">
+      <div class="grid-columns">
         <!-- this div only appear on a small device, the explanation list from above will then be added -->
-        <div id="opacity-display"class="bring-shadow">
+        <div id="opacity-display" class="bring-shadow remove-mouse-pointer">
           <div id="explanation-div-small-device-only" class="bring-margin">
           </div>
         </div>
@@ -140,7 +140,7 @@
               <input type="text" placeholder="Enter Player 1" name="name1" required id="player1-form" maxlength="7">
               <br>
               <label for="name2"><strong>Player 2</strong></label>
-              <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form" maxlength="7">
+              <input type="text" placeholder="Enter Player 2" name="name2" required id="player2-form" maxlength="7" disabled>
             </form>
             <button type="submit" onmousedown="getNames()">Submit Names</button>
           </div>  
