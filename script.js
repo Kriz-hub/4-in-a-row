@@ -85,6 +85,11 @@ document.getElementById("scene").style.display = "none";
 toggleExplanationList(true);
 
 function toggleExplanationList(initialize) {
+  const normalScreenheight=640;
+  const initialMarginTop=-55;
+  const devideFactor=10;
+  let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
+
   if (screen.width<835 && screen.height<835) { //used only with small devices
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
@@ -95,7 +100,7 @@ function toggleExplanationList(initialize) {
       explDiv.appendChild(explULNew);
       document.getElementById("explanation-list").style.display = "none";
       changeOpacity.style.opacity="0";
-      playersChoiceDiv.style.marginTop="-46vh";
+      playersChoiceDiv.style.marginTop=marginT;
       explanationListShown=false;
       document.getElementById("only-for-small-device1").style.display = "inline";
     } else {
@@ -103,7 +108,7 @@ function toggleExplanationList(initialize) {
         document.getElementById("only-for-small-device1").style.display = "inline";
         document.getElementById("only-for-small-device2").style.display = "none"; 
         $(changeOpacity).animate({opacity: '0'}, '3s')
-        setTimeout(() => {$(playersChoiceDiv).animate({marginTop: "-46vh"}, '3s')}, 300);
+        setTimeout(() => {$(playersChoiceDiv).animate({marginTop: marginT}, '3s')}, 300);
         explanationListShown=false;
       } else {
         document.getElementById("only-for-small-device1").style.display = "none";
