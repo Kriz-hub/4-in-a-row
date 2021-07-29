@@ -31,14 +31,6 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
         }
     }
 }
-//https://www.sitepoint.com/delay-sleep-pause-wait/
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 function decideFontsizeSmallerDevice() {
@@ -65,12 +57,13 @@ const startCubeCol = -3; //-3em
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
 const buildUnderGround = 5;
+const blinkingTime = 4000; //time to let balls blink after made 4 in a row
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var busy=false;
 var explanationListShown=true;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
-var computerOpponent = false;
+var computerOpponent = true;
 var computerBeginsFirst = false;
 var redsTurn = true; //who's turn, when blue then redsTurn=false
 var player1Red = true;
@@ -126,7 +119,7 @@ function toggleExplanationList(initialize) {
 }
 
 
-function enableComputerPlayer2() {
+function enableComputerPlayer() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true; //because there is a computer player, no player2 name can be filled in on form
   computerOpponent = true;  
@@ -139,7 +132,7 @@ function enableComputerPlayer2() {
   }
 }
 
-function disableComputerPlayer2() {
+function disableComputerPlayer() {
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false; //because there is no computer player, player2 name can be filled in on form
   computerOpponent = false;
@@ -467,8 +460,13 @@ function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears
 function blinkingBall (who, x, y) {
   let ballID = "bcol" + (x+1) + "brow" + (y+1);
   let ballDiv = document.getElementById(ballID);
-  if (who==='r') {$(ballDiv).addClass("redball-blink");}
-  if (who==='b') {$(ballDiv).addClass("blueball-blink");}
+  if (who==='r') {
+    $(ballDiv).addClass("redball-blink");
+    setTimeout(() => {$(ballDiv).removeClass("redball-blink");}, blinkingTime); 
+  }
+  if (who==='b') {$(ballDiv).addClass("blueball-blink");
+  setTimeout(() => {$(ballDiv).removeClass("blueball-blink");}, blinkingTime); 
+  }
 }
 
 
@@ -618,13 +616,13 @@ function givePoint (who, justShowScore) {
   let scoreP1;
   let scoreP2;
   if (who==="r") {
-    if (!justShowScore) {pointsRed++;}
+    if (!justShowScore) {pointsRed++; busy=false}
     scoreP1 = document.getElementsByClassName("score-text-red")[0];
     scoreP2 = document.getElementsByClassName("score-text-red")[1]; 
     scoreP1.innerText = player1Name + ": " + pointsRed;
     scoreP2.innerText = player1Name + ": " + pointsRed;
     } else {
-    if (!justShowScore) {pointsBlue++;}
+    if (!justShowScore) {pointsBlue++; busy=false}
     scoreP1 = document.getElementsByClassName("score-text-blue")[0];
     scoreP2 = document.getElementsByClassName("score-text-blue")[1]; 
     scoreP1.innerText = player2Name + ": " + pointsBlue;
@@ -688,7 +686,6 @@ function computerMove(who) {
   movesToMake -= 1;
   //when all balls are played then game must be ended by starting function endanimation:
   if (movesToMake<0.1) { endAnimation (); answer (true); }
-  busy=false;
 }
 
 function personMove (s) { //get the collumn in which a ball had dropped during a person's move
@@ -738,13 +735,14 @@ function dropBall(colNr) { // a move is made, now certain things had to ben done
     $(ballCloneDiv).animate({top: ballRow +'em'}); //make the final drop
     //$('audio#pop2')[0].play();
     if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);}
-
+    busy=false;
     //maybe 4 in a row is made, check it horizontally, vertically and diagonally
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
-    if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
-    if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
-    if (controlDiagonalRight (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
-    if (controlDiagonalLeft (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
+    if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)){busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
+    if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
+    if (controlDiagonalRight (who, colNr-1, ballsPerCol[colNr-1]-1)){busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
+    if (controlDiagonalLeft (who, colNr-1, ballsPerCol[colNr-1]-1)) {busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
+    //if (!busy) {busy=true; setTimeout(() => {busy=false}, 10);}
 } // end function dropBall
 
 
@@ -758,9 +756,11 @@ function makeMove (s) {
     if (computerOpponent) {
       let who;
       if (redsTurn) {who='r'} else {who='b'}
-      setTimeout(() => {computerSaysIAmThinking (who);}, 500); 
-      setTimeout(() => {computerMove(who);}, 1500); 
-      busy=true; //the mouseclicking events in the grid are on hold until the move is made
+      let extraTime=0;
+      if (busy) {extraTime = blinkingTime} //when the opponent made 4 in a row the computer must wait extra with it's move
+      busy=true; //the mouseclicking events in the grid are on hold until the computer move is made
+      setTimeout(() => {computerSaysIAmThinking (who);}, 400+extraTime); 
+      setTimeout(() => {computerMove(who);}, 900+extraTime); 
     }
   }
 }

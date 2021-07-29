@@ -233,7 +233,6 @@ input[type="radio"]{
 
 .blinking-red {animation: 1s blink-red ease infinite;}
 .blinking-green {animation: 1s blink-green ease infinite;}
-.blinking-blue {animation: 1s blink-blue ease infinite;}
 
 @keyframes blink-red {from, to {background: rgb(255, 17, 17);} 50% {background: darkred;}}
 @keyframes blink-green {from, to {background: rgb(19, 243, 12);} 50% {background: green;}}
@@ -410,8 +409,8 @@ input[type="radio"]{
 }
 
 
-.redball-blink {animation: 1s red-ball-blink ease infinite;}
-.blueball-blink {animation: 1s blue-ball-blink ease infinite;}
+.redball-blink {animation: 0.25s red-ball-blink ease infinite;}
+.blueball-blink {animation: 0.25s blue-ball-blink ease infinite;}
 
 @keyframes red-ball-blink {
   from, to {background: radial-gradient(farthest-side at .4em .2em, var(--ball-red), var(--balldarkshadow-red), var(--balldarkshadow-red));} 
