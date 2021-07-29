@@ -60,15 +60,14 @@
     <div id="setting-page" >
       <div class="grid-columns">
         <div class="bring-shadow">
-          <div class="bring-margin" onmousedown="toggleExplanationList()">
+          <div class="bring-margin" onmousedown="toggleExplanationList(false)">
             <h1>Four In a Row - Setting Page</h1>
             <p id="only-for-small-device1">(more...)</p>
             <p id="only-for-small-device2">(less...)</p>
             <script>
-              /*for larger devices the explenation list is just fine, but for phone devices it
-              turned out to be too much text, therefore it will be hidden. the text (more...) wil be shown
-              the mouse-event will then be running to toggle the explantion list 
-              (more..) and (less...) is not used at larger devices*/
+              /*for larger devices the explanation list is just fine, but for phone devices it
+              turned out to be too much text and therefore is not good designed. 
+              The line "(more...)" appear. A mouseclick will then toggle the explanation list visible or unvisible */
               document.getElementById("only-for-small-device1").style.display = "none";
               document.getElementById("only-for-small-device2").style.display = "none";
             </script> 
@@ -81,9 +80,10 @@
         </div>
       </div>
 
-      <div class="grid-columns">
-        <div class="bring-shadow">
-          <div id="explanation-div-small-device" class="bring-margin">
+      <div  class="grid-columns">
+        <!-- this div only appear on a small device, the explanation list from above will then be added -->
+        <div id="opacity-display"class="bring-shadow">
+          <div id="explanation-div-small-device-only" class="bring-margin">
           </div>
         </div>
       </div>

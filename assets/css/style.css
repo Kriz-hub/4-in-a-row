@@ -50,7 +50,11 @@ body {
 .bring-margin, .bring-margin-wrapper {
  margin: inherit;
 }
-
+/*
+#explanation-div-small-device-only {
+  display: none;
+}
+*/
 .wrapper{
   display: inline-flex;
   background: #fff;
@@ -435,7 +439,11 @@ input[type="radio"]{
     width: 99%;
     margin-left: 5px;
   }
-
+/*
+  #explanation-div-small-device-only {
+    display: inline;
+  }
+*/
   .wrapper-size-a {
     width: 90%;
     margin: 0;

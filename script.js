@@ -89,32 +89,36 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 //document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 
-if (screen.width<835 && screen.height<835) {
-  document.getElementById("only-for-small-device1").style.display = "inline";
-  let explUL = document.getElementById("explanation-list");
-  let explDiv = document.getElementById("explanation-div-small-device");
-  let explULNew = explUL.cloneNode(true);
-  explDiv.appendChild(explULNew);
-  document.getElementById("explanation-list").style.display = "none";
-  let playersChoiceDiv = document.getElementById("number-of-players-choice");
-  $(playersChoiceDiv).animate({marginTop: "-46vh"}, '3s');
-}
+toggleExplanationList(true);
 
-//toggleExplanationList();
-
-
-function toggleExplanationList() {
+function toggleExplanationList(initialize) {
   if (screen.width<835 && screen.height<835) { //used only with small devices
-    if (explanationListShown) {
-      document.getElementById("only-for-small-device1").style.display = "inline";
-      document.getElementById("only-for-small-device2").style.display = "none"; 
-      document.getElementById("explanation-list").style.display = "none"; 
+    let playersChoiceDiv = document.getElementById("number-of-players-choice");
+    let changeOpacity = document.getElementById("opacity-display");
+    if (initialize) {
+      let explUL = document.getElementById("explanation-list");
+      let explDiv = document.getElementById("explanation-div-small-device-only");
+      let explULNew = explUL.cloneNode(true);
+      explDiv.appendChild(explULNew);
+      document.getElementById("explanation-list").style.display = "none";
+      changeOpacity.style.opacity="0";
+      playersChoiceDiv.style.marginTop="-46vh";
       explanationListShown=false;
+      document.getElementById("only-for-small-device1").style.display = "inline";
     } else {
-      document.getElementById("only-for-small-device1").style.display = "none";
-      document.getElementById("only-for-small-device2").style.display = "inline"; 
-      document.getElementById("explanation-list").style.display = "inline"; 
-      explanationListShown=true;
+      if (explanationListShown) {
+        document.getElementById("only-for-small-device1").style.display = "inline";
+        document.getElementById("only-for-small-device2").style.display = "none"; 
+        $(changeOpacity).animate({opacity: '0'}, '3s')
+        setTimeout(() => {$(playersChoiceDiv).animate({marginTop: "-46vh"}, '3s')}, 300);
+        explanationListShown=false;
+      } else {
+        document.getElementById("only-for-small-device1").style.display = "none";
+        document.getElementById("only-for-small-device2").style.display = "inline"; 
+        setTimeout(() => {$(changeOpacity).animate({opacity: '1'}, '3s')}, 300); 
+        $(playersChoiceDiv).animate({marginTop: "1vh"}, '3s');
+        explanationListShown=true;
+      }
     }
   }
 }
