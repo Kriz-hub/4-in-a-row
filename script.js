@@ -535,10 +535,19 @@ function controlDiagonalRight (who, x, y) {
     if (grid[x - countLeft - 1][y - countLeft - 1]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-  if (countLeft===3 || countRight===3) {return true;} 
-     else {
-         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
-         else {return false}
+  let a=0;
+  if (countLeft===3 || countRight===3) {
+    while (a<countLeft) {a+=1; blinkingBall(who, x-a, y-a)}
+    a=0; while (a<countRight) {a+=1; blinkingBall(who, x+a, y+a)}
+    blinkingBall(who, x, y);
+    return true;
+    } else {
+      if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {
+        while (a<countLeft) {a+=1; blinkingBall(who, x-a, y-a)}
+        a=0; while (a<countRight) {a+=1; blinkingBall(who, x+a, y+a)}
+        blinkingBall(who, x, y); 
+        return true;} 
+      else {return false}
   }
 } // function controlDiagonalRight
 
@@ -558,12 +567,22 @@ function controlDiagonalLeft (who, x, y) {
     if (grid[x - countLeft - 1][y + countLeft + 1]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-  if (countLeft===3 || countRight===3) {return true;} 
-     else {
-         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
+  let a=0;
+  if (countLeft===3 || countRight===3) {
+    while (a<countLeft) {a+=1; blinkingBall(who, x-a, y+a)}
+    a=0; while (a<countRight) {a+=1; blinkingBall(who, x+a, y-a)}
+    blinkingBall(who, x, y); 
+    return true;
+  } else {
+    if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {
+      while (a<countLeft) {a+=1; blinkingBall(who, x-a, y+a)}
+      a=0; while (a<countRight) {a+=1; blinkingBall(who, x+a, y-a)}
+      blinkingBall(who, x, y); 
+      return true;} 
          else {return false}
   }
 } // function controlDiagonalLeft
+
 
 function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks is a boolean
   //this function is needed to change the meaning of the blocks where normally the scores of 
