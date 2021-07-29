@@ -233,6 +233,7 @@ input[type="radio"]{
 
 .blinking-red {animation: 1s blink-red ease infinite;}
 .blinking-green {animation: 1s blink-green ease infinite;}
+.blinking-blue {animation: 1s blink-blue ease infinite;}
 
 @keyframes blink-red {from, to {background: rgb(255, 17, 17);} 50% {background: darkred;}}
 @keyframes blink-green {from, to {background: rgb(19, 243, 12);} 50% {background: green;}}
@@ -396,6 +397,21 @@ input[type="radio"]{
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
   animation: sscene-rotate 15s infinite linear reverse;
 }
+
+.redball-blink {animation: 1s red-ball-blink ease infinite;}
+.blueball-blink {animation: 1s blue-ball-blink ease infinite;}
+
+@keyframes red-ball-blink {
+  from, to {background: radial-gradient(farthest-side at .4em .2em, var(--ball-red), var(--balldarkshadow-red), var(--balldarkshadow-red));} 
+  50% {background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));}
+}
+
+@keyframes blue-ball-blink {
+  from, to {background: radial-gradient(farthest-side at .4em .2em, var(--ball-blue), var(--balldarkshadow-blue), var(--balldarkshadow-blue));} 
+  50% {background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));}
+}
+
+
 
 .blueball {
   width: .5em; height: .5em;

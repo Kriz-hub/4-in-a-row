@@ -120,7 +120,7 @@ function toggleExplanationList(initialize) {
         explanationListShown=true;
       }
     }
-  } else {
+  } else { 
     if (initialize) {document.getElementById("opacity-display").style.display = "none";}
   }
 }
@@ -591,7 +591,7 @@ function givePoint (who, justShowScore) {
   }
 }
 
-function computerSaysIAmThinking (who) { //gave a delay when a computer oppononent do it's turn 
+function computerSaysIAmThinking (who) { //give a delay when a computer oppononent does it's turn 
   let focusDiv1;
   if (who==="r") {
     focusDiv1 = document.getElementsByClassName("score-text-red")[0];
@@ -659,6 +659,13 @@ function personMove (s) { //get the collumn in which a ball had dropped during a
 }
 
 
+function blinkingBall (who, x, y) {
+  let ballID = "bcol" + (x+1) + "brow" + (y+1);
+  let ballDiv = document.getElementById(ballID);
+  $(ballDiv).addClass("redball-blink");
+}
+
+
 function dropBall(colNr) { // a move is made, now certain things had to ben done:
     //to collumns which is choosen to put a ball in must increase by one:
     ballsPerCol[colNr-1] += 1;
@@ -685,7 +692,11 @@ function dropBall(colNr) { // a move is made, now certain things had to ben done
     let ballCloneDiv = ballDiv.cloneNode(false);
     ballCloneDiv.style.top = -4.5 + "em"; //place the ball high to get a falling effect later
     ballCloneDiv.style.left = ballCol + "em"; //give ball the X-coordinate
+    ballCloneDiv.id = "bcol" + colNr + "brow" + ballsPerCol[colNr-1];
     sceneDiv.appendChild(ballCloneDiv); 
+ 
+    blinkingBall ("r", colNr-1, ballsPerCol[colNr-1]-1);
+
     $('audio#pop1')[0].play(); //give a falling sound
     $(ballCloneDiv).animate({top: ballRow +'em'}); //let the ball drop with an animation
     //$('audio#pop2')[0].play();
@@ -703,6 +714,7 @@ function dropBall(colNr) { // a move is made, now certain things had to ben done
     if (controlDiagonalRight (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
     if (controlDiagonalLeft (who, colNr-1, ballsPerCol[colNr-1]-1)) {givePoint (who, false);}
 } // end function dropBall
+
 
 function makeMove (s) { 
   if (busy || endQuestion) {return;} //when pressed on the exitcube to finish it is not possible anymore to make a move
