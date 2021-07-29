@@ -464,6 +464,14 @@ function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears
 }
 
 
+function blinkingBall (who, x, y) {
+  let ballID = "bcol" + (x+1) + "brow" + (y+1);
+  let ballDiv = document.getElementById(ballID);
+  if (who==='r') {$(ballDiv).addClass("redball-blink");}
+  if (who==='b') {$(ballDiv).addClass("blueball-blink");}
+}
+
+
 function controlHor (who, x, y) {
   //a horizontal count of balls of the same color to check if 4 in a row is made after a ball drop:
   let countLeft=0;
@@ -479,10 +487,19 @@ function controlHor (who, x, y) {
     if (grid[x - countLeft - 1][y]===who) {countLeft+=1;} else {gridCondition = false;}
   }
 
-   if (countLeft===3 || countRight===3) {return true;} 
-     else {
-         if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {return true;} 
-         else {return false}
+  let a=0;
+  if (countLeft===3 || countRight===3) {
+    while (a<countLeft) {a+=1; blinkingBall(who, x-a, y)}
+    a=0;  while (a<countRight) {a+=1; blinkingBall(who, x+a, y)} 
+    blinkingBall(who, x, y);
+    return true;
+    } else {
+      if (countLeft < 3 && countRight < 3 && countLeft + countRight >= 3) {
+        a=0; while (a<countLeft) {a+=1; blinkingBall(who, x-a, y)}
+        a=0; while (a<=countRight) {a+=1; blinkingBall(who, x+a, y)} 
+        blinkingBall(who, x, y);
+        return true;
+    } else {return false}
   }
 }
 
@@ -495,8 +512,13 @@ function controlVert (who, x, y) {
   while (y - countDown > 0 && gridCondition) {
     if (grid[x][y - countDown - 1] === who) {countDown+=1} else {gridCondition = false;}
   }
-  if (countDown===3) {return true;} else {return false;}
+
+  let a=-1;
+  if (countDown===3) {
+    while (a<countDown) {a+=1; blinkingBall(who, x, y-a)}
+    return true;} else {return false;}
 }
+
 
 function controlDiagonalRight (who, x, y) {
   //a diagonal count of balls of the same color to check if 4 in a row is made after a ball drop:
@@ -659,13 +681,6 @@ function personMove (s) { //get the collumn in which a ball had dropped during a
 }
 
 
-function blinkingBall (who, x, y) {
-  let ballID = "bcol" + (x+1) + "brow" + (y+1);
-  let ballDiv = document.getElementById(ballID);
-  $(ballDiv).addClass("redball-blink");
-}
-
-
 function dropBall(colNr) { // a move is made, now certain things had to ben done:
     //to collumns which is choosen to put a ball in must increase by one:
     ballsPerCol[colNr-1] += 1;
@@ -695,8 +710,6 @@ function dropBall(colNr) { // a move is made, now certain things had to ben done
     ballCloneDiv.id = "bcol" + colNr + "brow" + ballsPerCol[colNr-1];
     sceneDiv.appendChild(ballCloneDiv); 
  
-    blinkingBall ("r", colNr-1, ballsPerCol[colNr-1]-1);
-
     $('audio#pop1')[0].play(); //give a falling sound
     $(ballCloneDiv).animate({top: ballRow +'em'}); //let the ball drop with an animation
     //$('audio#pop2')[0].play();

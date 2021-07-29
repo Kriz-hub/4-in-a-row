@@ -14,7 +14,7 @@
 
 body {
   background-color:black;
-  min-height: 97vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,6 +398,18 @@ input[type="radio"]{
   animation: sscene-rotate 15s infinite linear reverse;
 }
 
+
+.blueball {
+  width: .5em; height: .5em;
+  border-radius: 50%;
+  position: absolute;
+  left: 0em;
+  bottom: -2em;
+  background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
+  animation: sscene-rotate 15s infinite linear reverse;
+}
+
+
 .redball-blink {animation: 1s red-ball-blink ease infinite;}
 .blueball-blink {animation: 1s blue-ball-blink ease infinite;}
 
@@ -411,17 +423,6 @@ input[type="radio"]{
   50% {background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));}
 }
 
-
-
-.blueball {
-  width: .5em; height: .5em;
-  border-radius: 50%;
-  position: absolute;
-  left: 0em;
-  bottom: -2em;
-  background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
-  animation: sscene-rotate 15s infinite linear reverse;
-}
 
 .ballshadow {
   position: absolute;
