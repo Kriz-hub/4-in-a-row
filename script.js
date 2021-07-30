@@ -36,8 +36,6 @@ function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
 
-//alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
-
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
 }
@@ -102,9 +100,15 @@ function toggleExplanationList(initialize) {
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
     if (initialize) {
+      let textOne = document.getElementById("one-player-text");
+      let textTwo = document.getElementById("two-player-text");
+      textOne.innerHTML = "One";
+      textTwo.innerHTML = "Two";
+      //made Lines: "One Player" "Two Player" shorter for small devices
       let explUL = document.getElementById("explanation-list");
       let explDiv = document.getElementById("explanation-div-small-device-only");
       let explULNew = explUL.cloneNode(true);
+
       explDiv.appendChild(explULNew);
       document.getElementById("explanation-list").style.display = "none";
       changeOpacity.style.opacity="0";

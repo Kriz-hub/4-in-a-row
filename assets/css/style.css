@@ -33,13 +33,9 @@ body {
      justify-content: flex-start;
  }
 
-.grid-columns {
-   display: flex;
- }
+.grid-columns {display: flex;}
 
-.grid-columns > * {
-   flex-basis: 100%;
- }
+.grid-columns > * {flex-basis: 100%;}
 
 .bring-shadow {
   margin: 25px 25px; 
@@ -47,13 +43,9 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
 
-.bring-margin, .bring-margin-wrapper {
- margin: inherit;
-}
+.bring-margin, .bring-margin-wrapper {margin: inherit;}
 
-.remove-mouse-pointer {
-  pointer-events: none;
-}
+.remove-mouse-pointer { pointer-events: none;}
 
 .wrapper{
   display: inline-flex;
@@ -210,7 +202,6 @@ input[type="radio"]{
 #scene {
  position: relative;
  transform-style: preserve-3d;
- /*animation: scene-rotate var(--rotate-speed) linear;*/
  transform: rotateY(0deg) translateY(0em);
  }
 
@@ -449,18 +440,13 @@ input[type="radio"]{
 
   body {min-height: 99vh;}
 
-  h1 {
-    font-size: 30px;
-  }
+  h1 {font-size: 30px;}
+
   .grid-columns {
     flex-wrap: wrap;  
     width: 99%;
     margin-left: 5px;
   }
-
- /* #opacity-display {
-    display: inline;
-  }*/
 
   .wrapper-size-a {
     width: 90%;
