@@ -36,7 +36,7 @@ function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
 
-alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
+//alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
 
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
@@ -46,11 +46,11 @@ radio2.addEventListener("click", () => {disableComputerPlayer();})
 function decideFontsizeSmallerDevice() {
   let screenCheck=document.getElementById("screen-check");
   $(document).ready(function(){
-    if(window.matchMedia("(max-width: 915px)").matches) {
+    if(window.matchMedia("(max-width: 500px)").matches) {
       if (screen.width/screen.height>1.78) {
-        screenCheck.style.fontSize =  "7vw";
+        screenCheck.style.fontSize =  "5vw";
       } else {
-        screenCheck.style.fontSize =  "9vw";
+        screenCheck.style.fontSize =  "7vw";
       }
     }
   });
@@ -66,7 +66,6 @@ const totalRows = 7; // number of cubes (=rows) on y-direction
 const startCubeCol = -3; //-3em 
 const startCubeRow = 0.5; //0.5em
 const step = 0.5; //cubes and balls are 0.5em positioned from each other
-const buildUnderGround = 5;
 const blinkingTime = 4000; //time to let balls blink after made 4 in a row
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var busy=false;
@@ -99,7 +98,7 @@ function toggleExplanationList(initialize) {
   const devideFactor=10;
   let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
 
-  if (screen.width<835 && screen.height<835) { //used only with small devices
+  if (screen.width<500) { //used only with small devices
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
     if (initialize) {
@@ -139,7 +138,7 @@ function enableComputerPlayer() {
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
   setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
-  if (screen.width<835 && screen.height<835) {
+  if (screen.width<500) {
     $(compLevelDiv).removeClass("remove-mouse-pointer");
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
@@ -152,7 +151,7 @@ function disableComputerPlayer() {
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
-  if (screen.width<835 && screen.height<835) { //moving up of div, only for small device, not laptop or desktop
+  if (screen.width<500) { //moving up of div, only for small device, not laptop or desktop
     //when there is no computer player selected then the div to choose level computer disappears
     //On a small devive the div's below move up. How much depends how on the screen height of te phone
     //so marginT (marginTop on div below) differ on phones
@@ -201,7 +200,6 @@ function togglePages() { // change from setting page to game page
     document.getElementById("setting-page").style.display = "none";
     document.getElementById("scene").style.display = "inline";
     document.getElementById("scene").style.display = "inline";
-    moveUpGameScene ();
 
     //I only want this remark during game mode, therefore I placed this later
     //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
@@ -332,7 +330,7 @@ function buildGameScene () {
           grid[col-1][row-1]="n"; //fill grid with "n", none, no balls this moment
           cubeRow -= step;
           cubeCloneDiv = cubeDiv.cloneNode(true);
-          cubeCloneDiv.style.top = cubeRow + buildUnderGround + "em";
+          cubeCloneDiv.style.top = cubeRow + "em";
           cubeCloneDiv.style.left = cubeCol + "em";
           cubeCloneDiv.id = "col" + col + "row" + row; //give each cube an ID from "col1row1" to "col12row7"
           sceneDiv.appendChild(cubeCloneDiv);
@@ -341,50 +339,50 @@ function buildGameScene () {
   // build extra cubes to hold 2 big score-cubes
   // these are the two legs to hold left scorecube, each build of two cubes
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow + "em";
   cubeCloneDiv.style.left = "-5.25em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg1a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
   cubeCloneDiv.style.left = "-5.25em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg1b";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow + "em";
   cubeCloneDiv.style.left = "-3.75em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg2a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
   cubeCloneDiv.style.left = "-3.75em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg2b";
   sceneDiv.appendChild(cubeCloneDiv);
   // these are the two legs to hold right scorecube, each build of two cubes
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow  + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow  + "em";
   cubeCloneDiv.style.left = "3.25em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg3a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
   cubeCloneDiv.style.left = "3.25em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg3b";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + buildUnderGround  + "em";
+  cubeCloneDiv.style.top = startCubeRow + "em";
   cubeCloneDiv.style.left = "4.75em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg4a";
   sceneDiv.appendChild(cubeCloneDiv);
   cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + buildUnderGround  + "em";
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
   cubeCloneDiv.style.left = "4.75em";
   cubeCloneDiv.style.background = "darkslategray";
   cubeCloneDiv.id = "leg4b";
@@ -419,45 +417,6 @@ function buildGameScene () {
   leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(4em)";
   topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(4em) translateX(0em)";
 } // end function buildGameScene
-
-
-function moveUpGameScene () { //literally move game scene up out of the floor
-  let cubeCol = startCubeCol-step;
-  let cubeRow;
-  let row;
-  let col;
-  let cubeDiv;
-  for (col = 1; col<=totalCols; col++) { 
-    cubeCol += step;
-    cubeRow = startCubeRow+step;
-    for (row = 1; row<=totalRows; row++) {
-        cubeRow -= step;
-        cubeDiv = document.getElementById("col" + col + "row" + row);
-        $(cubeDiv).animate({top: cubeRow + "em"});
-    }
-  }
-  cubeDiv = document.getElementById("leg1a");
-  $(cubeDiv).animate({top: startCubeRow + "em"});
-  cubeDiv = document.getElementById("leg1b");
-  $(cubeDiv).animate({top: startCubeRow -step + "em"});
-  cubeDiv = document.getElementById("leg2a");
-  $(cubeDiv).animate({top: startCubeRow + "em"});
-  cubeDiv = document.getElementById("leg2b");
-  $(cubeDiv).animate({top: startCubeRow -step + "em"});
-  cubeDiv = document.getElementById("leg3a");
-  $(cubeDiv).animate({top: startCubeRow + "em"});
-  cubeDiv = document.getElementById("leg3b");
-  $(cubeDiv).animate({top: startCubeRow -step + "em"});
-  cubeDiv = document.getElementById("leg4a");
-  $(cubeDiv).animate({top: startCubeRow + "em"});
-  cubeDiv = document.getElementById("leg4b");
-  $(cubeDiv).animate({top: startCubeRow -step + "em"});
-
-  cubeDiv = document.getElementById("score-cube-red");
-  $(cubeDiv).animate({top: "-1em"});
-  cubeDiv = document.getElementById("score-cube-blue");
-  $(cubeDiv).animate({top: "-1em"});
-}
 
 
 function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground

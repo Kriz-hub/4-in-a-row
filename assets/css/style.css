@@ -291,7 +291,7 @@ input[type="radio"]{
   width: .5em;
   height: .5em;
   position: absolute;
-  top:4em; /*first place it under the floor*/
+  top:-1em;
   left:-5.25em;
 }
 
@@ -299,7 +299,7 @@ input[type="radio"]{
   width: .5em;
   height: .5em;
   position: absolute;
-  top:4em; /*first place it under the floor*/
+  top:-1em;
   left:3.25em;
 }
 
@@ -440,12 +440,14 @@ input[type="radio"]{
 }
 
 
-@media screen and (min-width: 320px) and (max-width: 835px) and (orientation: portrait) {
+@media screen and (max-width: 500px) and (orientation: portrait) {
 
   #landscape-orientation {display: inline;}
 }
 
-@media screen and (min-width: 320px) and (max-width: 835px) {
+@media screen and (max-width: 500px) {
+
+  body {min-height: 99vh;}
 
   h1 {
     font-size: 30px;
