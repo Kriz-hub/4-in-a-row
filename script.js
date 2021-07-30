@@ -32,6 +32,16 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
+function eventListeners () {
+  const radio1 = document.querySelector("#option-1");
+  const radio2 = document.querySelector("#option-2");
+
+alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
+
+radio1.addEventListener("click", () => {enableComputerPlayer();});
+radio2.addEventListener("click", () => {disableComputerPlayer();})
+}
+
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 function decideFontsizeSmallerDevice() {
   let screenCheck=document.getElementById("screen-check");
@@ -79,9 +89,8 @@ var pointsBlue =-1;
 decideFontsizeSmallerDevice();
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
-//document.getElementsByClassName("circleshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
-
+eventListeners ();
 toggleExplanationList(true);
 
 function toggleExplanationList(initialize) {
