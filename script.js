@@ -32,11 +32,15 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
+function phoneDevice () {
+ if ((screen.width<500 && screen.width<screen.height) || (screen.height<500 && screen.height<screen.width))
+  {return true} else {return false}
+}
+
+
 function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
-
-alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
 
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
@@ -46,7 +50,7 @@ radio2.addEventListener("click", () => {disableComputerPlayer();})
 function decideFontsizeSmallerDevice() {
   let screenCheck=document.getElementById("screen-check");
   $(document).ready(function(){
-    if(window.matchMedia("(max-width: 500px)").matches) {
+    if(phoneDevice()) {
       if (screen.width/screen.height>1.78) {
         screenCheck.style.fontSize =  "5vw";
       } else {
@@ -98,7 +102,7 @@ function toggleExplanationList(initialize) {
   const devideFactor=10;
   let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
 
-  if (screen.width<500) { //used only with small devices
+  if(phoneDevice()) { //used only with small devices
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
     if (initialize) {
@@ -144,7 +148,7 @@ function enableComputerPlayer() {
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
   setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
-  if (screen.width<500) {
+  if(phoneDevice()) {
     $(compLevelDiv).removeClass("remove-mouse-pointer");
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
@@ -157,7 +161,7 @@ function disableComputerPlayer() {
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
-  if (screen.width<500) { //moving up of div, only for small device, not laptop or desktop
+  if(phoneDevice()) { //moving up of div, only for small device, not laptop or desktop
     //when there is no computer player selected then the div to choose level computer disappears
     //On a small devive the div's below move up. How much depends how on the screen height of te phone
     //so marginT (marginTop on div below) differ on phones
