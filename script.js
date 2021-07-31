@@ -36,6 +36,8 @@ function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
 
+alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
+
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
 }
