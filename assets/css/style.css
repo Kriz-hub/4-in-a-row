@@ -478,6 +478,6 @@ input[type="radio"]{
   }
 
   .leftside, .rightside, .frontside, .backside {
-    box-shadow: 0 0 0.5em rgba(248, 118, 118, 0.5) inset;
- }
+    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.6) inset;
+  }
 }

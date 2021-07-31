@@ -97,11 +97,14 @@ eventListeners ();
 toggleExplanationList(true);
 
 function toggleExplanationList(initialize) {
-  const normalScreenheight=640;
-  const initialMarginTop=-55;
-  const devideFactor=10;
-  let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
-
+  const littleScreenHeight=640;
+  const bigScreenHeight=915
+  const littleMarginTop=-55;
+  const bigMarginTop=-37;
+  let screenHeightDiff=bigScreenHeight-littleScreenHeight;
+  let marginTopDiff = bigMarginTop - littleMarginTop;
+  let marginT = littleMarginTop +  (((screen.height - littleScreenHeight) / screenHeightDiff) * marginTopDiff) + "vh";
+  
   if(phoneDevice()) { //used only with small devices
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
