@@ -436,7 +436,9 @@ input[type="radio"]{
   #landscape-orientation {display: inline;}
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (orientation: portrait),
+       screen and (max-height: 500px) and (orientation: landscape) {
+
 
   body {min-height: 99vh;}
 
@@ -476,6 +478,6 @@ input[type="radio"]{
   }
 
   .leftside, .rightside, .frontside, .backside {
-    box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.5) inset;
+    box-shadow: 0 0 0.5em rgba(248, 118, 118, 0.5) inset;
  }
 }
