@@ -98,6 +98,7 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 eventListeners ();
 toggleExplanationList(true);
+//screen.orientation.lock(ORIENTATION);
 
 function toggleExplanationList(initialize) {
 
