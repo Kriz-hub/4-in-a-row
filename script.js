@@ -41,7 +41,7 @@ function phoneDevice () {
 function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
-
+  
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
 }
@@ -89,6 +89,7 @@ var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
 var pointsRed = -1;
 var pointsBlue =-1;
+alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
 decideFontsizeSmallerDevice();
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
