@@ -32,7 +32,7 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
-function phoneDevice () {
+function phoneDevice () { // fot this game often necessary to know if a phone device is used
  if ((screen.width<500 && screen.width<screen.height) || (screen.height<500 && screen.height<screen.width))
   {return true} else {return false}
 }
@@ -47,7 +47,9 @@ radio2.addEventListener("click", () => {disableComputerPlayer();})
 }
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
-function decideFontsizeSmallerDevice() {
+function decideFontsizeSmallerDevice() { 
+  // a different font size for phones with a diffrent aspect ratio 
+  // in this 3D world a higher font-size gives a closer look to the cubes
   let screenCheck=document.getElementById("screen-check");
   $(document).ready(function(){
     if(phoneDevice()) {
@@ -89,7 +91,7 @@ var player2Name = "Player2";
 var movesToMake = totalCols*totalRows;
 var pointsRed = -1;
 var pointsBlue =-1;
-alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
+//alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
 decideFontsizeSmallerDevice();
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
@@ -98,15 +100,17 @@ eventListeners ();
 toggleExplanationList(true);
 
 function toggleExplanationList(initialize) {
-  const littleScreenHeight=640;
-  const bigScreenHeight=915
-  const littleMarginTop=-55;
-  const bigMarginTop=-37;
-  let screenHeightDiff=bigScreenHeight-littleScreenHeight;
-  let marginTopDiff = bigMarginTop - littleMarginTop;
-  let marginT = littleMarginTop +  (((screen.height - littleScreenHeight) / screenHeightDiff) * marginTopDiff) + "vh";
-  
+
   if(phoneDevice()) { //used only with small devices
+
+    const littleScreenHeight=640;
+    const bigScreenHeight=915
+    const littleMarginTop=-55;
+    const bigMarginTop=-37;
+    let screenHeightDiff=bigScreenHeight-littleScreenHeight;
+    let marginTopDiff = bigMarginTop - littleMarginTop;
+    let marginT = littleMarginTop +  (((screen.height - littleScreenHeight) / screenHeightDiff) * marginTopDiff) + "vh";
+    
     let playersChoiceDiv = document.getElementById("number-of-players-choice");
     let changeOpacity = document.getElementById("opacity-display");
     if (initialize) {
