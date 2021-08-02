@@ -76,6 +76,7 @@ const blinkingTime = 4000; //time to let balls blink after made 4 in a row
 //12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
 var busy=false;
 var explanationListShown=true;
+var firstTimeSettingPage=true;
 var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
 var ballsPerCol = []; //how many balls are placed per column
 var computerOpponent = true;
@@ -96,14 +97,35 @@ decideFontsizeSmallerDevice();
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
+startSettingPage ();
 eventListeners ();
 toggleExplanationList(true);
-//screen.orientation.lock(ORIENTATION);
+
+function startSettingPage () {
+  let bodyID = document.getElementById("screen-check");
+  $(bodyID).addClass("keep-portrait-for-setting-page");
+  if(screen.width > screen.height) {
+    $( window ).on( "orientationchange", function() {
+      /*orientation change: https://api.jquerymobile.com/orientationchange/
+      reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+
+      When setting page is started in landscape mode, the screen rotates 90deg to tell the user to turn
+      to portrait mode. In that case the display will be messed up after doing the orientation change.
+      A page reload solve this bug. It needs to do it once.*/
+      if (firstTimeSettingPage || screen.height > screen.width) {location.reload(); firstTimeSettingPage=false} }); 
+  } else {firstTimeSettingPage=false;}
+}
+
+function startGamePage () {
+  let bodyID = document.getElementById("screen-check");
+  $(bodyID).removeClass("keep-portrait-for-setting-page");
+  document.getElementById("setting-page").style.display = "none";
+  document.getElementById("scene").style.display = "inline";
+}
+
 
 function toggleExplanationList(initialize) {
-
   if(phoneDevice()) { //used only with small devices
-
     const littleScreenHeight=640;
     const bigScreenHeight=915
     const littleMarginTop=-55;
@@ -216,10 +238,8 @@ function togglePages() { // change from setting page to game page
     alert("You forgot to give the player(s) a name, please try again");
     return;
   }
-    document.getElementById("setting-page").style.display = "none";
-    document.getElementById("scene").style.display = "inline";
-    document.getElementById("scene").style.display = "inline";
-
+    startGamePage ();
+    
     //I only want this remark during game mode, therefore I placed this later
     //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
     let reference = document.getElementById('scene');

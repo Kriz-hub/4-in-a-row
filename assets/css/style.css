@@ -430,25 +430,7 @@ input[type="radio"]{
   filter: blur(9px);
 }
 
-@media screen and (max-width: 1024px) and (orientation:landscape) {
-  /*setting page of all tables except the really big ones and all phones must be in portrait mode
-  when it rotates to landscape the screen remains in portrait mode and in rotation 90 deg */
-  body {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }       
 
-  .grid-columns {
-    flex-wrap: wrap;  
-    width: 99%;
-    margin-left: 5px;
-  } 
-}
 
 @media screen and (min-width: 1024px) and (orientation:portrait) {
   /* the really big tablets can get the same layout of the setting page as laptops and higher.
@@ -468,7 +450,30 @@ input[type="radio"]{
   #landscape-orientation {display: inline;}
 }
 
-@media screen and (max-width: 1030px) and (orientation: portrait) {
+@media screen and (max-width: 1024px) and (orientation:landscape) {
+  /*setting page of all tables except the really big ones and all phones must be in portrait mode
+  when it rotates to landscape the screen remains in portrait mode and in rotation 90 deg */
+  .keep-portrait-for-setting-page {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.25;
+  }       
+
+  .grid-columns {
+    flex-wrap: wrap;  
+    width: 99%;
+    margin-left: 5px;
+  } 
+}
+
+@media screen and (max-width: 1030px) and (orientation: portrait)
+     /*  screen and (max-width: 1024px) and (orientation:landscape)*/ {
   body {
     min-height: 99vh;}
 
@@ -511,3 +516,4 @@ input[type="radio"]{
     box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.6) inset;
   }
 }
+
