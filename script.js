@@ -34,9 +34,8 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
 
 function phoneDevice (AlsoDetectSmallTabledDevice) { // for this game often necessary to know if a phone device is used
   let pixelAmount;
-  if (AlsoDetectSmallTabledDevice) {pixelAmount=850} else {pixelAmount=500};
-  if ((screen.width<pixelAmount && screen.width<screen.height) || (screen.height<pixelAmount && screen.height<screen.width))
-  {return true} else {return false}
+  if (AlsoDetectSmallTabledDevice) {pixelAmount=1050} else {pixelAmount=950};
+  if (screen.width<pixelAmount && screen.height<pixelAmount) {return true} else {return false};
 }
 
 
@@ -180,6 +179,14 @@ function toggleExplanationList(initialize) {
 
 
 function enableComputerPlayer() {
+  document.getElementById("color-player1").innerHTML = "Player1";
+  document.getElementById("color-player2").innerHTML = "Player2";
+  document.getElementById("player1-form").value = "";
+  document.getElementById("player2-form").value = "";
+  document.getElementById("player1-form").placeholder = "Enter Player 1";
+  document.getElementById("player2-form").placeholder = "Enter Player 2";
+  if (computerOpponent) {player2Name=computerName;} 
+    else {player2Name = document.getElementById("player2-form").value;}
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = true; //because there is a computer player, no player2 name can be filled in on form
   computerOpponent = true;  
@@ -193,6 +200,12 @@ function enableComputerPlayer() {
 }
 
 function disableComputerPlayer() {
+  document.getElementById("color-player1").innerHTML = "Player1";
+  document.getElementById("color-player2").innerHTML = "Player2";
+  document.getElementById("player1-form").value = "";
+  document.getElementById("player2-form").value = "";
+  document.getElementById("player1-form").placeholder = "Enter Player 1";
+  document.getElementById("player2-form").placeholder = "Enter Player 2";
   let pl2Form = document.getElementById("player2-form");
   pl2Form.disabled = false; //because there is no computer player, player2 name can be filled in on form
   computerOpponent = false;
@@ -240,7 +253,8 @@ function togglePlayerColor () {
 
 
 function togglePages() { // change from setting page to game page
-  if (player1Name === "Player1") {
+  if (player1Name === "Player1" || player2Name === "Player2" || player1Name === "" || player1Name === " " 
+      || player2Name === "" || player2Name === " ") {
     alert("You forgot to give the player(s) a name, please try again");
     return;
   }
