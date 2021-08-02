@@ -432,7 +432,7 @@ input[type="radio"]{
 
 
 
-@media screen and (min-width: 1024px) and (orientation:portrait) {
+@mmedia screen and (min-width: 1024px) and (orientation:portrait) {
   /* the really big tablets can get the same layout of the setting page as laptops and higher.
   when it rotates to portrait mode the screen remains in landscape mode and in rotation 90 deg */
   body {
