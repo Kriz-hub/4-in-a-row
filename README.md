@@ -5,7 +5,7 @@
 ## Preface
 The goal of this project is to make a game, based on HTML, CSS and Javascript. It is made in a 3D environment, with a settings page for creating names and number of players. 
 
-## The making
+## The Making
 When I was thinking about the 2nd Milestone my eye fell on a Youtube to make cubes and balls in a 3D environment, https://www.youtube.com/watch?v=NdftnCDwKaU.
 The youtube showed up on May 11th 2021, that timing was great for me, because before that there is nothing really good to be found on Youtube about CSS 3D. 
 I did some experiments myself to create cubes and balls based on that 3D idea. In that Youtube, there was only a shadow effect on the ball, but after some expriments I added a light reflection effect in the balls. 
@@ -29,7 +29,7 @@ There were some timing ussues to solve. The color of the cursor changed too quic
 
 The last fase of this project was to get the setting page right. The first approach was to make it with Bootstrap. But it turned out that Bootstrap interpheres with the 3D world.  I just added the declaration of it in a link, I didn't even wrote a single bootstrap code yet, now the game was not playable anymore. So now I decided to do it with wrap. 
 I saw some great radiobuttons on the internet to use. The next point was to get the page right on smaller devices. The ordering will the be beneath each other. Than I saw that the intro lines to explain the game rules used too much space, it covered allready almost half of the phone screen. Therefore I created for smaller devices an "Explanation Column" that only appear when it is asked for. The same applies to the column of the computer's playlevel. It should only appear when óne player is selected. So the thing was to create small text bloks in column. Some appear smoothly with an animation when they are asked for when using a phone device and should disappear when not needed. Getting the different screenheight of phones played keyrole to get the animation of the next window high enough for closing the gap that arises when a column, for example "Explanation Column", is not needed.
-But flipping of orientation of a device during an input moment in the Setting Page appeared not to be good for design of the page. Therefore I made the deciscion to only use Portrait View for small tablets and phone devices and only Landscape View for large tablets (and laptops/desktops). When a smaller device is flipped, the view stays on Portrait, but pointer activities are disabled so nothing can be done, till the user turns back to the real Portrait View.
+But flipping of orientation of a device when Setting Page is running appeared bad for the layout of the page because of the change of screen height. Therefore I made the deciscion to only use Portrait View for small tablets and phone devices and only Landscape View for large tablets (and laptops/desktops). When a smaller device is flipped, the view stays on Portrait, but pointer activities are disabled so nothing can be done, till the user turns back to the real Portrait View.
 
 
 
