@@ -101,6 +101,11 @@ startSettingPage ();
 eventListeners ();
 toggleExplanationList(true);
 
+function test () {
+alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);  
+}
+
+
 function startSettingPage () {
   let bodyID = document.getElementById("screen-check");
   $(bodyID).addClass("keep-portrait-for-setting-page");
