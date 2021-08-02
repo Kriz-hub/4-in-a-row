@@ -20,6 +20,8 @@ That experiment on Repl wasn't a game at all, it was just making a structure. No
 
 When the basics of the game started to work it was time to get the layout improved. It could be interesting to place the balls higher when doing a move and then let them fall on their right spot with an animation. After a somewhat more complicate animation with two bounces it got the right look in my opinion, also with a falling sound added.
 
+When I tested it on a phone I got the idea to make it really app like, therefore it's nescecary to make it full screen, so that no URL is visible. After game's end the page must be brought back to a visible URL. With google I found a solution. Now in the setting page it's possible to choose for a full page game experience.
+
 Because of the 3D characteristics there could be done more with the game. For example I didn't use the rotation animation from the experimental repl yet and I still needed a way to get a good end for the gameplay. Then I got the idea to introduce more cubes with a different size. Also could cubes function as buttons where the user could click on. It would be great if I could give a blinking animation to those cubes. That somewhat creative thinking resulted in an "Exit Cube" (A cube with the text "Exit") where could be clicked on to stop the game earlier. The left and right "Score Cubes", where normally the points of the red and blue opponents are displayed on, begin to blink and the words "Yes" and "No" appear on it. "Message Cubes" in front and behind appear with the question if the user want to finish the game. An infinite rotation of the scenery starts.
 After clicking on the "Yes Cube, the "Message Cubes" tell who has won.
 
@@ -32,10 +34,20 @@ I saw some great radiobuttons on the internet to use. The next point was to get 
 But flipping of orientation of a device when Setting Page is running appeared bad for the layout of the page because of the change of screen height. Therefore I made the deciscion to only use Portrait View for small tablets and phone devices and only Landscape View for large tablets (and laptops/desktops). When a smaller device is flipped, the view stays on Portrait, but pointer activities are disabled so nothing can be done, till the user turns back to the real Portrait View.
 
 
+## User stories
+
+# As a user : As a new visitor to the game I want the page to be easily navigated.
+# As a user: As a new visitor I want clear instructions on how to play the game.
+# As a user: I want a game that responds quickly to my interaction.
+# As a User: I want a game that is fun and exciting to play
+
+The ideal user:
+Age 10+ (There is a setting page which have to be filled in, therefore not too young)
+Children and adults
 
 
 
-## Wireframes:
+## Skeleton
 The game starts with a setting page:
 ![Setting Page Desktop:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/setting%20page.png)
 
@@ -57,14 +69,37 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 
 ![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/leaving%20game%20phone.png)
 
+## Technologies
+
+HTML
+CSS
+Javascript
+
+## Features
+## Testing
+
+## Features Left to Implement
 
 
-Things to do:
-* vertical counting doesn't work yet, only vertical and horizontical counting
-* the readme needs a lot more finishing
-* the game need some light effect when a count of 4 balls ca be made
+## Deployment
+
+This project was developed using GitHub.
+
+I followed the next steps to deploy my game on the GitHub pages:
+
+# Log into GitHub.
+# Select Sweetzia/Space-Invaders in the repository list.
+# Go to Settings
+# Scroll down to the GitHub Pages section.
+# Select the Master Branch
+# On selecting Master Branch the page is automatically refreshed, the game is deployed.
+# The link can be retrieved to the deployed website.
 
 
+## Credits
 
+## Acknowledgements
+
+I got inspiration from:
 
 
