@@ -32,8 +32,10 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
-function phoneDevice () { // fot this game often necessary to know if a phone device is used
- if ((screen.width<500 && screen.width<screen.height) || (screen.height<500 && screen.height<screen.width))
+function phoneDevice (AlsoDetectSmallTabledDevice) { // for this game often necessary to know if a phone device is used
+  let pixelAmount;
+  if (AlsoDetectSmallTabledDevice) {pixelAmount=850} else {pixelAmount=500};
+  if ((screen.width<pixelAmount && screen.width<screen.height) || (screen.height<pixelAmount && screen.height<screen.width))
   {return true} else {return false}
 }
 
@@ -52,7 +54,7 @@ function decideFontsizeSmallerDevice() {
   // in this 3D world a higher font-size gives a closer look to the cubes
   let screenCheck=document.getElementById("screen-check");
   $(document).ready(function(){
-    if(phoneDevice()) {
+    if(phoneDevice(false)) {
       if (screen.width/screen.height>1.78) {
         screenCheck.style.fontSize =  "5vw";
       } else {
@@ -101,24 +103,23 @@ startSettingPage ();
 eventListeners ();
 toggleExplanationList(true);
 
-function test () {
-alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);  
-}
-
 
 function startSettingPage () {
   let bodyID = document.getElementById("screen-check");
-  $(bodyID).addClass("keep-portrait-for-setting-page");
-  if(screen.width > screen.height) {
-    $( window ).on( "orientationchange", function() {
+  $(bodyID).addClass("keep-portrait-for-setting-page"); //only works with smaller tablets and lower
+  if (phoneDevice(true)) {
+    if (screen.width > screen.height) {
+      $( window ).on( "orientationchange", function() {
       /*orientation change: https://api.jquerymobile.com/orientationchange/
       reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 
       When setting page is started in landscape mode, the screen rotates 90deg to tell the user to turn
       to portrait mode. In that case the display will be messed up after doing the orientation change.
-      A page reload solve this bug. It needs to do it once.*/
-      if (firstTimeSettingPage || screen.height > screen.width) {location.reload(); firstTimeSettingPage=false} }); 
-  } else {firstTimeSettingPage=false;}
+      A page reload solve this bug. It needs to carry out once. In case of an immediate start in portrait mode
+      this problem don't occur.*/
+        if (firstTimeSettingPage || screen.height > screen.width) {location.reload(); firstTimeSettingPage=false} }); 
+    } else {firstTimeSettingPage=false} 
+  }
 }
 
 function startGamePage () {
@@ -130,7 +131,7 @@ function startGamePage () {
 
 
 function toggleExplanationList(initialize) {
-  if(phoneDevice()) { //used only with small devices
+  if(phoneDevice(false)) { //used only with small devices
     const littleScreenHeight=640;
     const bigScreenHeight=915
     const littleMarginTop=-55;
@@ -173,7 +174,7 @@ function toggleExplanationList(initialize) {
       }
     }
   } else { 
-    if (initialize) {document.getElementById("opacity-display").style.display = "none";}
+     if (initialize) {document.getElementById("opacity-display").style.display = "none";}
   }
 }
 
@@ -184,7 +185,7 @@ function enableComputerPlayer() {
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
   setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
-  if(phoneDevice()) {
+  if(phoneDevice(true)) {
     $(compLevelDiv).removeClass("remove-mouse-pointer");
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
@@ -197,7 +198,7 @@ function disableComputerPlayer() {
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
-  if(phoneDevice()) { //moving up of div, only for small device, not laptop or desktop
+  if(phoneDevice(true)) { //moving up of div, only for small device, not laptop or desktop
     //when there is no computer player selected then the div to choose level computer disappears
     //On a small devive the div's below move up. How much depends how on the screen height of te phone
     //so marginT (marginTop on div below) differ on phones

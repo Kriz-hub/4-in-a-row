@@ -47,6 +47,9 @@ body {
 
 .remove-mouse-pointer { pointer-events: none;}
 
+ /*Inspired by radiobutton: https://codepen.io/Metty/pen/MWjOavR*/
+
+
 .wrapper{
   display: inline-flex;
   background: #fff;
@@ -139,7 +142,6 @@ input[type="radio"]{
 #option-3b:checked:checked ~ .option-3b span{
   color: #fff;
 }
-
 
  /*Inspired by radiobutton: https://codepen.io/Metty/pen/MWjOavR
  but in the end I changed it to a togglefield red or blue*/
