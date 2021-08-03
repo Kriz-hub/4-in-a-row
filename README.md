@@ -77,6 +77,20 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 4 (Jquery)
 
 ## Features
+Setting Page:
+* First the Setting Page shows up. A list appears in the upper column to give some game rule principles. When a phone device is used only "Press here for more" is visible. When pressed on this column a new column appears with the game rule principles.
+* With radio buttons a choice can made to play with a computer player (One Player) or with a human opponent (Two Players)
+* Then the player names can be filled in
+* a choice can be made who has red (that one starts the game) and blue.
+* a check can be placed to play the game full screen
+* when the button "Play Now" is pressed a fail save starts to check if the names are filled in. If it's done then the game page will be loaded.
+
+Game Environment:
+* When then name of the player is emphasized with an underlining and the gridcolor has the color of the player when hovered with the mouse pointer a move can be made.
+* The game end when the grid is full of balls. The environment starts rotating and 2 bigger cubes appear with information who has won.
+* a press on a cube with the wordt "Exit" is another way to end the game.  The cubes where normally the scores are displayed, starts to blink with the words "Yes" and "No" and the environment starts to rotate. 2 bigger cubes appear with the Question "Leave game?" When pressed "Yes" on the cube the Quistion disappear and a line who has won is to be showed.
+
+
 ## Testing
 
 ## Features Left to Implement
@@ -103,9 +117,7 @@ I followed the next steps to deploy my game on the GitHub pages:
 * this 3D world is based on the idea of Amit Sheen which he presented on the channel of Kevin Powel on Youtube: https://www.youtube.com/watch?v=NdftnCDwKaU
 
 ## Acknowledgements
-
-I got inspiration from:
-* this Amit Sheen who created this world (see credits)
+* Amit Sheen who created this world (see credits)
 * Buttons in Setting Page: https://codepen.io/onediv/pen/jEmjap
 * Radio Buttons in Setting Page: https://codepen.io/Metty/pen/MWjOavR
 * Force the device to stay in Portrait Mode when flipped to Landscape Mode in CSS: https://css-tricks.com/snippets/css/orientation-lock/
