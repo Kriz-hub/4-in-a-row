@@ -87,15 +87,19 @@ Setting Page:
 
 Game Environment:
 * When then name of the player is emphasized with an underlining and the gridcolor has the color of the player when hovered with the mouse pointer a move can be made.
-* The game end when the grid is full of balls. The environment starts rotating and 2 bigger cubes appear with information who has won.
+* When clicked on the desired column in the grid a ball falls down from above on that spot.
+* The game ends when the grid is full of balls. The environment starts rotating and 2 bigger cubes appear with information who has won.
 * a press on a cube with the wordt "Exit" is another way to end the game.  The cubes where normally the scores are displayed, starts to blink with the words "Yes" and "No" and the environment starts to rotate. 2 bigger cubes appear with the Question "Leave game?" When pressed "Yes" on the cube the Quistion disappear and a line who has won is to be showed.
 
 
 ## Testing
+* This game is tested on a real Samsung S7, Samsung A31 and Samsung A51, on there own browser. The setting page run smoothly on these devices. The popping of the new window for game info (see Features, First Item) have the proper animation, so these devices give a proper layout. Also the column of Computer Player Level which can also appear or disappear work smoothly with a proper layout on these devices. All phones can give a full screen game page with a smooth gameplay. But on game's end the scenery rotation is somewhat "shuttering", see Section Bugs.
+* The old tablet Asus Transformer Pad crashes with this game although it has a new chrome browser installed on it (see Bugs Section). The recent made tablet Lenovo TB-X10AF work smoothly and gives a proper layout on both Setting Page and Game Page.
+* On personal laptop and desktop all features work smoothly as it should, also the game play and the rotation on game's end work smoothly. But, the desktop at work gives also some shuttering when game rotation starts, in fact it's a terminal with a system which is running on a server.
 
 ## Features Left to Implement
 * On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and where it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this as a smarter game, but time ends now.
-* a next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
+* A next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
 
 ## Deployment
 
@@ -120,11 +124,11 @@ I followed the next steps to deploy my game on the GitHub pages:
 * Amit Sheen who created this world (see credits)
 * Buttons in Setting Page: https://codepen.io/onediv/pen/jEmjap
 * Radio Buttons in Setting Page: https://codepen.io/Metty/pen/MWjOavR
-* Force the device to stay in Portrait Mode when flipped to Landscape Mode in CSS: https://css-tricks.com/snippets/css/orientation-lock/
+* Rotate text 90deg to maintain the look of Portrait Mode when flipped to Landscape Mode in CSS: https://css-tricks.com/snippets/css/orientation-lock/
 * Toggle full screen without URL input area: https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 * Screen Height, Screen Width: https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 * Reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 * To add a new div with JS: https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
-* get random numbers: https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 
+* Get random numbers: https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 
 
 
