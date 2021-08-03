@@ -80,8 +80,8 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 ## Testing
 
 ## Features Left to Implement
-* On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and all moves that it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this a smarter game but time ends now.
-* a next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. 
+* On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and where it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this as a smarter game, but time ends now.
+* a next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
 
 ## Deployment
 
@@ -99,9 +99,20 @@ I followed the next steps to deploy my game on the GitHub pages:
 
 
 ## Credits
+* All content in the CSS-section and the index.html is written by myself.
+* this 3D world is based on the idea of Amit Sheen which he presented on the channel of Kevin Powel on Youtube: https://www.youtube.com/watch?v=NdftnCDwKaU
 
 ## Acknowledgements
 
 I got inspiration from:
+* this Amit Sheen who created this world (see credits)
+* Buttons in Setting Page: https://codepen.io/onediv/pen/jEmjap
+* Radio Buttons in Setting Page: https://codepen.io/Metty/pen/MWjOavR
+* Force the device to stay in Portrait Mode when flipped to Landscape Mode in CSS: https://css-tricks.com/snippets/css/orientation-lock/
+* Toggle full screen without URL input area: https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
+* Screen Height, Screen Width: https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
+* Reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
+* To add a new div with JS: https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
+* get random numbers: https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 
 
 
