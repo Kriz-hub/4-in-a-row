@@ -3,7 +3,10 @@
 ## Table of Contents
 
 ## Preface
-The goal of this project is to make a game, based on HTML, CSS and Javascript. It is made in a 3D environment, with a settings page for creating names and number of players. 
+The goal of this project is to make a game, based on HTML, CSS and Javascript. It is made in a 3D environment, with a settings page for creating names and number of players.
+For a demo of my 4 In A Row game click [HERE](https://kriz-hub.github.io/4-in-a-row/).
+
+![Desktop Demo](https://github.com/Kriz-hub/4-in-a-row/blob/master/animation1.gif)
 
 ## The Making
 When I was thinking about the 2nd Milestone my eye fell on a Youtube to make cubes and balls in a 3D environment, https://www.youtube.com/watch?v=NdftnCDwKaU.
@@ -71,10 +74,10 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 
 ## Technologies
 
-1 HTML
-2 CSS
-3 Javascript 
-4 (Jquery)
+1. HTML
+2. CSS
+3. Javascript 
+4. (Jquery)
 
 ## Features
 Setting Page:
