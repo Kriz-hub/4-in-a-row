@@ -36,10 +36,10 @@ But flipping of orientation of a device when Setting Page is running appeared ba
 
 ## User stories
 
-# As a user : As a new visitor to the game I want the page to be easily navigated.
-# As a user: As a new visitor I want clear instructions on how to play the game.
-# As a user: I want a game that responds quickly to my interaction.
-# As a User: I want a game that is fun and exciting to play
+* As a user : As a new visitor to the game I want the page to be easily navigated.
+* As a user: As a new visitor I want clear instructions on how to play the game.
+* As a user: I want a game that responds quickly to my interaction.
+* As a User: I want a game that is fun and exciting to play
 
 The ideal user:
 Age 10+ (There is a setting page which have to be filled in, therefore not too young)
@@ -71,15 +71,17 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 
 ## Technologies
 
-HTML
-CSS
-Javascript
+1 HTML
+2 CSS
+3 Javascript 
+4 (Jquery)
 
 ## Features
 ## Testing
 
 ## Features Left to Implement
-
+* On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and all moves that it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this a smarter game but time ends now.
+* a next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. 
 
 ## Deployment
 
@@ -87,13 +89,13 @@ This project was developed using GitHub.
 
 I followed the next steps to deploy my game on the GitHub pages:
 
-# Log into GitHub.
-# Select Sweetzia/Space-Invaders in the repository list.
-# Go to Settings
-# Scroll down to the GitHub Pages section.
-# Select the Master Branch
-# On selecting Master Branch the page is automatically refreshed, the game is deployed.
-# The link can be retrieved to the deployed website.
+* Log into GitHub.
+* Select kriz-hub/4-in-a-row in the repository list.
+* Go to Settings
+* Scroll down to the GitHub Pages section.
+* Select the Master Branch
+* On selecting Master Branch the page is automatically refreshed, the game is deployed.
+* The link can be retrieved to the deployed website.
 
 
 ## Credits
