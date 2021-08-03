@@ -1,4 +1,4 @@
-# Game 4 In A Row
+# Game: 4 In A Row
 
 ## Table of Contents
 
@@ -104,6 +104,14 @@ Game Environment:
 * On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and where it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this as a smarter game, but time ends now.
 * A next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
 
+## Bugs and other issues
+* I saw once that blinking of balls, to emphasize that a four in a row is made, not worked.
+* There is a delay made in to create an illusion that the computer player have to think about his move. It needs a little more finetuning. Now the color change come somewhat too quick to the human player while the move isn't totally made yet.
+* The delay when balls start to blink when a point is made should also have that finetuning. The opponent's color comes a little too quick.
+* when the game is completely played out, the last ball is in it's bouncing while the winner is decleared. Also a timing issue.
+* An old 2012 tablet Asus Transformer Pad crashes in it's browser, the Setting Page doesn't react on human screen touches, although the Chrome browser can be closed. Because another more modern tablet Lenovo TB-X10AF gives no issues (and due lack of time). I leave it that way.
+* When rotation animation starts it's clear that it takes power to keep doing its job well for the graphic chip on the device. Smaller devices can show some "shuttering" during the animation. But small devices can perfom great with many game app's, so it should go well. It seems some hardware acceleration is missing when HTML and CSS is used. 
+
 ## Deployment
 
 This project was developed using GitHub.
@@ -124,7 +132,7 @@ I followed the next steps to deploy my game on the GitHub pages:
 * this 3D world is based on the idea of Amit Sheen which he presented on the channel of Kevin Powel on Youtube: https://www.youtube.com/watch?v=NdftnCDwKaU
 
 ## Acknowledgements
-* Amit Sheen who created this world (see credits)
+* Amit Sheen who's idea made this 3D environment possible (see credits)
 * Buttons in Setting Page: https://codepen.io/onediv/pen/jEmjap
 * Radio Buttons in Setting Page: https://codepen.io/Metty/pen/MWjOavR
 * Rotate text 90deg to maintain the look of Portrait Mode when flipped to Landscape Mode in CSS: https://css-tricks.com/snippets/css/orientation-lock/
@@ -133,5 +141,6 @@ I followed the next steps to deploy my game on the GitHub pages:
 * Reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 * To add a new div with JS: https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
 * Get random numbers: https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 
+
 
 
