@@ -45,6 +45,21 @@ function eventListeners () {
   
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
+
+let collu = document.getElementsByClassName("collapsible");
+let i;
+for (i = 0; i < collu.length; i++) {
+  collu[i].addEventListener("click", function() {
+  this.classList.toggle("active");
+  let content = this.nextElementSibling;
+    if (content.style.display === "inline") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "inline";
+    }
+  });
+}
+
 }
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
