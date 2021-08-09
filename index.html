@@ -60,13 +60,21 @@
     <div id="setting-page" >
       <div class="grid-columns">
         <div class="bring-shadow">
-          <div class="bring-margin collapsible" onmousedown="toggleExplanationList(false)">
+          <div class="bring-margin" onmousedown="toggleExplanationList(false)">
             <h1>Four In a Row - Setting Page</h1>
-            <ul id="explanation-list" class="content">
+            <p id="only-for-small-device1">(Press here for more...)</p>
+            <p id="only-for-small-device2">(less...)</p>
+            <script>
+              /*for larger devices the explanation list is just fine, but for phone devices it
+              turned out to be too much text and therefore is not good designed. 
+              The line "(more...)" appear. A mouseclick will then toggle the explanation list visible or unvisible */
+              document.getElementById("only-for-small-device1").style.display = "none";
+              document.getElementById("only-for-small-device2").style.display = "none";
+            </script> 
+            <ul id="explanation-list">
               <li>Put the balls of your color in a row of 4 while the counterplayer can prevent that.</li>
               <li>A point is made when you make that row horizontally, vertically or diagonally.</li>
               <li>The one who get's the most points wins.</li>
-              <li>Click here for more...</li>
             </ul>
           </div>
         </div>
@@ -166,23 +174,6 @@
         </div> 
       </div>        
     </div>
-    <script>
-      let collu = document.getElementsByClassName("collapsible");
-      let i;
-      
-      for (i = 0; i < collu.length; i++) {
-        collu[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          let content = this.nextElementSibling;
-          if (content.style.maxHeight){
-            content.style.maxHeight = null;
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-          } 
-        });
-      }
-    
-    src="script.js"
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -111,7 +111,6 @@ function startSettingPage () {
       $( window ).on( "orientationchange", function() {
       /*orientation change: https://api.jquerymobile.com/orientationchange/
       reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
-
       When setting page is started in landscape mode, the screen rotates 90deg to tell the user to turn
       to portrait mode. In that case the display will be messed up after doing the orientation change.
       A page reload solve this bug. It needs to carry out once. In case of an immediate start in portrait mode
@@ -796,4 +795,3 @@ function makeMove (s) {
     }
   }
 }
-
