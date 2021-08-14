@@ -80,14 +80,6 @@
         </div>
       </div>
 
-      <div class="grid-columns">
-        <!-- this div only appear on a small device, the explanation list from above will then be added -->
-        <div id="opacity-display" class="bring-shadow remove-mouse-pointer">
-          <div id="explanation-div-small-device-only" class="bring-margin">
-          </div>
-        </div>
-      </div>
-
       <div id="number-of-players-choice" class="grid-columns">
         <div class="bring-shadow">
           <div class="bring-margin">
@@ -174,24 +166,31 @@
         </div> 
       </div>        
     </div>
-    <script src="script.js">
-      alert('test');
-    var collu = document.getElementsByClassName("collapsible");
-var i;
-alert('test');
-alert(collu.length);
-for (i = 0; i < collu.length; i++) {
+    <script>
+    
+    let collu = document.getElementsByClassName("collapsible");
+    let uls = document.getElementsByClassName("content");
+    //collu.style.display = "inline";
+    //collu.style.display = "none";
+let i=0;
+let content;
+//for (i = 0; i < collu.length; i++) {
+
   collu[i].addEventListener("click", function() {
+  
+    //this.classList.toggle("active");
+    //collu[i]. = this.nextElementSibling;
    
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
+    if (uls[i].style.display === "inline") {
+      uls[i].style.display = "none";
     } else {
-      content.style.display = "block";
+  //    alert('test2');
+     uls[i].style.display = "inline";
     }
   });
-}
+
      </script>
+    <script src="script.js"></script>
+
   </body>
 </html>
