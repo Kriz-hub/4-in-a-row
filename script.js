@@ -46,7 +46,31 @@ function eventListeners () {
 radio1.addEventListener("click", () => {enableComputerPlayer();});
 radio2.addEventListener("click", () => {disableComputerPlayer();})
 
-let collu = document.getElementsByClassName("collapsible");
+let collu = document.getElementsByClassName("collapsible")[0];
+let uls1 = document.getElementsByClassName("content")[0];
+let uls2 = document.getElementsByClassName("content")[1];
+//collu.style.display = "inline";
+//collu.style.display = "none";
+let i=0;
+let content;
+//for (i = 0; i < collu.length; i++) {
+
+collu.addEventListener("click", function() {
+
+//this.classList.toggle("active");
+//collu[i]. = this.nextElementSibling;
+
+if (uls2.style.display === "inline") {
+  uls1.style.display = "inline";
+  uls2.style.display = "none";
+} else {
+//    alert('test2');
+ uls1.style.display = "none";
+ uls2.style.display = "inline";
+}
+});
+
+/*let collu = document.getElementsByClassName("collapsible");
 let i;
 for (i = 0; i < collu.length; i++) {
   collu[i].addEventListener("click", function() {
@@ -58,7 +82,7 @@ for (i = 0; i < collu.length; i++) {
       content.style.display = "inline";
     }
   });
-}
+}*/
 
 }
 
@@ -115,7 +139,6 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 startSettingPage ();
 eventListeners ();
-toggleExplanationList(true);
 
 
 function startSettingPage () {
@@ -143,7 +166,7 @@ function startGamePage () {
 }
 
 
-function toggleExplanationList(initialize) {
+function toggleExplanationList(initialize) { // NOT USED
   if(phoneDevice(false)) { //used only with small devices
     const littleScreenHeight=640;
     const bigScreenHeight=915
