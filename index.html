@@ -61,13 +61,14 @@
       <div class="grid-columns">
         <div class="bring-shadow">
           <div class="bring-margin collapsible">
-            <h1>Four In a Row - Setting Page</h1>
+            <h1 class="h1-title">Four In a Row - Setting Page</h1>
             <p class="content">(Press here for more information...)</p>
             <script>
-              document.getElementsByClassName("content")[0].style.display="inline";
+              let introLine = document.getElementsByClassName("content")[0];
+              introLine.style.display="inline"; introLine.style.opacity="1";
             </script>
             <div class="content">
-             <ul id="explanation-list" >
+             <ul>
                 <li>Put the balls of your color in a row of 4 while the counterplayer can prevent that.</li>
                 <li>A point is made when you make that row horizontally, vertically or diagonally.</li>
                 <li>The one who get's the most points wins.</li>

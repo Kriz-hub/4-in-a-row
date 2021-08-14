@@ -43,47 +43,22 @@ function eventListeners () {
   const radio1 = document.querySelector("#option-1");
   const radio2 = document.querySelector("#option-2");
   
-radio1.addEventListener("click", () => {enableComputerPlayer();});
-radio2.addEventListener("click", () => {disableComputerPlayer();})
+  radio1.addEventListener("click", () => {enableComputerPlayer();});
+  radio2.addEventListener("click", () => {disableComputerPlayer();})
 
-let collu = document.getElementsByClassName("collapsible")[0];
-let uls1 = document.getElementsByClassName("content")[0];
-let uls2 = document.getElementsByClassName("content")[1];
-//collu.style.display = "inline";
-//collu.style.display = "none";
-let i=0;
-let content;
-//for (i = 0; i < collu.length; i++) {
+  let collu = document.getElementsByClassName("collapsible")[0];
+  let introLine = document.getElementsByClassName("content")[0];
+  let explanation = document.getElementsByClassName("content")[1];
 
-collu.addEventListener("click", function() {
-
-//this.classList.toggle("active");
-//collu[i]. = this.nextElementSibling;
-
-if (uls2.style.display === "inline") {
-  uls1.style.display = "inline";
-  uls2.style.display = "none";
-} else {
-//    alert('test2');
- uls1.style.display = "none";
- uls2.style.display = "inline";
-}
-});
-
-/*let collu = document.getElementsByClassName("collapsible");
-let i;
-for (i = 0; i < collu.length; i++) {
-  collu[i].addEventListener("click", function() {
-  this.classList.toggle("active");
-  let content = this.nextElementSibling;
-    if (content.style.display === "inline") {
-      content.style.display = "none";
+  collu.addEventListener("click", function() {
+    if (explanation.style.display === "inline") {
+      setTimeout(() => {introLine.style.display = "inline"; explanation.style.display = "none";}, 300); 
+      $(explanation).animate({opacity: '0'}, '3s')
     } else {
-      content.style.display = "inline";
+      introLine.style.display = "none"; explanation.style.display = "inline";
+      $(explanation).animate({opacity: '1'}, '3s')
     }
   });
-}*/
-
 }
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
