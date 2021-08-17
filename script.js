@@ -35,7 +35,7 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
 function phoneDevice (AlsoDetectSmallTabledDevice) { // for this game often necessary to know if a phone device is used
   let pixelAmount;
   if (AlsoDetectSmallTabledDevice) {pixelAmount=1050} else {pixelAmount=950};
-  if (screen.width<pixelAmount && screen.height<pixelAmount) {return true} else {return false};
+  if (screen.width<pixelAmount &&screen.height<pixelAmount) {return true} else {return false};
 }
 
 

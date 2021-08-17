@@ -513,50 +513,13 @@ input[type="radio"]{
 }
 
 
-
-@media screen and (min-height: 950px) and (min-width: 1024px) and (orientation:portrait) {
-  /* the really big tablets can get the same layout of the setting page as laptops and higher.
-  when it rotates to portrait mode the screen remains in landscape mode and in rotation 90 deg */
-  body {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  } 
-}
-
 @media screen and (max-width: 500px) and (orientation: portrait) {
   /*when playing the game a hint appear in portrait mode to turn to landscape mode */
   #landscape-orientation {display: inline;}
 }
 
-@media screen and (min-width: 100px) and (max-width: 1024px) and (orientation:landscape) {
-  /*setting page of all tables except the really big ones and all phones must be in portrait mode
-  when it rotates to landscape the screen remains in portrait mode and in rotation 90 deg.
-  Use of min-width solves a bizarre bug during input of player names for some devices*/
-  .keep-portrait-for-setting-page {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    pointer-events: none;
-    opacity: 0.25;
-  }       
 
-  .grid-columns {
-    flex-wrap: wrap;  
-    width: 99%;
-    margin-left: 5px;
-  } 
-}
-
-@media screen and (max-width: 1030px) and (orientation: portrait) {
+@media screen and (max-width: 1030px) {
   body {
     min-height: 99vh;}
 
