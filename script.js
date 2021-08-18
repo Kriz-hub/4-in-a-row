@@ -227,14 +227,20 @@ function disableComputerPlayer() {
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
-  if(phoneDevice(true)) { //moving up of div, only for small device, not laptop or desktop
-    //when there is no computer player selected then the div to choose level computer disappears
-    //On a small devive the div's below move up. How much depends how on the screen height of te phone
-    //so marginT (marginTop on div below) differ on phones
+  if(phoneDevice(true)) { 
+    /*when number of players is changed to two, computerplayer-column disappear. a collapse must be taken 
+    place to close the gap. because every device has a different height, the amount of movement differ,
+    therefore comming variables are needed to calculate this. This is not for large tablets of laptops because 
+    the computerplayer-column there is side by side. */
+
     const normalScreenheight=640;
-    const initialMarginTop=-37;
-    const devideFactor=20;
-    let marginT=initialMarginTop+((screen.height-normalScreenheight)/devideFactor) + "vh";
+    const maxScreenheight=1366;
+    const normalMarginTop=-32;
+    const maxMargintop=-16;
+    let difHeight=maxScreenheight-normalScreenheight;
+    let difMargin=maxMargintop-normalMarginTop;
+    let heightDivide=(screen.height-normalScreenheight)/difHeight;
+    let marginT = normalMarginTop + heightDivide*difMargin + "vh";
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(compLevelDiv).addClass("remove-mouse-pointer");
     setTimeout(() => {$(divUnderCompLevel).animate({marginTop: marginT}, '3s');}, 300); 
