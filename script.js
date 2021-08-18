@@ -81,6 +81,8 @@ function decideFontsizeSmallerDevice() {
   });
 }
 
+
+
 //https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
 //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 //https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
@@ -118,6 +120,32 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 startSettingPage ();
 eventListeners ();
+let naampje = " ehallo";
+let testBol = inputEmpty (naampje);
+alert ("--" + naampje + "--  " + testBol);
+
+function inputEmpty (name) {
+  let l;
+  let name2="";
+  let spacesCheckBeforeChar=true;
+  if (name.length===0) { 
+    return false 
+  } else { 
+    for (l = 0; l<name.length; l++) {
+      if (name.charAt(l)===" ") {
+        if (!spacesCheckBeforeChar) {name2+=name.charAt(l); alert('test');}
+      } else {
+        spacesCheckBeforeChar=false;
+        name2+=name.charAt(l);
+      }
+    }
+    name=name2;
+    return name;
+    //alert ("--" + name2 + "--  " );
+    if (name.length===0) {return false} else {return true};
+  
+  }
+}
 
 
 function startSettingPage () {
@@ -145,53 +173,6 @@ function startGamePage () {
 }
 
 
-function toggleExplanationList(initialize) { // NOT USED
-  if(phoneDevice(false)) { //used only with small devices
-    const littleScreenHeight=640;
-    const bigScreenHeight=915
-    const littleMarginTop=-55;
-    const bigMarginTop=-37;
-    let screenHeightDiff=bigScreenHeight-littleScreenHeight;
-    let marginTopDiff = bigMarginTop - littleMarginTop;
-    let marginT = littleMarginTop +  (((screen.height - littleScreenHeight) / screenHeightDiff) * marginTopDiff) + "vh";
-    
-    let playersChoiceDiv = document.getElementById("number-of-players-choice");
-    let changeOpacity = document.getElementById("opacity-display");
-    if (initialize) {
-      let textOne = document.getElementById("one-player-text");
-      let textTwo = document.getElementById("two-player-text");
-      textOne.innerHTML = "One";
-      textTwo.innerHTML = "Two";
-      //made Lines: "One Player" "Two Player" shorter for small devices
-      let explUL = document.getElementById("explanation-list");
-      let explDiv = document.getElementById("explanation-div-small-device-only");
-      let explULNew = explUL.cloneNode(true);
-
-      explDiv.appendChild(explULNew);
-      document.getElementById("explanation-list").style.display = "none";
-      changeOpacity.style.opacity="0";
-      playersChoiceDiv.style.marginTop=marginT;
-      explanationListShown=false;
-      document.getElementById("only-for-small-device1").style.display = "inline";
-    } else {
-      if (explanationListShown) {
-        document.getElementById("only-for-small-device1").style.display = "inline";
-        document.getElementById("only-for-small-device2").style.display = "none"; 
-        $(changeOpacity).animate({opacity: '0'}, '3s')
-        setTimeout(() => {$(playersChoiceDiv).animate({marginTop: marginT}, '3s')}, 300);
-        explanationListShown=false;
-      } else {
-        document.getElementById("only-for-small-device1").style.display = "none";
-        document.getElementById("only-for-small-device2").style.display = "inline"; 
-        setTimeout(() => {$(changeOpacity).animate({opacity: '1'}, '3s')}, 300); 
-        $(playersChoiceDiv).animate({marginTop: "1vh"}, '3s');
-        explanationListShown=true;
-      }
-    }
-  } else { 
-     if (initialize) {document.getElementById("opacity-display").style.display = "none";}
-  }
-}
 
 
 function enableComputerPlayer() {
@@ -247,12 +228,17 @@ function disableComputerPlayer() {
   }
 }
 
+
+
 function getNames () {
   player1Name = document.getElementById("player1-form").value;
   if (computerOpponent) {player2Name=computerName;} 
     else {player2Name = document.getElementById("player2-form").value;}
-  document.getElementById("color-player1").innerHTML = player1Name;
-  document.getElementById("color-player2").innerHTML = player2Name;
+  if (player1Name!="" || player2Name!="") {
+    alert('jo');
+    document.getElementById("color-player1").innerHTML = player1Name;
+    document.getElementById("color-player2").innerHTML = player2Name;
+  } else {alert('test')}
 }
 
 function togglePlayerColor () {
