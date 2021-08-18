@@ -118,7 +118,7 @@ button:hover:before,button:hover:after{
 
 
 .bring-shadow {
-  margin: 25px 25px; 
+  margin: 2vh 2vw; 
   background-color: rgb(72, 135, 151);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
@@ -562,5 +562,11 @@ input[type="radio"]{
 @media screen and (max-width: 1030px) {
   .leftside, .rightside, .frontside, .backside {
     box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.7) inset;
+  }
+}
+
+@media screen and (max-width: 1125px) {
+  .bring-shadow {
+    margin: 2vh 0.7vw; 
   }
 }
