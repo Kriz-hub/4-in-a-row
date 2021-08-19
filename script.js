@@ -120,30 +120,25 @@ document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
 startSettingPage ();
 eventListeners ();
-let naampje = " ehallo";
-let testBol = inputEmpty (naampje);
-alert ("--" + naampje + "--  " + testBol);
 
-function inputEmpty (name) {
-  let l;
+function improvedInput (name) {
+  /*when player name is given, spaces before 1st character or other signs will be erased or just spaces are 
+  erased. Spaces after 1st character or other signs are OK */
+  let i;
   let name2="";
   let spacesCheckBeforeChar=true;
   if (name.length===0) { 
-    return false 
+    return name2
   } else { 
-    for (l = 0; l<name.length; l++) {
-      if (name.charAt(l)===" ") {
-        if (!spacesCheckBeforeChar) {name2+=name.charAt(l); alert('test');}
+    for (i = 0; i<name.length; i++) {
+      if (name.charAt(i)===" ") {
+        if (!spacesCheckBeforeChar) {name2+=name.charAt(i)}
       } else {
         spacesCheckBeforeChar=false;
-        name2+=name.charAt(l);
+        name2+=name.charAt(i);
       }
     }
-    name=name2;
-    return name;
-    //alert ("--" + name2 + "--  " );
-    if (name.length===0) {return false} else {return true};
-  
+    return name2;
   }
 }
 
@@ -232,13 +227,27 @@ function disableComputerPlayer() {
 
 function getNames () {
   player1Name = document.getElementById("player1-form").value;
-  if (computerOpponent) {player2Name=computerName;} 
-    else {player2Name = document.getElementById("player2-form").value;}
-  if (player1Name!="" || player2Name!="") {
-    alert('jo');
+  player1Name = improvedInput (player1Name);
+  document.getElementById("player1-form").value = player1Name;
+  //alert("---" + player1Name + "//");
+  if (player1Name==="") {document.getElementById("player1-form").placeholder = "Enter Player 1"}
+  if (computerOpponent) {player2Name=computerName;
+  } else {
+    player2Name = document.getElementById("player2-form").value;
+    player2Name = improvedInput (player2Name);
+    document.getElementById("player2-form").value = player2Name;
+    if (player2Name==="") {document.getElementById("player2-form").placeholder = "Enter Player 2"}
+  }
+  //if (player1Name!="") {alert('niet leeg')}
+  if (player1Name!="" && player2Name!="") {
+    //alert ('test'); 
     document.getElementById("color-player1").innerHTML = player1Name;
     document.getElementById("color-player2").innerHTML = player2Name;
-  } else {alert('test')}
+  } else {
+    let formDiv = document.getElementsByClassName("bring-shadow")[3];
+    $(formDiv).addClass("blinking-red");
+    setTimeout(() => {$(formDiv).removeClass("blinking-red")}, 3000); 
+  }
 }
 
 function togglePlayerColor () {
@@ -263,7 +272,9 @@ function togglePlayerColor () {
 function togglePages() { // change from setting page to game page
   if (player1Name === "Player1" || player2Name === "Player2" || player1Name === "" || player1Name === " " 
       || player2Name === "" || player2Name === " ") {
-    alert("You forgot to give the player(s) a name, please try again");
+    let formDiv = document.getElementsByClassName("bring-shadow")[3];
+    $(formDiv).addClass("blinking-red");
+    setTimeout(() => {$(formDiv).removeClass("blinking-red")}, 3000); 
     return;
   }
     startGamePage ();

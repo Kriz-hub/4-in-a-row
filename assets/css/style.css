@@ -255,6 +255,10 @@ input[type="radio"]{
 #color-player1 {background: red;}
 #color-player2 {background: blue;}
 
+.error-blink {
+  background: red;
+}
+
 #landscape-orientation {
   position: absolute;
   background: black;
