@@ -13,13 +13,14 @@
 }
 
 body {
+  opacity:0;
   background-color:black;
   min-height: 86vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: verdana;
-  font-size: 1vw;
+  font-size: 7vw;
   perspective: 55em;
   perspective-origin: 1% calc(2% - 14em);
 }
@@ -269,114 +270,22 @@ input[type="radio"]{
   height: 90vh;
 }
 
-.zoom-game-scene-bigger-device { /*used to make a fade out when displaying hint to turn phone to landscape during game*/
-  font-size: 7vw;
-  animation: grow 2s ease-out;
+.give-game-start-fade-in { /*used to make a fade out when displaying hint to turn phone to landscape during game*/
+  animation: fade-in 5s ease-out;
 }
 
-@keyframes grow { 
-  0% { font-size: 1vw; }
-  1%	{font-size:	1.06vw;}
-  2%	{font-size:	1.12vw;}
-  3%	{font-size:	1.18vw;}
-  4% {font-size:	1.24vw;}
-  5%	{font-size:	1.3vw;}
-  6%	{font-size:	1.36vw;}
-  7%	{font-size:	1.42vw;}
-  8%	{font-size:	1.48vw;}
-  9%	{font-size:	1.54vw;}
-  10%	{font-size:	1.6vw;}
-  11%	{font-size:	1.66vw;}
-  12%	{font-size:	1.72vw;}
-  13%	{font-size:	1.78vw;}
-  14%	{font-size:	1.84vw;}
-  15%	{font-size:	1.9vw;}
-  16%	{font-size:	1.96vw;}
-  17%	{font-size:	2.02vw;}
-  18%	{font-size:	2.08vw;}
-  19%	{font-size:	2.14vw;}
-  20%	{font-size:	2.2vw;}
-  21%	{font-size:	2.26vw;}
-  22%	{font-size:	2.32vw;}
-  23%	{font-size:	2.38vw;}
-  24%	{font-size:	2.44vw;}
-  25%	{font-size:	2.5vw;}
-  26%	{font-size:	2.56vw;}
-  27%	{font-size:	2.62vw;}
-  28%	{font-size:	2.68vw;}
-  29%	{font-size:	2.74vw;}
-  30%	{font-size:	2.8vw;}
-  31%	{font-size:	2.86vw;}
-  32%	{font-size:	2.92vw;}
-  33%	{font-size:	2.98vw;}
-  34%	{font-size:	3.04vw;}
-  35%	{font-size:	3.1vw;}
-  36%	{font-size:	3.16vw;}
-  37%	{font-size:	3.22vw;}
-  38%	{font-size:	3.28vw;}
-  39%	{font-size:	3.34vw;}
-  40%	{font-size:	3.4vw;}
-  41%	{font-size:	3.46vw;}
-  42%	{font-size:	3.52vw;}
-  43%	{font-size:	3.58vw;}
-  44%	{font-size:	3.64vw;}
-  45%	{font-size:	3.7vw;}
-  46%	{font-size:	3.76vw;}
-  47%	{font-size:	3.82vw;}
-  48%	{font-size:	3.88vw;}
-  49%	{font-size:	3.94vw;}
-  50%	{font-size:	4vw;}
-  51%	{font-size:	4.06vw;}
-  52%	{font-size:	4.12vw;}
-  53%	{font-size:	4.18vw;}
-  54%	{font-size:	4.24vw;}
-  55%	{font-size:	4.3vw;}
-  56%	{font-size:	4.36vw;}
-  57%	{font-size:	4.42vw;}
-  58%	{font-size:	4.48vw;}
-  59%	{font-size:	4.54vw;}
-  60%	{font-size:	4.6vw;}
-  61%	{font-size:	4.66vw;}
-  62%	{font-size:	4.72vw;}
-  63%	{font-size:	4.78vw;}
-  64%	{font-size:	4.84vw;}
-  65%	{font-size:	4.9vw;}
-  66%	{font-size:	4.96vw;}
-  67%	{font-size:	5.02vw;}
-  68%	{font-size:	5.08vw;}
-  69%	{font-size:	5.14vw;}
-  70%	{font-size:	5.2vw;}
-  71%	{font-size:	5.26vw;}
-  72%	{font-size:	5.32vw;}
-  73%	{font-size:	5.38vw;}
-  74%	{font-size:	5.44vw;}
-  75%	{font-size:	5.5vw;}
-  76%	{font-size:	5.56vw;}
-  77%	{font-size:	5.62vw;}
-  78%	{font-size:	5.68vw;}
-  79%	{font-size:	5.74vw;}
-  80%	{font-size:	5.8vw;}
-  81%	{font-size:	5.86vw;}
-  82%	{font-size:	5.92vw;}
-  83%	{font-size:	5.98vw;}
-  84%	{font-size:	6.04vw;}
-  85%	{font-size:	6.1vw;}
-  86%	{font-size:	6.16vw;}
-  87%	{font-size:	6.22vw;}
-  88%	{font-size:	6.28vw;}
-  89%	{font-size:	6.34vw;}
-  90%	{font-size:	6.4vw;}
-  91%	{font-size:	6.46vw;}
-  92%	{font-size:	6.52vw;}
-  93%	{font-size:	6.58vw;}
-  94%	{font-size:	6.64vw;}
-  95%	{font-size:	6.7vw;}
-  96%	{font-size:	6.76vw;}
-  97%	{font-size:	6.82vw;}
-  98%	{font-size:	6.88vw;}
-  99%	{font-size:	6.94vw;}
-  100%	{font-size:	7vw;}
-  
+@keyframes fade-in { 
+  0% { opacity: 0; }
+  10% { opacity: 0.1; }
+  20% { opacity: 0.2; }
+  30% { opacity: 0.3; }
+  40% { opacity: 0.4; }
+  50% { opacity: 0.5; }
+  60% { opacity: 0.6; }
+  70% { opacity: 0.7; }
+  80% { opacity: 0.8; }
+  90% { opacity: 0.9; }
+  100% { opacity: 1; }
 }
 
 #orientation-text { /*used to make a fade out when displaying hint to turn phone to landscape during game*/

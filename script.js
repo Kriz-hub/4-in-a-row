@@ -69,20 +69,13 @@ function eventListeners () {
 function decideFontsizeSmallerDevice() { 
   // a different font size for phones with a diffrent aspect ratio 
   // in this 3D world a higher font-size gives a closer look to the cubes
-  let screenCheck=document.getElementById("screen-check");
+  let screenCheck=document.getElementById("bodyID");
   $(document).ready(function(){
     if(phoneDevice(false)) {
-      if (screen.width/screen.height>1.78) {
-        $(screenCheck).animate({fontSize: '5vw'}, '15s') 
-        //screenCheck.style.fontSize =  "5vw";
-      } else {
-        $(screenCheck).animate({fontSize: '7vw'}, '15s') 
-        //screenCheck.style.fontSize =  "7vw";
-      }
-    } else {
-      $(screenCheck).addClass("zoom-game-scene-bigger-device");
-      //$(screenCheck).animate({fontSize: '7vw'}, '15s') 
-    }
+      if (screen.width/screen.height>1.78) {screenCheck.style.fontSize =  "5vw";
+      } else {screenCheck.style.fontSize =  "7vw";}
+      // right now 7vw is already default but this could change
+    } 
   });
 }
 
@@ -123,7 +116,8 @@ var pointsBlue =-1;
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
-startSettingPage ();
+document.getElementById("bodyID").style.opacity="1";
+//startSettingPage ();
 eventListeners ();
 
 function improvedInput (name) {
@@ -148,9 +142,7 @@ function improvedInput (name) {
 }
 
 
-function startSettingPage () {
-  let bodyID = document.getElementById("screen-check");
-  $(bodyID).addClass("keep-portrait-for-setting-page"); //only works with smaller tablets and lower
+function startSettingPage () { //not used
   if (phoneDevice(true)) {
     if (screen.width > screen.height) {
       $( window ).on( "orientationchange", function() {
@@ -164,15 +156,6 @@ function startSettingPage () {
     } else {firstTimeSettingPage=false} 
   }
 }
-
-function startGamePage () {
-  let bodyID = document.getElementById("screen-check");
-  $(bodyID).removeClass("keep-portrait-for-setting-page");
-  document.getElementById("setting-page").style.display = "none";
-  document.getElementById("scene").style.display = "inline";
-  decideFontsizeSmallerDevice();
-}
-
 
 
 
@@ -283,7 +266,12 @@ function togglePages() { // change from setting page to game page
     setTimeout(() => {$(formDiv).removeClass("blinking-red")}, 3000); 
     return;
   }
-    startGamePage ();
+  document.getElementById("setting-page").style.display = "none";
+  document.getElementById("scene").style.display = "inline";
+  decideFontsizeSmallerDevice();
+  let bodyID = document.getElementById("bodyID");
+  $(bodyID).addClass("give-game-start-fade-in");
+  
     
     //I only want this remark during game mode, therefore I placed this later
     //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
