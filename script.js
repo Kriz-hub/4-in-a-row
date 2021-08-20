@@ -1,3 +1,40 @@
+const computerName = "Compu";
+const totalCols = 12; //number of cubes (=columns) on x-direction
+const totalRows = 7; // number of cubes (=rows) on y-direction
+const startCubeCol = -3; //-3em 
+const startCubeRow = 0.5; //0.5em
+const step = 0.5; //cubes and balls are 0.5em positioned from each other
+const blinkingTime = 4000; //time to let balls blink after made 4 in a row
+
+var busy=false;
+var explanationListShown=true;
+var firstTimeSettingPage=true;
+//12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
+var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
+var ballsPerCol = []; //how many balls are placed per column
+var computerOpponent = true;
+var computerBeginsFirst = false;
+var redsTurn = true; //who has to make a move, when blue then redsTurn=false
+var player1Red = true; //player 1 has the red color by default
+var fullScreenWish = false;
+var settingPageLeft = false;
+var endQuestion = false; //when pressed on exit, this will be true
+var gameEnded = false;
+var player1Name = "Player1"; //default player names
+var player2Name = "Player2";
+var movesToMake = totalCols*totalRows; // max amount of moves
+var pointsRed = -1; //points of red player, must be -1, when game starts they will be 0
+var pointsBlue =-1;
+//first game environment will be build with opacity 0 because otherwise there can be a little flickering effect
+buildGameScene();
+document.getElementsByClassName("ballshadow")[0].style.display= "none";
+document.getElementById("scene").style.display = "none";
+//game environment is made none, first setting page is displayed
+document.getElementById("bodyID").style.opacity="1";
+eventListeners ();
+
+
+//to give it an app look, the game can be displayed without URL input area
 function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
 {
     if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen))
@@ -32,7 +69,7 @@ function toggle_full_screen() //https://stackoverflow.com/questions/1125084/how-
     }
 }
 
-function phoneDevice (AlsoDetectTabletDevice) { // for this game often necessary to know if a phone device is used
+function phoneDevice (AlsoDetectTabletDevice) { // When is a phone device (and tablet) used
   let pixelAmount;
   if (AlsoDetectTabletDevice) {pixelAmount=1050} else {pixelAmount=950};
   if (screen.width<pixelAmount && screen.height<pixelAmount) 
@@ -44,17 +81,10 @@ function phoneDevice (AlsoDetectTabletDevice) { // for this game often necessary
 
 
 function eventListeners () {
-  const radio1 = document.querySelector("#option-1");
-  const radio2 = document.querySelector("#option-2");
-  
-  radio1.addEventListener("click", () => {enableComputerPlayer();});
-  radio2.addEventListener("click", () => {disableComputerPlayer();})
-
   let collu = document.getElementsByClassName("collapsible")[0];
   let introLine = document.getElementsByClassName("content")[0];
   let explanation = document.getElementsByClassName("content")[1];
-
-  collu.addEventListener("click", function() {
+  collu.addEventListener("click", function() { //for showing collapsible with gamerules
     if (explanation.style.display === "inline") {
       setTimeout(() => {introLine.style.display = "inline"; explanation.style.display = "none";}, 300); 
       $(explanation).animate({opacity: '0'}, '3s')
@@ -63,66 +93,34 @@ function eventListeners () {
       $(explanation).animate({opacity: '1'}, '3s')
     }
   });
+
+  const radio1 = document.querySelector("#option-1");
+  const radio2 = document.querySelector("#option-2");
+  //choose number of players
+  radio1.addEventListener("click", () => {enableComputerPlayer();});
+  radio2.addEventListener("click", () => {disableComputerPlayer();})
 }
+
 
 // https://stackoverflow.com/questions/1248081/how-to-get-the-browser-viewport-dimensions
 function decideFontsizeSmallerDevice() { 
   // a different font size for phones with a diffrent aspect ratio 
-  // in this 3D world a higher font-size gives a closer look to the cubes
+  // in this 3D world a higher font-size value gives a closer look to the cubes
   let screenCheck=document.getElementById("bodyID");
   $(document).ready(function(){
     if(phoneDevice(false)) {
       if (screen.width/screen.height>1.78) {screenCheck.style.fontSize =  "5vw";
       } else {screenCheck.style.fontSize =  "7vw";}
-      // right now 7vw is already default but this could change
+      // right now 7vw is already a default value but this could change, therefore I leave this here
     } 
   });
 }
 
 
 
-//https://stackoverflow.com/questions/14360581/force-landscape-orientation-mode
-//https://stackoverflow.com/questions/1125084/how-to-make-the-window-full-screen-with-javascript-stretching-all-over-the-scre
-//https://github.com/sindresorhus/screenfull.js/blob/main/src/screenfull.js
-
-const computerName = "Compu";
-const totalCols = 12; //number of cubes (=columns) on x-direction
-const totalRows = 7; // number of cubes (=rows) on y-direction
-const startCubeCol = -3; //-3em 
-const startCubeRow = 0.5; //0.5em
-const step = 0.5; //cubes and balls are 0.5em positioned from each other
-const blinkingTime = 4000; //time to let balls blink after made 4 in a row
-//12 columns, will later be filled with: "r" (Red ball), "b" (blue ball) or "n" (none):
-var busy=false;
-var explanationListShown=true;
-var firstTimeSettingPage=true;
-var grid = [[], [], [], [], [], [], [], [], [], [], [], []];
-var ballsPerCol = []; //how many balls are placed per column
-var computerOpponent = true;
-var computerBeginsFirst = false;
-var redsTurn = true; //who's turn, when blue then redsTurn=false
-var player1Red = true;
-var fullScreenWish = false;
-var settingPageLeft = false;
-var endQuestion = false;
-var gameEnded = false;
-var player1Name = "Player1";
-var player2Name = "Player2";
-var movesToMake = totalCols*totalRows;
-var pointsRed = -1;
-var pointsBlue =-1;
-//alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
-//decideFontsizeSmallerDevice();
-buildGameScene();
-document.getElementsByClassName("ballshadow")[0].style.display= "none";
-document.getElementById("scene").style.display = "none";
-document.getElementById("bodyID").style.opacity="1";
-//startSettingPage ();
-eventListeners ();
-
 function improvedInput (name) {
-  /*when player name is given, spaces before 1st character or other signs will be erased or just spaces are 
-  erased. Spaces after 1st character or other signs are OK */
+  /*when player name is given, spaces before 1st character will be erased. Also are spaces 
+  erased when it are just that. Spaces after 1st character are OK */
   let i;
   let name2="";
   let spacesCheckBeforeChar=true;
@@ -142,24 +140,9 @@ function improvedInput (name) {
 }
 
 
-function startSettingPage () { //not used
-  if (phoneDevice(true)) {
-    if (screen.width > screen.height) {
-      $( window ).on( "orientationchange", function() {
-      /*orientation change: https://api.jquerymobile.com/orientationchange/
-      reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
-      When setting page is started in landscape mode, the screen rotates 90deg to tell the user to turn
-      to portrait mode. In that case the display will be messed up after doing the orientation change.
-      A page reload solve this bug. It needs to carry out once. In case of an immediate start in portrait mode
-      this problem don't occur.*/
-        if (firstTimeSettingPage || screen.height > screen.width) {location.reload(); firstTimeSettingPage=false} }); 
-    } else {firstTimeSettingPage=false} 
-  }
-}
-
-
-
 function enableComputerPlayer() {
+  /*when 2 players is choosen, the computer player div with it's difficulty levels must be displayed
+  Also a reset must taken place get the form into start position for input one player*/
   document.getElementById("color-player1").innerHTML = "Player1";
   document.getElementById("color-player2").innerHTML = "Player2";
   document.getElementById("player1-form").value = "";
@@ -172,15 +155,19 @@ function enableComputerPlayer() {
   pl2Form.disabled = true; //because there is a computer player, no player2 name can be filled in on form
   computerOpponent = true;  
   let compLevelDiv = document.getElementById("play-level-comp");
-  setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); 
+  setTimeout(() => {$(compLevelDiv).animate({opacity: '1'}, '3s')}, 300); //give the appearance a smooth animation
   if(phoneDevice(true)) {
-    $(compLevelDiv).removeClass("remove-mouse-pointer");
+    /*When using a phone the computer play level div was hidden under the following div. That div must move 
+    down to give space to the computer play level div. Also mousepointer must be activated again*/
+    $(compLevelDiv).removeClass("remove-mouse-pointer"); 
     let divUnderCompLevel = document.getElementById("form-and-color-choice");
     $(divUnderCompLevel).animate({marginTop: '1vh'}, '3s') 
   }
 }
 
 function disableComputerPlayer() {
+ /*when 1 player is choosen, the computer player div with it's difficulty levels must be made hidden
+  Also a reset must taken place get the form into start position for input two players*/
   document.getElementById("color-player1").innerHTML = "Player1";
   document.getElementById("color-player2").innerHTML = "Player2";
   document.getElementById("player1-form").value = "";
@@ -188,7 +175,7 @@ function disableComputerPlayer() {
   document.getElementById("player1-form").placeholder = "Enter Player 1";
   document.getElementById("player2-form").placeholder = "Enter Player 2";
   let pl2Form = document.getElementById("player2-form");
-  pl2Form.disabled = false; //because there is no computer player, player2 name can be filled in on form
+  pl2Form.disabled = false; //because there is no computer player, player2 name must be filled on the form
   computerOpponent = false;
   let compLevelDiv=document.getElementById("play-level-comp");
   $(compLevelDiv).animate({opacity: '0'}, '3s');
@@ -197,7 +184,6 @@ function disableComputerPlayer() {
     place to close the gap. because every device has a different height, the amount of movement differ,
     therefore comming variables are needed to calculate this. This is not for large tablets of laptops because 
     the computerplayer-column there is side by side. */
-
     const normalScreenheight=640;
     const maxScreenheight=1366;
     const normalMarginTop=-32;
@@ -214,11 +200,12 @@ function disableComputerPlayer() {
 
 
 
-function getNames () {
+function getNames () { 
+  /*after pressing the submit button the input of player names are tested. By using Function ImpovedInput
+  wrongly placed spaces are removed. When inpoutlines are empty the placeholder text must return */
   player1Name = document.getElementById("player1-form").value;
   player1Name = improvedInput (player1Name);
   document.getElementById("player1-form").value = player1Name;
-  //alert("---" + player1Name + "//");
   if (player1Name==="") {document.getElementById("player1-form").placeholder = "Enter Player 1"}
   if (computerOpponent) {player2Name=computerName;
   } else {
@@ -227,12 +214,12 @@ function getNames () {
     document.getElementById("player2-form").value = player2Name;
     if (player2Name==="") {document.getElementById("player2-form").placeholder = "Enter Player 2"}
   }
-  //if (player1Name!="") {alert('niet leeg')}
-  if (player1Name!="" && player2Name!="") {
-    //alert ('test'); 
+  //When input is allright the player names must placed in the next div where player color can be choosen
+  if (player1Name!="" && player2Name!="") { 
     document.getElementById("color-player1").innerHTML = player1Name;
     document.getElementById("color-player2").innerHTML = player2Name;
   } else {
+    //with at least one empty player line a red blinking start to point out that there is an error.
     let formDiv = document.getElementsByClassName("bring-shadow")[3];
     $(formDiv).addClass("blinking-red");
     setTimeout(() => {$(formDiv).removeClass("blinking-red")}, 3000); 
