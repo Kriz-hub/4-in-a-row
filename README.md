@@ -105,12 +105,12 @@ Game Environment:
 * A next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
 
 ## Bugs and other issues
-* I saw once that blinking of balls, to emphasize that a four in a row is made, not worked.
+* When in game mode the environment is not displayed correctly and therefore it can't be played in a Fire Fox browser. The game invironment is based on builded cubes and the sides from all of them are not- or partially displayed. I tried to test it again in a CSS environment with only one cube. It seems that there is an issue with "animation: RotateY". When I used "rotate3d(., ., ., ..deg)" for example I saw the sides of that cube appear again so there should be a solution. But that must be solved in a future development.
 * There is a delay made in to create an illusion that the computer player have to think about his move. It needs a little more finetuning. Now the color change come somewhat too quick to the human player while the move isn't totally made yet.
 * The delay when balls start to blink when a point is made should also have that finetuning. The opponent's color comes a little too quick.
-* when the game is completely played out, the last ball is in it's bouncing while the winner is decleared. Also a timing issue.
+* when the game is completely played out, the last ball is still in it's bouncing while the winner is decleared. Also a timing issue.
 * An old 2012 tablet Asus Transformer Pad crashes in it's browser, the Setting Page doesn't react on human screen touches, although the Chrome browser can be closed. Because another more modern tablet Lenovo TB-X10AF gives no issues (and due lack of time). I leave it that way.
-* When rotation animation starts it's clear that it takes power to keep doing its job well for the graphic chip on the device. Smaller devices can show some "shuttering" during the animation. But small devices can perfom great with many game app's, so it should go well. It seems some hardware acceleration is missing when HTML and CSS is used. 
+* When rotation animation starts it's clear that it costs processor power for the graphic chip on the device. Smaller devices can show some "shuttering" during the animation. But small devices can perfom great with many game app's, so it should go well. It seems some hardware acceleration is missing when HTML and CSS is used. This should be a thing to solve for hardware developers.
 
 ## Deployment
 
