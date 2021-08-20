@@ -73,10 +73,15 @@ function decideFontsizeSmallerDevice() {
   $(document).ready(function(){
     if(phoneDevice(false)) {
       if (screen.width/screen.height>1.78) {
-        screenCheck.style.fontSize =  "5vw";
+        $(screenCheck).animate({fontSize: '5vw'}, '15s') 
+        //screenCheck.style.fontSize =  "5vw";
       } else {
-        screenCheck.style.fontSize =  "7vw";
+        $(screenCheck).animate({fontSize: '7vw'}, '15s') 
+        //screenCheck.style.fontSize =  "7vw";
       }
+    } else {
+      $(screenCheck).addClass("zoom-game-scene-bigger-device");
+      //$(screenCheck).animate({fontSize: '7vw'}, '15s') 
     }
   });
 }
@@ -114,7 +119,7 @@ var movesToMake = totalCols*totalRows;
 var pointsRed = -1;
 var pointsBlue =-1;
 //alert ('screenwidth: ' + screen.width + '  screenheight: ' + screen.height);
-decideFontsizeSmallerDevice();
+//decideFontsizeSmallerDevice();
 buildGameScene();
 document.getElementsByClassName("ballshadow")[0].style.display= "none";
 document.getElementById("scene").style.display = "none";
@@ -165,6 +170,7 @@ function startGamePage () {
   $(bodyID).removeClass("keep-portrait-for-setting-page");
   document.getElementById("setting-page").style.display = "none";
   document.getElementById("scene").style.display = "inline";
+  decideFontsizeSmallerDevice();
 }
 
 
