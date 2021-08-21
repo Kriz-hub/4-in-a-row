@@ -442,11 +442,7 @@ input[type="radio"]{
     display:none;
 }
 
-.thirst-messagecube-position {
-    left:-2.75em;
-}
-
-.second-messagecube-position {
+.messagecube-position {
     left:-2.75em;
 }
 

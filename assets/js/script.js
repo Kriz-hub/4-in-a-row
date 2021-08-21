@@ -286,6 +286,7 @@ function togglePages() { // change from setting page to game page
 
 
 function endAnimation () {
+//When pressed on the cube with "Exit", 2 message-cube appear with the question to leave the game
   if (settingPageLeft) {
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
@@ -296,15 +297,17 @@ function endAnimation () {
     $(messageCubeDiv1).animate({top: '0em'});
     messageCubeDiv2.style.display = "inline";
     $(messageCubeDiv2).animate({top: '0em'});
-    $(sceneDiv).addClass("rotate");
+    $(sceneDiv).addClass("rotate"); //scene rotation starts
     $(".redball").css("animation-name", "scene-rotate");
     $(".blueball").css("animation-name", "scene-rotate");
-    makeThemScoreBlocks_MakeThemYesNoBlocks (false);
+    makeThemScoreBlocks_MakeThemYesNoBlocks (false); 
+    //the blocks where normally are the scores on change in blinking cubes with "Yes" or "No" where can be clicked on
     let redCube = document.getElementById("score-cube-red");
     let greenCube = document.getElementById("score-cube-blue");
     $(redCube).addClass("blinking-red");
     $(greenCube).addClass("blinking-green");
     let root = document.documentElement;
+    //the CSS variables change to other colors
     root.style.setProperty('--left-cube-text-color', 'white');
     root.style.setProperty('--right-cube-text-color', 'white');
     root.style.setProperty('--hover-color', 'gray');
@@ -315,7 +318,8 @@ function endAnimation () {
 function answer (q) {
 if (endQuestion && !gameEnded) {
   makeThemScoreBlocks_MakeThemYesNoBlocks (true);
-  let root = document.documentElement;
+  var root = document.documentElement;
+  //after question to leave the game or not, the blocks get back there opponent scores
   root.style.setProperty('--left-cube-text-color', 'red');
   root.style.setProperty('--right-cube-text-color', 'blue');
   let redCube = document.getElementById("score-cube-red");
@@ -340,7 +344,6 @@ if (endQuestion && !gameEnded) {
     messageP3.innerHTML = endLine;
     messageP4.innerHTML = endLine;
     gameEnded=true;
-    root.style.setProperty('--hover-color', 'gray');
     let p1;
     let p2;
     if (redsTurn) {
@@ -352,7 +355,9 @@ if (endQuestion && !gameEnded) {
     }
     p1.style.textDecoration = "none";
     p2.style.textDecoration = "none";
-    setTimeout(() => {if (fullScreenWish) {toggle_full_screen()}}, 3000); 
+    //let root = document.documentElement;
+    root.style.setProperty('--hover-color', 'gray');
+    setTimeout(() => {if (fullScreenWish) {toggle_full_screen()}; root.style.setProperty('--hover-color', 'gray');}, 3000); //after a few seconds full screen is ended
   } else { //When Clicked 'NO' to end this game, back to game mode:
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
@@ -450,8 +455,7 @@ function buildGameScene () {
 
   let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
   let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
-  $(cubeMessageCloneDiv).removeClass("thirst-messagecube-position");
-  $(cubeMessageCloneDiv).addClass("second-messagecube-position");
+  $(cubeMessageCloneDiv).addClass("messagecube-position");
   
   sceneDiv.appendChild(cubeMessageCloneDiv);
   let frontPart = document.getElementsByClassName("message-front")[1];
@@ -465,7 +469,8 @@ function buildGameScene () {
   leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(-3.5em)";
   topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(-3.5em) translateX(0em)";
 
-  //exitcube change translates
+  /*The cube with 'Exit' on it is 'CSS family' of the cubes with blue and red scores, therefore it appears on the
+  wrong coordinates. Each site of the cube must move forwards by transform rotation and translation*/
   frontPart = document.getElementsByClassName("score-front")[2];
   backPart = document.getElementsByClassName("score-back")[2];
   rightPart = document.getElementsByClassName("score-right")[2];
