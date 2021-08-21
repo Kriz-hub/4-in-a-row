@@ -84,7 +84,7 @@ function eventListeners () {
   let collu = document.getElementsByClassName("collapsible")[0];
   let introLine = document.getElementsByClassName("content")[0];
   let explanation = document.getElementsByClassName("content")[1];
-  collu.addEventListener("click", function() { //for showing collapsible with gamerules
+  collu.addEventListener("click", function() { //for showing collapsible with gamerules in it
     if (explanation.style.display === "inline") {
       setTimeout(() => {introLine.style.display = "inline"; explanation.style.display = "none";}, 300); 
       $(explanation).animate({opacity: '0'}, '3s')
@@ -226,7 +226,7 @@ function getNames () {
   }
 }
 
-function togglePlayerColor () {
+function togglePlayerColor () { //this div is to determine who gets what color
     if (player1Red) {
         player1Red=false;
         document.getElementById("color-player1").style.background = "blue";
@@ -246,8 +246,9 @@ function togglePlayerColor () {
 
 
 function togglePages() { // change from setting page to game page
-  if (player1Name === "Player1" || player2Name === "Player2" || player1Name === "" || player1Name === " " 
-      || player2Name === "" || player2Name === " ") {
+  //with this conditions the input area starts to blink red because there is an error:
+  if (player1Name === "Player1" || player2Name === "Player2" || player1Name === "" 
+      || player2Name === "" || player2Name === player1Name) {
     let formDiv = document.getElementsByClassName("bring-shadow")[3];
     $(formDiv).addClass("blinking-red");
     setTimeout(() => {$(formDiv).removeClass("blinking-red")}, 3000); 
@@ -255,34 +256,34 @@ function togglePages() { // change from setting page to game page
   }
   document.getElementById("setting-page").style.display = "none";
   document.getElementById("scene").style.display = "inline";
-  decideFontsizeSmallerDevice();
+  decideFontsizeSmallerDevice(); //when using a phone fontsize will be changed
   let bodyID = document.getElementById("bodyID");
   $(bodyID).addClass("give-game-start-fade-in");
   
-    
-    //I only want this remark during game mode, therefore I placed this later
-    //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
-    let reference = document.getElementById('scene');
-    let newDiv = document.createElement('div');
-    let newH3 = document.createElement('h3');
-    newDiv.id = "landscape-orientation";
-    newH3.id = "orientation-text";
-    newH3.innerText = "You may turn your device to landscape mode for a better game experience";
-    newDiv.appendChild(newH3);
-    document.body.insertBefore(newDiv, reference);
+  //when device is in portrait mode, this hint appears:
+  //https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
+  let reference = document.getElementById('scene');
+  let newDiv = document.createElement('div');
+  let newH3 = document.createElement('h3');
+  newDiv.id = "landscape-orientation";
+  newH3.id = "orientation-text";
+  newH3.innerText = "You may turn your device to landscape mode for a better game experience";
+  newDiv.appendChild(newH3);
+  document.body.insertBefore(newDiv, reference);
 
-    fullScreenWish = document.getElementById("check-it").checked;
-    if (fullScreenWish) {toggle_full_screen();}
-    givePoint ("b");
-    givePoint ("r");
-    settingPageLeft = true;
-    if (computerOpponent && computerBeginsFirst) {
-       putFocus ('r');
-       setTimeout(() => {computerSaysIAmThinking ('r');}, 500); 
-       setTimeout(() => {computerMove('r');}, 1500); 
-       busy=true;
-    }
+  fullScreenWish = document.getElementById("check-it").checked;
+  if (fullScreenWish) {toggle_full_screen()} //remove the URL area to give it an app appearance
+  givePoint ("b"); //give point to get opponents to zero from -1
+  givePoint ("r");
+  settingPageLeft = true;
+  if (computerOpponent && computerBeginsFirst) { //when computer plays and go first, then a move will be made:
+    putFocus ('r');
+    setTimeout(() => {computerSaysIAmThinking ('r');}, 500); 
+    setTimeout(() => {computerMove('r');}, 1500); 
+    busy=true;
+  }
 }
+
 
 function endAnimation () {
   if (settingPageLeft) {
