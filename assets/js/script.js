@@ -284,6 +284,111 @@ function togglePages() { // change from setting page to game page
   }
 }
 
+function buildGameScene () {    
+  let cubeCol = startCubeCol-step;
+  let cubeRow;
+  let row;
+  let col;
+  let sceneDiv = document.getElementById("scene");
+  let cubeDiv = document.getElementsByClassName("cube")[0];
+  let cubeCloneDiv;
+  for (col = 1; col<=totalCols; col++) { //build rows of cubes that contain the balls later
+      ballsPerCol[col-1]=0;
+      cubeCol += step;
+      cubeRow = startCubeRow+step;
+      for (row = 1; row<=totalRows; row++) {
+          grid[col-1][row-1]="n"; //fill grid with "n", that means none, no balls this moment
+          cubeRow -= step;
+          cubeCloneDiv = cubeDiv.cloneNode(true);
+          cubeCloneDiv.style.top = cubeRow + "em";
+          cubeCloneDiv.style.left = cubeCol + "em";
+          cubeCloneDiv.id = "col" + col + "row" + row; //give each cube an ID from "col1row1" to "col12row7"
+          sceneDiv.appendChild(cubeCloneDiv);
+      }
+  }
+  // build extra cubes to hold 2 big score-cubes
+  // these are the two legs to hold left scorecube
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "-5.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg1a";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "-5.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg1b";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "-3.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg2a";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "-3.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg2b";
+  sceneDiv.appendChild(cubeCloneDiv);
+  // these are the two legs to hold right scorecube
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow  + "em";
+  cubeCloneDiv.style.left = "3.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg3a";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "3.25em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg3b";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow + "em";
+  cubeCloneDiv.style.left = "4.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg4a";
+  sceneDiv.appendChild(cubeCloneDiv);
+  cubeCloneDiv = cubeDiv.cloneNode(true);
+  cubeCloneDiv.style.top = startCubeRow-step + "em";
+  cubeCloneDiv.style.left = "4.75em";
+  cubeCloneDiv.style.background = "darkslategray";
+  cubeCloneDiv.id = "leg4b";
+  sceneDiv.appendChild(cubeCloneDiv);
+
+  //make second message cube, the first one already exist in CSS
+  let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
+  let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
+  $(cubeMessageCloneDiv).addClass("messagecube-position");
+  sceneDiv.appendChild(cubeMessageCloneDiv);
+  let frontPart = document.getElementsByClassName("message-front")[1];
+  let backPart = document.getElementsByClassName("message-back")[1];
+  let rightPart = document.getElementsByClassName("message-right")[1];
+  let leftPart = document.getElementsByClassName("message-left")[1];
+  let topPart = document.getElementsByClassName("message-top")[1];
+  frontPart.style.transform="translateZ(.25em) translateZ(-3.5em)";
+  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(3.5em)";
+  rightPart.style.transform="rotateY(90deg) translateZ(4.75em) translateX(3.5em)";
+  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(-3.5em)";
+  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(-3.5em) translateX(0em)";
+
+  /*The cube with 'Exit' on it is 'CSS family' of the cubes with blue and red scores, therefore it appears on the
+  wrong coordinates. Each site of the cube must move forwards by transform rotation and translation This Exit cube is
+  already made in CSS*/
+  frontPart = document.getElementsByClassName("score-front")[2];
+  backPart = document.getElementsByClassName("score-back")[2];
+  rightPart = document.getElementsByClassName("score-right")[2];
+  leftPart = document.getElementsByClassName("score-left")[2];
+  topPart = document.getElementsByClassName("score-top")[2];
+  frontPart.style.transform="translateZ(.25em) translateZ(4em)";
+  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(-4em)";
+  rightPart.style.transform="rotateY(90deg) translateZ(1.75em) translateX(-4em)";
+  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(4em)";
+  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(4em) translateX(0em)";
+} // end function buildGameScene
+
 
 function endAnimation () {
 //When pressed on the cube with "Exit", 2 message-cube appear with the question to leave the game
@@ -355,9 +460,8 @@ if (endQuestion && !gameEnded) {
     }
     p1.style.textDecoration = "none";
     p2.style.textDecoration = "none";
-    //let root = document.documentElement;
-    root.style.setProperty('--hover-color', 'gray');
-    setTimeout(() => {if (fullScreenWish) {toggle_full_screen()}; root.style.setProperty('--hover-color', 'gray');}, 3000); //after a few seconds full screen is ended
+    setTimeout(() => {if (fullScreenWish) {toggle_full_screen()}; 
+          root.style.setProperty('--hover-color', 'gray')}, 3000); //after a few seconds full screen is ended
   } else { //When Clicked 'NO' to end this game, back to game mode:
     let messageCubeDiv1 = document.getElementsByClassName("message-cube")[0];
     let messageCubeDiv2 = document.getElementsByClassName("message-cube")[1];
@@ -379,113 +483,8 @@ if (endQuestion && !gameEnded) {
 }
 
 
-function buildGameScene () {    
-  let cubeCol = startCubeCol-step;
-  let cubeRow;
-  let row;
-  let col;
-  let sceneDiv = document.getElementById("scene");
-  let cubeDiv = document.getElementsByClassName("cube")[0];
-  let cubeCloneDiv;
-  for (col = 1; col<=totalCols; col++) { //build rows of cubes that contain the balls later
-      ballsPerCol[col-1]=0;
-      cubeCol += step;
-      cubeRow = startCubeRow+step;
-      for (row = 1; row<=totalRows; row++) {
-          grid[col-1][row-1]="n"; //fill grid with "n", none, no balls this moment
-          cubeRow -= step;
-          cubeCloneDiv = cubeDiv.cloneNode(true);
-          cubeCloneDiv.style.top = cubeRow + "em";
-          cubeCloneDiv.style.left = cubeCol + "em";
-          cubeCloneDiv.id = "col" + col + "row" + row; //give each cube an ID from "col1row1" to "col12row7"
-          sceneDiv.appendChild(cubeCloneDiv);
-      }
-  }
-  // build extra cubes to hold 2 big score-cubes
-  // these are the two legs to hold left scorecube, each build of two cubes
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
-  cubeCloneDiv.style.left = "-5.25em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg1a";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
-  cubeCloneDiv.style.left = "-5.25em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg1b";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
-  cubeCloneDiv.style.left = "-3.75em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg2a";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
-  cubeCloneDiv.style.left = "-3.75em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg2b";
-  sceneDiv.appendChild(cubeCloneDiv);
-  // these are the two legs to hold right scorecube, each build of two cubes
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow  + "em";
-  cubeCloneDiv.style.left = "3.25em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg3a";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
-  cubeCloneDiv.style.left = "3.25em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg3b";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow + "em";
-  cubeCloneDiv.style.left = "4.75em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg4a";
-  sceneDiv.appendChild(cubeCloneDiv);
-  cubeCloneDiv = cubeDiv.cloneNode(true);
-  cubeCloneDiv.style.top = startCubeRow-step + "em";
-  cubeCloneDiv.style.left = "4.75em";
-  cubeCloneDiv.style.background = "darkslategray";
-  cubeCloneDiv.id = "leg4b";
-  sceneDiv.appendChild(cubeCloneDiv);
-
-  let cubeMessageDiv = document.getElementsByClassName("message-cube")[0];
-  let cubeMessageCloneDiv = cubeMessageDiv.cloneNode(true);
-  $(cubeMessageCloneDiv).addClass("messagecube-position");
-  
-  sceneDiv.appendChild(cubeMessageCloneDiv);
-  let frontPart = document.getElementsByClassName("message-front")[1];
-  let backPart = document.getElementsByClassName("message-back")[1];
-  let rightPart = document.getElementsByClassName("message-right")[1];
-  let leftPart = document.getElementsByClassName("message-left")[1];
-  let topPart = document.getElementsByClassName("message-top")[1];
-  frontPart.style.transform="translateZ(.25em) translateZ(-3.5em)";
-  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(3.5em)";
-  rightPart.style.transform="rotateY(90deg) translateZ(4.75em) translateX(3.5em)";
-  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(-3.5em)";
-  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(-3.5em) translateX(0em)";
-
-  /*The cube with 'Exit' on it is 'CSS family' of the cubes with blue and red scores, therefore it appears on the
-  wrong coordinates. Each site of the cube must move forwards by transform rotation and translation*/
-  frontPart = document.getElementsByClassName("score-front")[2];
-  backPart = document.getElementsByClassName("score-back")[2];
-  rightPart = document.getElementsByClassName("score-right")[2];
-  leftPart = document.getElementsByClassName("score-left")[2];
-  topPart = document.getElementsByClassName("score-top")[2];
-  frontPart.style.transform="translateZ(.25em) translateZ(4em)";
-  backPart.style.transform="rotateY(180deg) translateZ(.25em) translateZ(-4em)";
-  rightPart.style.transform="rotateY(90deg) translateZ(1.75em) translateX(-4em)";
-  leftPart.style.transform="rotateY(270deg) translateZ(.25em) translateX(4em)";
-  topPart.style.transform="translateZ(0em) rotateX(90deg) translateY(4em) translateX(0em)";
-} // end function buildGameScene
-
-
-function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears on ground
-  const rowNr="row1" // shadow is always on the ground, so part of the cube's ID we look for will be row1
+function bringShadow (colNr) { //when 1st ball is placed in row, a shadow appears on ground
+  const rowNr="row1" // shadow is always on the ground, so part of the cube's ID we look for, will be row1
   let cubeDiv= document.getElementById('col' + colNr + rowNr);
   let shadowDiv = document.getElementsByClassName("ballshadow")[0];
   let shadowCloneDiv = shadowDiv.cloneNode(true);
@@ -495,7 +494,7 @@ function bringShadow (colNr) { //when 1st ball is placed in row a shadow appears
 }
 
 
-function blinkingBall (who, x, y) {
+function blinkingBall (who, x, y) { //when 4 in a row is made, balls begin to blink 
   let ballID = "bcol" + (x+1) + "brow" + (y+1);
   let ballDiv = document.getElementById(ballID);
   if (who==='r') {
@@ -650,7 +649,9 @@ function makeThemScoreBlocks_MakeThemYesNoBlocks (scoreBlocks) { //scoreBlocks i
 }
 
 
-function givePoint (who, justShowScore) {
+function givePoint (who, justShowScore) { 
+  /*add a point to the opponent who makes 4 in a row. At the end of the game this function is used to show the score
+  without giving points, in that case justShowScore=true */
   let scoreP1;
   let scoreP2;
   if (who==="r") {
@@ -668,7 +669,8 @@ function givePoint (who, justShowScore) {
   }
 }
 
-function computerSaysIAmThinking (who) { //give a delay when a computer oppononent does it's turn 
+function computerSaysIAmThinking (who) { 
+  //give a delay when a computer player does it's turn to give the illusion that it needs time to make a move
   let focusDiv1;
   if (who==="r") {
     focusDiv1 = document.getElementsByClassName("score-text-red")[0];
@@ -712,7 +714,7 @@ function computerMove(who) {
   let colsAvailable=[];
   let colsAvailableAmount=0;
   let col;
-  //Collect availlable collumns which aren't full of balls yet:
+  //look for available columns which aren't full of balls yet where a move can be made:
   for (col = 1; col<=totalCols; col++) {
     if (ballsPerCol[col-1]<totalRows) {colsAvailableAmount += 1; colsAvailable[colsAvailableAmount]=col;}}
 
@@ -722,7 +724,7 @@ function computerMove(who) {
   dropBall(colNr);
   givePoint (who, true);
   movesToMake -= 1;
-  //when all balls are played then game must be ended by starting function endanimation:
+  //when all balls are played then game must be ended by starting function endAnimation:
   if (movesToMake<0.1) { endAnimation (); answer (true); }
 }
 
@@ -735,8 +737,8 @@ function personMove (s) { //get the collumn in which a ball had dropped during a
 }
 
 
-function dropBall(colNr) { // a move is made, now certain things had to ben done:
-    //to collumns which is choosen to put a ball in must increase by one:
+function dropBall(colNr) { // a move is made, now certain things has to be done:
+    //the ball amount per column which is choosen to put a ball in must increase by one:
     ballsPerCol[colNr-1] += 1;
     let ballRow = 0.5 - (ballsPerCol[colNr-1]-1) * step;
     let ballCol = startCubeCol + (colNr-1) * step; 
@@ -766,21 +768,18 @@ function dropBall(colNr) { // a move is made, now certain things had to ben done
  
     $('audio#pop1')[0].play(); //give a falling sound
     $(ballCloneDiv).animate({top: ballRow +'em'}); //let the ball drop with an animation
-    //$('audio#pop2')[0].play();
     $(ballCloneDiv).animate({top: ballRow-0.8 +'em'}); //give it a big bounce
     $(ballCloneDiv).animate({top: ballRow +'em'}); //drop again
     $(ballCloneDiv).animate({top: ballRow-0.1 +'em'}); //give the ball a small bounce
     $(ballCloneDiv).animate({top: ballRow +'em'}); //make the final drop
-    //$('audio#pop2')[0].play();
-    if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);}
-    busy=false;
-    //maybe 4 in a row is made, check it horizontally, vertically and diagonally
+    if (ballsPerCol[colNr-1] === 1) {setTimeout(() => { bringShadow (colNr); }, 1000);} //after the first ball a shadow appear
+    busy=false; 
+    //After falling of the ball 4 in a row can be made, check it horizontally, vertically and diagonally
     let who = grid[colNr-1][ballsPerCol[colNr-1]-1];
     if (controlVert (who, colNr-1, ballsPerCol[colNr-1]-1)){busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
     if (controlHor (who, colNr-1, ballsPerCol[colNr-1]-1)) {busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
     if (controlDiagonalRight (who, colNr-1, ballsPerCol[colNr-1]-1)){busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
     if (controlDiagonalLeft (who, colNr-1, ballsPerCol[colNr-1]-1)) {busy=true; setTimeout(() => { givePoint (who, false);}, blinkingTime);}
-    //if (!busy) {busy=true; setTimeout(() => {busy=false}, 10);}
 } // end function dropBall
 
 
@@ -795,7 +794,8 @@ function makeMove (s) {
       let who;
       if (redsTurn) {who='r'} else {who='b'}
       let extraTime=0;
-      if (busy) {extraTime = blinkingTime} //when the opponent made 4 in a row the computer must wait extra with it's move
+      if (busy) {extraTime = blinkingTime} 
+      //when the opponent made 4 in a row the computer must wait extra with it's move, it's 'busy'
       busy=true; //the mouseclicking events in the grid are on hold until the computer move is made
       setTimeout(() => {computerSaysIAmThinking (who);}, 400+extraTime); 
       setTimeout(() => {computerMove(who);}, 900+extraTime); 
