@@ -15,7 +15,7 @@ I did some experiments myself to create cubes and balls based on that 3D idea. I
 
 First I thougt to make the game "Mastermind". But it turned out that when you make rows in 3D, you get a problem. The first rows are easy to see but when you get to row 8 for example, there is a horizon effect so these rows are difficult to distinguish from each other. That should not have been a nice game experience. The solution should be to make Mastermind in 2D, but my goal is to make something in 3D, just because I like it.
 
-After that my idea evolved to make a "Four in a Row" game. Before that it was very important for me to prove it was do-able in the amount of time given for the 2nd Milestone. Therefore I made an experimental "4 in a Row"-ish 3D structure. Because it was just based on that 3D environment of the youtube I had to figure out by myself the coordinates and size of cubes just by experimenting. That experiment can be found here: https://3d-14.dikkeschei.repl.co/. 
+After that my idea evolved to make a "Four in a Row" game. Before that it was very important for me to prove it was do-able in the amount of time given for the 2nd Milestone. Therefore I made an experimental "4 in a Row"-ish 3D structure. Because it was just based on that 3D environment of the youtube I had to figure out by myself the coordinates and size of cubes just by experimenting. That experiment can be found here: https://kriz-hub.github.io/4-in-a-row-experiment-CSS-only/. 
 That was a lot of copy-pasting of cubes classes en ball classes with a slightly different coordinate because it's a CSS only structure.
 It turned out to be a succesfully created structure, now I finally decided to make a 3D game "4 in a Row" based on Javascript.
 
@@ -70,7 +70,7 @@ the user get back to portrait view, the message appear again, for a maximum of 2
 
 Also on a phone starts a rotation with the opportunity to leave the game when pressed on the exit cube.
 
-![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/leaving%20game%20phone.png)
+![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/leave-game-phone-30%25.png)
 
 ## Technologies
 
