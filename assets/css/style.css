@@ -35,23 +35,16 @@ body {
  }
 
  .collapsible {
-  /*background-color: #777;*/
   color: white;
   cursor: pointer;
-  /*padding: 18px;*/
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  /*font-size: 15px;*/}
+  }
 
-/*.active, .collapsible:hover {
-  background-color: #555;
-  width: 100%;
-}*/
 
 .content {
-  /*padding: 0 18px;*/
   display: none;
   overflow: hidden;
   opacity: 0;
@@ -71,15 +64,13 @@ ul {
   opacity: inherit;
 }
 
-li {
-  margin-right: 30px;
-}
+li {margin-right: 30px;}
 
 .grid-columns {display: flex;}
 
 .grid-columns > * {flex-basis: 100%;}
 
-/*https://codepen.io/onediv/pen/jEmjap*/
+/*https://codepen.io/onediv/pen/jEmjap  nice button found*/
 button{
   background:white;
   color:blue;
@@ -92,10 +83,12 @@ button{
   transition:800ms ease all;
   outline:none;
 }
+
 button:hover{
   background:blue;
   color:white;
 }
+
 button:before,button:after{
   content:'';
   position:absolute;
@@ -106,19 +99,21 @@ button:before,button:after{
   background: white;
   transition:400ms ease all;
 }
+
 button:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+
+button:hover:before, button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
 
 
-.bring-shadow {
+.bring-shadow { /*shadow to the columns*/
   margin: 2vh 2vw; 
   background-color: rgb(72, 135, 151);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
@@ -126,10 +121,9 @@ button:hover:before,button:hover:after{
 
 .bring-margin, .bring-margin-wrapper {margin: inherit;}
 
-.remove-mouse-pointer { pointer-events: none;}
+.remove-mouse-pointer { pointer-events: none;} 
 
  /*Inspired by radiobutton: https://codepen.io/Metty/pen/MWjOavR*/
-
 
 .wrapper{
   display: inline-flex;
@@ -211,7 +205,7 @@ input[type="radio"]{
   opacity: 1;
   transform: scale(1);
 }
-/*.wrapper .option span{*/
+
   .wrapper-spansize {
   font-size: 20px;
   color: #808080;
@@ -256,22 +250,9 @@ input[type="radio"]{
 #color-player1 {background: red;}
 #color-player2 {background: blue;}
 
-.error-blink {
-  background: red;
-}
-
-#landscape-orientation {
-  position: absolute;
-  background: black;
-  color: white;
-  display: none;
-  font-size: 3vh;
-  width: 90vw;
-  height: 90vh;
-}
 
 .give-game-start-fade-in { /*used to make a fade out when displaying hint to turn phone to landscape during game*/
-  animation: fade-in 5s ease-out;
+  animation: fade-in 4s ease-out;
 }
 
 @keyframes fade-in { 
@@ -288,10 +269,6 @@ input[type="radio"]{
   100% { opacity: 1; }
 }
 
-#orientation-text { /*used to make a fade out when displaying hint to turn phone to landscape during game*/
-  opacity: 0;
-  animation: fade-out 7s ease-out;
-}
 
 @keyframes fade-out { 
   0% { opacity: 1; }
@@ -304,18 +281,17 @@ input[type="radio"]{
   100% { opacity: 0; }
 }
 
-#scene {
+#scene { /*the game scene*/
  position: relative;
  transform-style: preserve-3d;
  transform: rotateY(0deg) translateY(0em);
  }
 
- 
 .rotate {animation: scene-rotate 15s infinite linear;}
 
   @keyframes scene-rotate { to { transform: rotateY(360deg);}}
 
- #floor {
+ #floor { /*the floor of the game*/
   position: absolute;
   top: 1em;
   transform: translate(-50%, -50%) rotateX(90deg);
@@ -323,18 +299,16 @@ input[type="radio"]{
   height: 12em;
   background: radial-gradient(#0000, #000 var(--lightness)), repeating-conic-gradient(from 125deg, red, 
   rgb(206, 198, 198) 90deg 180deg);
-  /*background-size: 100%, 1em 1em;*/
-  /*repeating-conic-gradient(from 45deg, #111 0deg 90deg, #222 90deg 180deg);*/
 }
 
-.blinking-red {animation: 1s blink-red ease infinite;}
+.blinking-red {animation: 1s blink-red ease infinite;} /*used for cubes to blink but also during an error input Setting Page*/
 .blinking-green {animation: 1s blink-green ease infinite;}
 
 @keyframes blink-red {from, to {background: rgb(255, 17, 17);} 50% {background: darkred;}}
 @keyframes blink-green {from, to {background: rgb(19, 243, 12);} 50% {background: green;}}
 
 .message-text  {
-    font-family:verdana; 
+    font-family:verdana; /*no google font thing please, I like this font*/
     font-size:0.35em; 
     text-align: center;
     transform: translateY(-0.25em);
@@ -362,7 +336,7 @@ input[type="radio"]{
 .cube:hover {
   background: var(--hover-color);
 }
-
+/*the sides of the default cube:*/
  .leftside, .rightside, .frontside, .backside {
     position: absolute;
     width: 100%;
@@ -399,6 +373,7 @@ input[type="radio"]{
   left:3.25em;
 }
 
+/*the sides of the score cubes:  */
 .score-front, .score-back {
     position: absolute;
     width: 400%; 
@@ -424,13 +399,12 @@ input[type="radio"]{
 
 .score-top {
     position: absolute;
-    width: 2em; /*because of the rotation in 3D this is now length*/
-    height: .5em; /*because of the rotation in 3D this is now width*/
+    width: 2em; 
+    height: .5em; 
     top: -.25em;
     background: white;
     animation: inherit;
-    transform: translateZ(0em) rotateX(90deg) /*translateY(-.25em) */translateX(0em);
-    /*translateZ: move up/down, translateY: move forward/behind (lower: move behind) translateX: move left/right*/
+    transform: translateZ(0em) rotateX(90deg) translateX(0em);
     box-shadow: 0 0 0.5em #000a inset;
   }
 
@@ -445,7 +419,7 @@ input[type="radio"]{
 .messagecube-position {
     left:-2.75em;
 }
-
+/*The side of the message cubes*/
 .message-front, .message-back {
       position: absolute;
       width: 1000%; 
@@ -469,12 +443,11 @@ input[type="radio"]{
   
 .message-top {
       position: absolute;
-      width: 5em; /*because of the rotation in 3D this is now length*/
-      height: .5em; /*because of the rotation in 3D this is now width*/
+      width: 5em; 
+      height: .5em; 
       top: -.25em;
       background: white;
       transform: translateZ(0em) rotateX(90deg) translateY(3.5em) translateX(0em);
-      /*translateZ: move up/down, translateY: move forward/behind (lower: move behind) translateX: move left/right*/
       box-shadow: 0 0 0.5em #000a inset;
 }
   
@@ -485,8 +458,11 @@ input[type="radio"]{
   position: absolute;
   left: 0em;
   bottom: -2em;
+  /*a ball with light reflection effect in it: */
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-red), var(--ball-red), var(--balldarkshadow-red));
   animation: sscene-rotate 15s infinite linear reverse;
+  /*the double ss sccene-rotate is not by accident, this will be altered in JS during end of game when a rotation starts
+  this animation give the circle the illusion that it is a ball during rotation, thanks to Amit Sheen */
 }
 
 
@@ -496,12 +472,14 @@ input[type="radio"]{
   position: absolute;
   left: 0em;
   bottom: -2em;
+  /*a ball with light reflection effect in it: */
   background: radial-gradient(farthest-side at .4em .2em, var(--ballshadow-blue), var(--ball-blue), var(--balldarkshadow-blue));
   animation: sscene-rotate 15s infinite linear reverse;
+  /*the double ss sccene-rotate is not by accident, this will be altered in JS during end of game when a rotation starts
+  this animation give the circle the illusion that it is a ball during rotation, thanks to Amit Sheen */
 }
 
-
-.redball-blink {animation: 0.25s red-ball-blink ease infinite;}
+.redball-blink {animation: 0.25s red-ball-blink ease infinite;} /*blinking ball when 4 in a row is made */
 .blueball-blink {animation: 0.25s blue-ball-blink ease infinite;}
 
 @keyframes red-ball-blink {
@@ -515,7 +493,7 @@ input[type="radio"]{
 }
 
 
-.ballshadow {
+.ballshadow { /* used in JS when the first ball touches the ground. It's just a blurred circle*/
   position: absolute;
   width: .45em;
   height: .5em;
@@ -523,12 +501,29 @@ input[type="radio"]{
   opacity: 0;
 }
 
-.circleshadow {
+.circleshadow { /* used with ballshadow */
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background: black;
   filter: blur(9px);
+}
+
+/*used in JS to make a fade out when displaying hint to turn phone to landscape during game. 
+Also .orientation-text is needed. In landscape orientation or when bigger device is used: display:none*/
+#landscape-orientation {
+  position: absolute;
+  background: black;
+  color: white;
+  display: none;
+  font-size: 3vh;
+  width: 90vw;
+  height: 90vh;
+}
+
+#orientation-text { 
+  opacity: 0;
+  animation: fade-out 7s ease-out;
 }
 
 
@@ -544,7 +539,7 @@ input[type="radio"]{
 
   h1 {font-size: 30px;}
 
-  .grid-columns {
+  .grid-columns { /*columns are wrapped for the really big tablets in portrait mode and everything smaller*/
     flex-wrap: wrap;  
     width: 99%;
     margin-left: 5px;

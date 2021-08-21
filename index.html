@@ -8,7 +8,7 @@
   </head>
 
   <body id="bodyID">  
-    <div id="scene">
+    <div id="scene">  <!-- First build the game scene -->
       <div id="floor"></div>
       <div class="ballshadow"><div class="circleshadow"></div></div>
       <div class="cube" onmousedown="makeMove(id)">
@@ -52,9 +52,6 @@
     <audio id="pop1">
       <source src="assets/sound/suctionplop-213-sound-effect-89089966.mp3" type="audio/mp3"> 
     </audio> 
-    <audio id="pop2">
-      <source src="assets/sound/balloon-against-wall.wav" type="audio/wav"> 
-    </audio> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div id="setting-page" >
@@ -64,6 +61,7 @@
             <h1 class="h1-title">Four In a Row - Setting Page</h1>
             <p class="content">(Press here for more information...)</p>
             <script>
+              //Default opacity for .content class = 0
               let introLine = document.getElementsByClassName("content")[0];
               introLine.style.display="inline"; introLine.style.opacity="1";
             </script>
@@ -152,7 +150,7 @@
         </div> 
       </div>
 
-      <!--when checked a full screen appear during playing of the game -->
+      <!--when checked, a full screen without URL input line appear during playing of the game -->
       <div class="grid-columns">
         <div class="bring-shadow">
           <div class="bring-margin">
