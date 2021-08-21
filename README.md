@@ -6,7 +6,7 @@
 The goal of this project is to make a game, based on HTML, CSS and Javascript. It is made in a 3D environment, with a settings page for creating names and number of players.
 For a demo of my 4 In A Row game click [HERE](https://kriz-hub.github.io/4-in-a-row/).
 
-![Desktop Demo](https://github.com/Kriz-hub/4-in-a-row/blob/master/animation-1.gif) ![Desktop Demo](https://github.com/Kriz-hub/4-in-a-row/blob/master/animation-2.gif)
+![Desktop Demo](https://github.com/Kriz-hub/4-in-a-row/blob/master/animations/animation-1.gif) ![Desktop Demo](https://github.com/Kriz-hub/4-in-a-row/blob/master/animations/animation-2.gif)
 
 ## The Making
 When I was thinking about the 2nd Milestone my eye fell on a Youtube to make cubes and balls in a 3D environment, https://www.youtube.com/watch?v=NdftnCDwKaU.
@@ -70,7 +70,7 @@ the user get back to portrait view, the message appear again, for a maximum of 2
 
 Also on a phone starts a rotation with the opportunity to leave the game when pressed on the exit cube.
 
-![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/leave-game-phone-30%25.png)
+![Leaving Game Phone:](https://github.com/Kriz-hub/4-in-a-row/blob/master/wireframes/leave-game-phone-50%25.png)
 
 ## Technologies
 
