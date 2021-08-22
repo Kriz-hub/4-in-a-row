@@ -539,7 +539,8 @@ Also .orientation-text is needed. In landscape orientation or when bigger device
 
   h1 {font-size: 30px;}
 
-  .grid-columns { /*columns are wrapped for the really big tablets in portrait mode and everything smaller*/
+  .grid-columns { 
+    /*columns are wrapped for the really big tablets when they are in portrait mode and everything smaller*/
     flex-wrap: wrap;  
     width: 99%;
     margin-left: 5px;
@@ -571,9 +572,11 @@ Also .orientation-text is needed. In landscape orientation or when bigger device
   .simple-wrapper {
     width: 90%;
   } 
-}
 
-@media screen and (max-width: 1030px) {
+  ul {
+    padding-left: 25px;
+  }
+
   .leftside, .rightside, .frontside, .backside {
     box-shadow: 0 0 0.5em rgba(48, 48, 48, 0.7) inset;
   }
