@@ -86,28 +86,33 @@ Also on a phone starts a rotation with the opportunity to leave the game when pr
 
 ## Features
 Setting Page:
-* First the Setting Page shows up. A list appears in the upper column to give some game rule principles. When a phone device is used only "Press here for more" is visible. When pressed on this column a new column appears with the game rule principles.
+* First the Setting Page shows up. A list appears in the upper column to give some game help when pressed on it. 
 * With radio buttons a choice can made to play with a computer player (One Player) or with a human opponent (Two Players)
-* Then the player names can be filled in
+* The player names can be filled in
 * a choice can be made who has red (that one starts the game) and blue.
 * a check can be placed to play the game full screen
-* when the button "Play Now" is pressed a fail save starts to check if the names are filled in. If it's done then the game page will be loaded.
+* when the button "Let's Play" is pressed a fail save starts to check if the names are filled in. If it's done then the game page will be loaded.
 
 Game Environment:
 * When then name of the player is emphasized with an underlining and the gridcolor has the color of the player when hovered with the mouse pointer a move can be made.
 * When clicked on the desired column in the grid a ball falls down from above on that spot.
 * The game ends when the grid is full of balls. The environment starts rotating and 2 bigger cubes appear with information who has won.
-* a press on a cube with the wordt "Exit" is another way to end the game.  The cubes where normally the scores are displayed, starts to blink with the words "Yes" and "No" and the environment starts to rotate. 2 bigger cubes appear with the Question "Leave game?" When pressed "Yes" on the cube the Quistion disappear and a line who has won is to be showed.
+* a press on a cube with the wordt "Exit" is another way to end the game.  The cubes where normally the scores are displayed, starts to blink with the words "Yes" and "No" and the environment starts to rotate. 2 bigger cubes appear with the Question "Leave game?" When pressed "Yes" on the cube the question disappeara and a line who has won is to be showed.
 
 
 ## Testing
 * This game is tested on a real Samsung S7, Samsung A31 and Samsung A51, on there own browser and on a Chrome browser. The setting page run smoothly on these devices. All phones can give a full screen game page with a smooth gameplay. But on game's end the scenery rotation is somewhat "shuttering", see Section Bugs.
 * This game appear not to work on a Firefox browser, see Section Bugs.
-* The old tablet Asus Transformer Pad crashes with this game although it has a new chrome browser installed on it (see Bugs Section). The recent made tablet Lenovo TB-X10AF work smoothly and gives a proper layout on both Setting Page and Game Page.
-* The game is tested on personal laptop and desktop and a desktop computer at work. All features work smoothly as it should on a Chrome, Edge and Opera browser, also the game play and the rotation on game's end work smoothly.
+* The old tablet Asus Transformer Pad don't respond when the game is loaded although it has a new chrome browser installed on it (see Bugs Section). The recent made tablet Lenovo TB-X10AF work smoothly and gives a proper layout on both Setting Page and Game Page.
+* The game is tested on personal laptop and desktop and a desktop computer at work. All features run smoothly as it should on a Chrome, Edge and Opera browser, also the game play and the rotation on game's end run smoothly.
+* The W3 validator give some remarks: https://validator.w3.org/nu/?doc=https%3A%2F%2Fkriz-hub.github.io%2F4-in-a-row%2F In my opinion it's not an important validator this time, because this is a game and it could eventually be found in Google Playstore, maybe! I don't see this project really as a website.
+
+Test results:
+
 
 ## Features Left to Implement
 * On this moment the difficulty level of the computer player is zero, it just do random moves. The next step of AI could be that it does all availlable moves virtually, so that it can map all moves where points can be earned and where it can prevent the opponent of getting points. A level higher could also be to create patterns. For example it makes 2 rows of 3 above one other (horizontally, vertically or diagonally). if the opponent prevent the first row to make a point the computer can make 4 in the row above. It would be great to develop this as a smarter game, but time ends now.
+* It is a little annoying that ervery time the phone is turned back to portrait mode a hint appears to turn back to landscape. That can be solved to make an event listener who counts the number of times of turning the phone to stop this hint at one point.
 * A next step is to develop it as a phone app. Right now it can be played full screen on a phone, but because it is on a browser it can't be locked to stay full screen. In a normal situation it isn't an issue, but that should be a better design.
 
 ## Bugs and other issues
