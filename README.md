@@ -108,6 +108,25 @@ Game Environment:
 * The W3 validator give some remarks: https://validator.w3.org/nu/?doc=https%3A%2F%2Fkriz-hub.github.io%2F4-in-a-row%2F In my opinion it's not an important validator this time, because this is a game and it could eventually be found in Google Playstore, maybe! I don't see this project really as a website.
 
 Test results:
+* good responsive handling of all devices: most passed. 
+Really small devices as a Galaxy Fold give some problems with the Setting Page. The columns remain too wide. So devices below the width of 350px screens : not passed
+* responsive handling during game mode: passed.
+* helpfile appears and disappears properly when pressed on the upper collumn: passed
+* choose one or two players, computer level column appears and disappears properly: passed
+* the filling in of one Player name or two Player names, depending on how many players are choosen: passed
+* Choosing what color for which player: passed
+* Place a check for full screen or not, with a good result when playing te game: passed
+* Fail save handling when pressed on the 'submit Names' button and names are not properly filled in: passed
+* Fail save handling when pressed on the 'Let's Play' Button and there is not first clicked on 'Submit Names' Button: passed 
+* all player names appear when game is played: passed
+* A click on a certain place in the grid and then a ball falls down in that collumn, but nothing happens when that collumn is full: passed
+* a press on the cube with the name 'Exit, and after that blinking cubes appear with 'yes' or 'no' on it and a question to end the game with a proper rotation: passed
+* the game get back to the normal game situation when pressed on the cube with 'no': passed
+* the game ends when pressing on the cube with 'yes'and gives information who has won: passed
+* when playing out all balls, a proper rotation start with information who has won: passed
+* After game's end the page shows the URL line after 3 second when a check is placed for playing full screen: passed
+* the game starts again by pressing F5 or click on the URL with enter: passed
+
 
 
 ## Features Left to Implement
@@ -152,6 +171,8 @@ I followed the next steps to deploy my game on the GitHub pages:
 * Reload page: https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript
 * To add a new div with JS: https://stackoverflow.com/questions/15078213/javascript-insertbefore-in-a-different-div-both-within-a-parent-div
 * Get random numbers: https://www.w3schools.com/js/tryit.asp?filename=tryjs_random_0_9 
+
+Thanks to mentor Marcel for his help!
 
 
 
